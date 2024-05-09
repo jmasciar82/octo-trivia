@@ -77,7 +77,7 @@ const updateTotalVotes = async (questionId) => {
 
         // Calcula y actualiza el porcentaje de votos para cada opción
         pregunta.opciones.forEach(option => {
-            option.porcentajeVotos = totalVotos === 0 ? 0 : ((option.votos / totalVotos) * 100).toFixed(2);
+            option.porcentajeVotos = totalVotos === 0 ? 0 : ((option.votos / totalVotos) * 100);
         });
 
         // Guarda los cambios en la base de datos

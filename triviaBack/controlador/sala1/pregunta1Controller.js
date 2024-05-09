@@ -34,9 +34,6 @@ const voteInPoll = async (req, res) => {
             return res.status(404).json({ error: 'La pregunta no existe' });
         }
 
-
-
-
         const opcionSeleccionadaIndex = pregunta.opciones.findIndex(opcion => opcion._id.equals(optionObjectId)); // Comparar con equals()
 
         // Verifica si la opción seleccionada existe

@@ -6,6 +6,8 @@ export const QRGenerator = () => {
     // Obtén los parámetros de la URL
     const { salaId, preguntaId } = useParams();
 
+    
+
     // Construye el texto del código QR concatenando los parámetros a la URL base
     const URL_API = process.env.NODE_ENV === 'production' ?
         `${process.env.REACT_APP_PROD_BACKEND_URL}/index/sala/${salaId}/pregunta/${preguntaId}` :

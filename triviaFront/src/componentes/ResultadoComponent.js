@@ -50,7 +50,7 @@ return (
                         <div className="poll__option-fill">
                             <div className="poll__option-info" style={{ position: 'relative', zIndex: 2 }}>
                                 <span>Opción {letra}</span>
-                                <span className="poll__votes">{option.porcentajeVotos} %</span>
+                                <span className="poll__votes">{(option.porcentajeVotos).toFixed(2)} %</span>
                             </div>
                         </div>
                         {/* Barra con fondo transparente que crece con el porcentaje */}
