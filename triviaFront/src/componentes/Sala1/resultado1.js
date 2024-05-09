@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import ResultadoComponent from '../ResultadoComponent'; // Asegúrate de importar el componente ResultadoComponent
 
 export const Resultado = () => {
     const { salaId, preguntaId } = useParams();
     const [pregunta, setPregunta] = useState(null);
+
     
-    console.log(setInfo);
     const URL_API = process.env.NODE_ENV === 'production' ?
-        `${process.env.REACT_APP_PROD_BACKEND_URL}/index/sala/${info.salaId}/pregunta/${info.preguntaId}` :
-        `http://localhost:3000/index/sala/${info.salaId}/pregunta/${info.preguntaId}`;
-    
+        `${process.env.REACT_APP_PROD_BACKEND_URL}/index/sala/${salaId}/pregunta/${preguntaId}` :
+        `http://localhost:3000/index/sala/${salaId}/pregunta/${preguntaId}`;
+
     console.log('URL_API', URL_API);
 
     useEffect(() => {
@@ -33,7 +34,7 @@ export const Resultado = () => {
 
         // Limpia el intervalo cuando el componente se desmonta
         return () => clearInterval(intervalId);
-    }, [URL_API, info.salaId, info.preguntaId]);
+    }, [URL_API,salaId, preguntaId]);
 
     if (!pregunta) {
         return <div>Cargando...</div>;
