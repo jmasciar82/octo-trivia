@@ -37,9 +37,12 @@ export const IngresaPalabra = ({ onPalabraIngresada }) => {
     };
 
     const enviarPalabra = async (palabra) => {
-        // Aquí debes realizar la llamada a tu servidor para guardar la palabra en MongoDB
-        // Reemplaza la URL y el método con los adecuados para tu aplicación
-        await axios.post('http://localhost:3000/palabraEnviada', { palabra });
+
+        const URL_API = process.env.NODE_ENV === 'production' ?
+        `${process.env.REACT_APP_PROD_BACKEND_URL}/palabraEnviada` :
+        `http://localhost:3000/palabraEnviada`;
+        
+        await axios.post(URL_API, { palabra });
     };
 
     return (
