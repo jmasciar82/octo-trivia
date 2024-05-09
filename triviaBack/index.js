@@ -15,12 +15,12 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // Middleware para seguridad de contenido
-app.use((req, res, next) => {
+/* app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', 'https://octo-trivia-front.vercel.app');
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
     next();
-});
+}); */
 
 
 // Rutas API RESTful
