@@ -1,0 +1,151 @@
+.contenedor {
+    display: flex;
+    flex-direction: row;
+    justify-content: s;
+    align-items: center;
+    height: 100vh;
+}
+
+
+.poll {
+    font-family: Arial, sans-serif;
+    background-color: rgb(4, 4, 75);
+
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px #f4f4f4;
+    margin-bottom: 20px;
+
+    max-width: 70%;
+    margin: 5% auto;
+
+}
+.poll__letra {
+    color: #e0e0e0;
+}
+.ol__container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+}
+
+
+
+.poll ol {
+    text-align: left; /* Ajusta el texto de la lista a la izquierda */
+    color: white;
+    list-style-type:upper-alpha;
+}
+
+.nombre_marca img {
+    vertical-align: middle;
+
+    margin-left: 10px;
+
+
+    animation: floatAnimation 3s infinite alternate;
+
+}
+
+@keyframes floatAnimation {
+    from {
+        transform: translate(0, 0);
+    }
+
+    to {
+        transform: translate(5px, 5px);
+
+    }
+}
+
+
+.poll__title {
+    font-size: 20px !important;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #e0e0e0;
+    text-align: center;
+}
+
+.poll__option {
+    cursor: pointer;
+    max-width: 80%;
+    margin: 0 auto;
+    padding: 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    font-weight: bolder;
+    border: solid 2px aqua;
+    margin-bottom: 10px;
+
+
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+
+    position: relative;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
+}
+
+.poll__option:active {
+    transform: scale(0.96);
+}
+
+
+
+.poll__option::after {
+    bottom: -70%;
+}
+
+.poll__option:last-child {
+    margin-bottom: 15px;
+}
+
+.poll__option:hover {
+    background-color: blue;
+    border: 2px solid white;
+
+}
+
+.poll__option-selected {
+    background-color: green !important;
+
+}
+
+.poll__option-fill {
+    background-color: transparent;
+    border-radius: 5px;
+    width: 100%;
+}
+
+
+.poll__option-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    padding: 5px;
+}
+
+.poll__label {
+    font-size: 16px;
+}
+
+.poll__percentage {
+    font-size: 14px;
+    font-weight: bold;
+    color: white;
+    font-weight: bolder;
+
+}
+
+.qrContainer {
+    display: 'flex';
+    justify-items: 'center';
+    align-items: 'center';
+    height: '100vh';
+    flex-direction: 'column';
+    margin: 0 auto;
+}

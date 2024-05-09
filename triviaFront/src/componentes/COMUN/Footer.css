@@ -1,0 +1,42 @@
+/* Footer.css */
+
+.footer-container {
+    
+    color: aliceblue;
+    padding: 20px;
+    display: flex;
+    
+}
+
+.contact-links, .social-links {
+    flex: 1;
+}
+
+.contact-links h3, .social-links h3 {
+    font-size: 18px;
+}
+
+.contact-links ul, .social-links ul {
+    list-style: none;
+    padding: 0;
+}
+
+.contact-links ul li, .social-links ul li {
+    margin-bottom: 10px;
+}
+
+.contact-links a, .social-links a {
+    
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.contact-links a:hover, .social-links a:hover {
+    text-decoration: underline;
+}
+
+.social-links img {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+}

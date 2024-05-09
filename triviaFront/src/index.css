@@ -1,0 +1,31 @@
+.jumbotron {
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
+.home-page{
+
+    display: flex;
+    flex-direction: row;
+    gap: 25px;
+    justify-content: center;
+}
+.card {
+    margin-top: 50px;
+    width: 80%;
+    max-width: 600px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+/* Media query para pantallas más pequeñas, como dispositivos móviles */
+@media (max-width: 768px) {
+    .home-page {
+        flex-direction: column; /* Cambia la dirección de flexión a columna */
+        align-items: center; /* Centra los elementos en el eje transversal */
+    }
+}
+

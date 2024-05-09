@@ -1,0 +1,49 @@
+.navbar {
+    
+    width: 100%;
+}
+
+
+
+.nav-link {
+    color: blue ;
+    text-align: left;
+    
+
+
+}
+
+.navbar-toggler-icon {
+    background-color: aliceblue;
+}
+
+.separador-navbar {
+    margin-bottom: 1px;
+}
+#dropdown-basic {
+    background-color: blue;
+    margin-left: 50px;
+    margin-right: 50px;
+
+    
+}
+
+@media screen and (max-width:1000px) {
+
+    .nav-container {
+        display: flex;
+        justify-content: right;
+    }
+
+    
+
+    .navbar {
+        max-width: max-content;
+        width: 280px !important;
+        
+        
+    }
+
+}
+
+
