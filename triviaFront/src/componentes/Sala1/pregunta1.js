@@ -4,21 +4,14 @@ import PollComponent from '../PollComponent';
 
 export const Index = () => {
     const { salaId, preguntaId } = useParams();
-    console.log(`salaID: ${salaId}, preguntaID: ${preguntaId}`);
-
     const [pregunta, setPregunta] = useState(null);
-    const [info, setInfo] = useState({
-        salaId: salaId,
-        preguntaId: preguntaId
-    });
-
-
-    const URL_API = process.env.NODE_ENV === 'production' ?
-        `${process.env.REACT_APP_PROD_BACKEND_URL}/index/sala/${info.salaId}/pregunta/${info.preguntaId}` :
-        `http://localhost:3000/index/sala/${info.salaId}/pregunta/${info.preguntaId}`;
 
     useEffect(() => {
-        fetch(`${URL_API}`)
+        const URL_API = process.env.NODE_ENV === 'production' ?
+            `${process.env.REACT_APP_PROD_BACKEND_URL}/index/sala/${salaId}/pregunta/${preguntaId}` :
+            `http://localhost:3000/index/sala/${salaId}/pregunta/${preguntaId}`;
+        
+        fetch(URL_API)
             .then(response => {
                 if (response.ok) {
                     return response.json();
@@ -27,7 +20,7 @@ export const Index = () => {
             })
             .then(data => setPregunta(data))
             .catch(error => console.error(error));
-    }, [URL_API, info.salaId, info.preguntaId]);
+    }, [salaId, preguntaId]);
 
     if (!pregunta) {
         return <div>Cargando...</div>;
@@ -35,7 +28,7 @@ export const Index = () => {
 
     return (
         <div className="App">
-            <PollComponent pollData={pregunta} info={info} />
+            <PollComponent pollData={pregunta} />
         </div>
     );
 }
