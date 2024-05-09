@@ -47,7 +47,7 @@ function App() {
               <Route path='/verNube' element={<VerPalabraPadre titulo="verPalabraPadre" />} />
 
 
-              <Route path='/sala1_qr1' element={<Qr1 titulo="Qr1" />} />
+              <Route path='/sala1_qr1/sala/:salaId/pregunta/:preguntaId' element={<Qr1 titulo="Qr1" />} />
               <Route path='*' element={<RutaNoValida />} />
             </Routes>
           </BrowserRouter>

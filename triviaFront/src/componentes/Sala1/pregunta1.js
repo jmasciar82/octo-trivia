@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import PollComponent from '../PollComponent';
@@ -5,6 +6,7 @@ import PollComponent from '../PollComponent';
 export const Index = () => {
     const { salaId, preguntaId } = useParams();
     const [pregunta, setPregunta] = useState(null);
+    //eslint-disable-next-line
     const [info, setInfo] = useState({
         salaId: salaId,
         preguntaId: preguntaId
