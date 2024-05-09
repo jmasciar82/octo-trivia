@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { Index } from './componentes/COMUN/Index.js';
+
 import { IndexNube } from './componentes/COMUN/IndexNube.js';
 import { PadreComponente } from './componentes/NUBE/PadreComponente.js';
 import { Index as Sala1 } from './componentes/Sala1/pregunta1.js';
@@ -40,6 +41,7 @@ function App() {
 
               <Route path='/' element={<HomePage onEnterClick={handleEnterClick} />} />
               <Route path='/index' element={<Index titulo="Index" />} />
+              
               <Route path='/indexNube' element={<IndexNube titulo="IndexNube" />} />
 
               

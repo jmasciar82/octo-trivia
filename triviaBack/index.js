@@ -28,10 +28,14 @@ const sala1Pregunta1Routes = require('./router/sala1/pregunta1Routes.js');
 const resultado1 = require('./router/sala1/respuestaRoutes.js');
 const palabraRouter = require('./router/sala1/palabra.js');
 const verNubeRouter = require('./router/sala1/verNube.js');
+const getQuestions = require('./router/sala1/preguntasDeSala.js');
+
+
 
 app.use('/index', sala1Pregunta1Routes);
 app.use('/resultado', resultado1);
 app.use('/palabraEnviada', palabraRouter);
+app.use('/palabrasDeSala', getQuestions);
 
 // Permitir solicitudes CORS para todas las rutas
 

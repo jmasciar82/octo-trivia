@@ -1,5 +1,5 @@
 const Pregunta = require('../../model/Pregunta');
-const { updateTotalVotes } = require('../../model/initDB'); // Asegúrate de proporcionar la ruta correcta
+//const { updateTotalVotes } = require('../../model/initDB'); // Asegúrate de proporcionar la ruta correcta
 
 const getQuestionAndOptions = async (req, res) => {
     try {

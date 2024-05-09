@@ -20,6 +20,24 @@ const getQuestionAndOptions = async (req, res) => {
     }
 };
 
+const getQuestions = async (req, res) => {
+    try {
+        const { salaId } = req.params;
+        const preguntas = await Pregunta.find({salaId: salaId });
+
+        console.log('sala:' ,salaId);
+
+        if (!preguntas) {
+            return res.status(404).json({ error: 'Pregunta no encontrada en la sala especificada' });
+        }
+
+        res.json(preguntas);
+    } catch (error) {
+        console.error('Error al obtener las preguntas:', error);
+        res.status(500).send('Error interno del servidor');
+    }
+};
+
 const voteInPoll = async (req, res) => {
     const { salaId, preguntaId } = req.params;
     const { option } = req.body;
@@ -56,4 +74,4 @@ const voteInPoll = async (req, res) => {
     }
 };
 
-module.exports = { getQuestionAndOptions, voteInPoll };
+module.exports = { getQuestionAndOptions, voteInPoll, getQuestions };

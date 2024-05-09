@@ -24,6 +24,7 @@ router.get('/sala/:salaId/pregunta/:preguntaId', async (req, res) => {
     }
 });
 
+
 router.post('/sala/:salaId/pregunta/:preguntaId', preguntaController.voteInPoll);
 
 module.exports = router;
