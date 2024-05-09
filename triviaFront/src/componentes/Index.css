@@ -48,6 +48,13 @@
 
 }
 
+.poll__navigation {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+
 @keyframes floatAnimation {
     from {
         transform: translate(0, 0);
