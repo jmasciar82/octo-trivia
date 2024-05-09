@@ -1,20 +1,18 @@
 import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import PollComponent from '../PollComponent';
 
 export const Index = () => {
+    const { salaId, preguntaId } = useParams();
     const [pregunta, setPregunta] = useState(null);
     const [info, setInfo] = useState({
-        salaId: '6617f798c3eb3b3b51f8df76',
-        preguntaId: '6617f799c3eb3b3b51f8df78'
+        salaId: salaId,
+        preguntaId: preguntaId
     });
-
-    console.log(setInfo);
 
     const URL_API = process.env.NODE_ENV === 'production' ?
         `${process.env.REACT_APP_PROD_BACKEND_URL}/index/sala/${info.salaId}/pregunta/${info.preguntaId}` :
         `http://localhost:3000/index/sala/${info.salaId}/pregunta/${info.preguntaId}`;
-    
-    console.log('URL_API', URL_API);
 
     useEffect(() => {
         fetch(`${URL_API}`)
