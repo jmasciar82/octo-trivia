@@ -32,7 +32,7 @@ app.use('/resultado', resultado1);
 app.use('/palabraEnviada', palabraRouter);
 
 // Permitir solicitudes CORS para todas las rutas
-app.use(cors());
+
 
 // Permitir solicitudes desde cualquier origen para verNubeRouter
 app.use('/verNube', verNubeRouter);
