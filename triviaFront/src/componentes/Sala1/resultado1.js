@@ -2,11 +2,8 @@ import React, { useState, useEffect } from 'react';
 import ResultadoComponent from '../ResultadoComponent'; // Asegúrate de importar el componente ResultadoComponent
 
 export const Resultado = () => {
+    const { salaId, preguntaId } = useParams();
     const [pregunta, setPregunta] = useState(null);
-    const [info, setInfo] = useState({
-        salaId: '6617f798c3eb3b3b51f8df76',
-        preguntaId: '6617f799c3eb3b3b51f8df78'
-    });
     
     console.log(setInfo);
     const URL_API = process.env.NODE_ENV === 'production' ?
