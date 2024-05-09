@@ -5,11 +5,15 @@ import PollComponent from '../PollComponent';
 export const Index = () => {
     const { salaId, preguntaId } = useParams();
     const [pregunta, setPregunta] = useState(null);
+    const [info, setInfo] = useState({
+        salaId: salaId,
+        preguntaId: preguntaId
+    });
 
     useEffect(() => {
         const URL_API = process.env.NODE_ENV === 'production' ?
-            `${process.env.REACT_APP_PROD_BACKEND_URL}/index/sala/${salaId}/pregunta/${preguntaId}` :
-            `http://localhost:3000/index/sala/${salaId}/pregunta/${preguntaId}`;
+            `${process.env.REACT_APP_PROD_BACKEND_URL}/index/sala/${info.salaId}/pregunta/${info.preguntaId}` :
+            `http://localhost:3000/index/sala/${info.salaId}/pregunta/${info.preguntaId}`;
         
         fetch(URL_API)
             .then(response => {
@@ -20,7 +24,7 @@ export const Index = () => {
             })
             .then(data => setPregunta(data))
             .catch(error => console.error(error));
-    }, [salaId, preguntaId]);
+    }, [info.salaId, info.preguntaId]);
 
     if (!pregunta) {
         return <div>Cargando...</div>;
@@ -28,7 +32,7 @@ export const Index = () => {
 
     return (
         <div className="App">
-            <PollComponent pollData={pregunta} />
+            <PollComponent pollData={pregunta} info={info} />
         </div>
     );
 }
