@@ -4,11 +4,14 @@ import PollComponent from '../PollComponent';
 
 export const Index = () => {
     const { salaId, preguntaId } = useParams();
+    console.log(`salaID: ${salaId}, preguntaID: ${preguntaId}`);
+
     const [pregunta, setPregunta] = useState(null);
     const [info, setInfo] = useState({
         salaId: salaId,
         preguntaId: preguntaId
     });
+
 
     const URL_API = process.env.NODE_ENV === 'production' ?
         `${process.env.REACT_APP_PROD_BACKEND_URL}/index/sala/${info.salaId}/pregunta/${info.preguntaId}` :
