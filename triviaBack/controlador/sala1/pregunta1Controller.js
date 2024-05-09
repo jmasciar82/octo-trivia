@@ -44,8 +44,6 @@ const voteInPoll = async (req, res) => {
         // Incrementa el contador de votos para la opción seleccionada
         pregunta.opciones[opcionSeleccionadaIndex].votos += 1;
 
-
-
         await updateTotalVotes(pregunta._id);//************************************* */
 
         // Guarda los cambios
