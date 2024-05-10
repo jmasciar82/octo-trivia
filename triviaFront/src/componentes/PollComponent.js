@@ -21,6 +21,8 @@ export default function PollComponent({ pollData, preguntasDeSala, info }) {
         }
     }, [preguntasDeSala]);
 
+
+
     console.log(Preguntas);
 
     const handleOptionClick = async (optionId) => {
@@ -31,7 +33,8 @@ export default function PollComponent({ pollData, preguntasDeSala, info }) {
             console.error('Error al enviar el voto:', error);
         }
     };
-    
+
+
     const sendVote = async (optionId) => {
         const { salaId, preguntaId } = info;
 
@@ -51,13 +54,12 @@ export default function PollComponent({ pollData, preguntasDeSala, info }) {
         }
     };
 
-    const reloadPage = () => {
-        window.location.reload(); // Recargar la página
-    };
-
     if (!currentPollData) {
         return <div>Cargando...</div>;
     }
+
+
+
 
     return (
         <div className="poll">
@@ -82,12 +84,17 @@ export default function PollComponent({ pollData, preguntasDeSala, info }) {
             ))}
 
             <div className="poll__navigation">
-                {Preguntas.map((pregunta, index) => (
+                {Preguntas.map((pregunta, index) =>
+
                     <NavLink key={index} to={`/index/sala/6617f798c3eb3b3b51f8df76/pregunta/${pregunta}`}>
-                        <Button onClick={reloadPage}>{index + 1}</Button>
+                        <Button>{index + 1}</Button>
                     </NavLink>
-                ))}
+
+
+                )}
+
             </div>
+
         </div>
     );
 }
