@@ -16,7 +16,7 @@
     box-shadow: 0 2px 5px #f4f4f4;
     margin-bottom: 20px;
 
-    max-width: 70%;
+    max-width: 75%;
     margin: 5% auto;
 
 }
@@ -155,4 +155,14 @@
     height: '100vh';
     flex-direction: 'column';
     margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+    .poll {
+        
+    
+        max-width: 90%;
+        margin: 5% auto;
+    
+    }
 }
