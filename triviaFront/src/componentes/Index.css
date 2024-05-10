@@ -50,8 +50,15 @@
 
 .poll__navigation {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     margin-top: 20px;
+    
+}
+
+.poll__navigation button {
+
+    margin-left: 5px;
+
 }
 
 

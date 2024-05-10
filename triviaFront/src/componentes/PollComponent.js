@@ -1,13 +1,27 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { Button } from 'react-bootstrap';
+import { NavLink } from 'react-router-dom';
 
-export default function PollComponent({ pollData, info }) {
+
+export default function PollComponent({ pollData, preguntasDeSala, info }) {
     const [selectedOption, setSelectedOption] = useState(null);
     const [currentPollData, setCurrentPollData] = useState(null);
+    const [Preguntas, setPreguntasIds] = useState([]);
 
     useEffect(() => {
         setCurrentPollData(pollData.pregunta);
     }, [pollData]);
+
+    useEffect(() => {
+        if (preguntasDeSala && preguntasDeSala.preguntas) {
+            const idsPreguntas = preguntasDeSala.preguntas.map(pregunta => pregunta._id);
+            setPreguntasIds(idsPreguntas);
+        }
+    }, [preguntasDeSala]);
+
+
+    console.log(Preguntas);
 
     const handleOptionClick = async (optionId) => {
         if (!selectedOption) {
@@ -25,9 +39,9 @@ export default function PollComponent({ pollData, info }) {
         const { salaId, preguntaId } = info;
 
         if (!info) {
-        console.error('Error: Info is undefined');
-        return;
-    }
+            console.error('Error: Info is undefined');
+            return;
+        }
 
         // Determinar la URL del backend según el entorno
         const backendURL = process.env.NODE_ENV === 'production' ? process.env.REACT_APP_PROD_BACKEND_URL : 'http://localhost:3000';
@@ -43,6 +57,9 @@ export default function PollComponent({ pollData, info }) {
     if (!currentPollData) {
         return <div>Cargando...</div>;
     }
+
+
+
 
     return (
         <div className="poll">
@@ -65,6 +82,18 @@ export default function PollComponent({ pollData, info }) {
                     </div>
                 </div>
             ))}
+
+            <div className="poll__navigation">
+                {Preguntas.map((pregunta, index) =>
+
+                    <NavLink key={index} to={`/index/sala/6617f798c3eb3b3b51f8df76/pregunta/${pregunta}`}>
+                        <Button>{index + 1}</Button>
+                    </NavLink>
+
+                )}
+
+            </div>
+
         </div>
     );
 }
