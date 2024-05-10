@@ -5,6 +5,7 @@ import { NavLink } from 'react-router-dom';
 
 
 export default function PollComponent({ pollData, preguntasDeSala, info }) {
+    //eslint-disable-next-line
     const [selectedOption, setSelectedOption] = useState(null);
     const [currentPollData, setCurrentPollData] = useState(null);
     const [Preguntas, setPreguntasIds] = useState([]);
@@ -24,16 +25,14 @@ export default function PollComponent({ pollData, preguntasDeSala, info }) {
     console.log(Preguntas);
 
     const handleOptionClick = async (optionId) => {
-        if (!selectedOption) {
-            try {
-                setSelectedOption(optionId);
-                await sendVote(optionId);
-                console.log('Voto registrado correctamente', optionId);
-            } catch (error) {
-                console.error('Error al enviar el voto:', error);
-            }
+        try {
+            await sendVote(optionId);
+            console.log('Voto registrado correctamente', optionId);
+        } catch (error) {
+            console.error('Error al enviar el voto:', error);
         }
     };
+    
 
     const sendVote = async (optionId) => {
         const { salaId, preguntaId } = info;
