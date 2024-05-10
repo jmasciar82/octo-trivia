@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom';
 
 
 export default function PollComponent({ pollData, preguntasDeSala, info }) {
-    //eslint-disable-next-line
+    // eslint-disable-next-line
     const [selectedOption, setSelectedOption] = useState(null);
     const [currentPollData, setCurrentPollData] = useState(null);
     const [Preguntas, setPreguntasIds] = useState([]);
@@ -21,6 +21,14 @@ export default function PollComponent({ pollData, preguntasDeSala, info }) {
         }
     }, [preguntasDeSala]);
 
+    useEffect(() => {
+        // Actualizar el estado de currentPollData y Preguntas cada vez que cambia info
+        setCurrentPollData(pollData.pregunta);
+        if (preguntasDeSala && preguntasDeSala.preguntas) {
+            const idsPreguntas = preguntasDeSala.preguntas.map(pregunta => pregunta._id);
+            setPreguntasIds(idsPreguntas);
+        }
+    }, [info, pollData, preguntasDeSala]);
 
     console.log(Preguntas);
 
@@ -56,9 +64,6 @@ export default function PollComponent({ pollData, preguntasDeSala, info }) {
     if (!currentPollData) {
         return <div>Cargando...</div>;
     }
-
-
-
 
     return (
         <div className="poll">
