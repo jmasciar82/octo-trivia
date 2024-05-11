@@ -3,7 +3,6 @@ import axios from 'axios';
 import { Button } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 
-
 export default function PollComponent({ pollData, preguntasDeSala, info }) {
     //eslint-disable-next-line
     const [selectedOption, setSelectedOption] = useState(null);
@@ -21,19 +20,18 @@ export default function PollComponent({ pollData, preguntasDeSala, info }) {
         }
     }, [preguntasDeSala]);
 
-
-
-    console.log(Preguntas);
+    const restartClick = () => {
+        window.location.reload();
+    };
 
     const handleOptionClick = async (optionId) => {
         try {
             await sendVote(optionId);
-            console.log('Voto registrado correctamente', optionId);
+            console.log('Voto registrado correctamente!!!', optionId);
         } catch (error) {
             console.error('Error al enviar el voto:', error);
         }
     };
-
 
     const sendVote = async (optionId) => {
         const { salaId, preguntaId } = info;
@@ -58,9 +56,6 @@ export default function PollComponent({ pollData, preguntasDeSala, info }) {
         return <div>Cargando...</div>;
     }
 
-
-
-
     return (
         <div className="poll">
             <div className="poll__title">{currentPollData.titulo}</div>
@@ -84,17 +79,12 @@ export default function PollComponent({ pollData, preguntasDeSala, info }) {
             ))}
 
             <div className="poll__navigation">
-                {Preguntas.map((pregunta, index) =>
-
+                {Preguntas.map((pregunta, index) => (
                     <NavLink key={index} to={`/index/sala/6617f798c3eb3b3b51f8df76/pregunta/${pregunta}`}>
-                        <Button>{index + 1}</Button>
+                        <Button onClick={restartClick}>{index + 1}</Button>
                     </NavLink>
-
-
-                )}
-
+                ))}
             </div>
-
         </div>
     );
 }
