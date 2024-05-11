@@ -56,8 +56,7 @@ export const Index = () => {
     console.log(`preguntas de sala: ${JSON.stringify(preguntasDeSala)}`);
 
     return (
-        <div className="App">
-            
+        <div className="App">            
             <PollComponent pollData={pregunta} preguntasDeSala={preguntasDeSala} info={info} />
         </div>
     );
