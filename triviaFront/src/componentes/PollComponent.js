@@ -58,12 +58,6 @@ export default function PollComponent({ pollData, preguntasDeSala, info }) {
         return <div>Cargando...</div>;
     }
 
-    const reload = () => {
-
-        window.location.reload()
-
-    }
-
 
 
 
@@ -93,7 +87,7 @@ export default function PollComponent({ pollData, preguntasDeSala, info }) {
                 {Preguntas.map((pregunta, index) =>
 
                     <NavLink key={index} to={`/index/sala/6617f798c3eb3b3b51f8df76/pregunta/${pregunta}`}>
-                        <Button onClick={reload} >{index + 1}</Button>
+                        <Button>{index + 1}</Button>
                     </NavLink>
 
 
