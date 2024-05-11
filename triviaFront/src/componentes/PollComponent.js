@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Button } from 'react-bootstrap';
-import { NavLink } from 'react-router-dom';
+import { NavBarPreguntas } from './COMUN/NavBarPreguntas';
+/* import { Button } from 'react-bootstrap';
+import { NavLink } from 'react-router-dom'; */
 
 export default function PollComponent({ pollData, preguntasDeSala, info }) {
     //eslint-disable-next-line
@@ -20,16 +21,9 @@ export default function PollComponent({ pollData, preguntasDeSala, info }) {
         }
     }, [preguntasDeSala]);
 
-    const restartClick = () => {
+    console.log(Preguntas);
 
-        window.addEventListener('load', (event) => {
-            console.log('La página ha terminado de cargar completamente');
-            window.location.reload();
-            // Aquí puedes ejecutar cualquier acción que desees realizar una vez que la página haya terminado de cargar
-          });
-
-        
-    };
+    
 
     const handleOptionClick = async (optionId) => {
         try {
@@ -86,11 +80,14 @@ export default function PollComponent({ pollData, preguntasDeSala, info }) {
             ))}
 
             <div className="poll__navigation">
-                {Preguntas.map((pregunta, index) => (
-                    <NavLink key={index} to={`/index/sala/6617f798c3eb3b3b51f8df76/pregunta/${pregunta}`}>
-                        <Button onClick={restartClick}>{index + 1}</Button>
-                    </NavLink>
-                ))}
+
+                
+                <NavBarPreguntas></NavBarPreguntas>
+                
+                
+
+
+                
             </div>
         </div>
     );

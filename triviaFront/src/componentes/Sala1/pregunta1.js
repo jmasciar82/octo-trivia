@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import PollComponent from '../PollComponent';
 
+
 export const Index = () => {
     const { salaId, preguntaId } = useParams();
     const [preguntasDeSala, setPreguntasDeSala] = useState(null);
@@ -56,6 +57,7 @@ export const Index = () => {
 
     return (
         <div className="App">
+            
             <PollComponent pollData={pregunta} preguntasDeSala={preguntasDeSala} info={info} />
         </div>
     );
