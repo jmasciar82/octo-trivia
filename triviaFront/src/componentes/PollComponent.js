@@ -21,7 +21,14 @@ export default function PollComponent({ pollData, preguntasDeSala, info }) {
     }, [preguntasDeSala]);
 
     const restartClick = () => {
-        window.location.reload();
+
+        window.addEventListener('load', (event) => {
+            console.log('La página ha terminado de cargar completamente');
+            window.location.reload();
+            // Aquí puedes ejecutar cualquier acción que desees realizar una vez que la página haya terminado de cargar
+          });
+
+        
     };
 
     const handleOptionClick = async (optionId) => {
