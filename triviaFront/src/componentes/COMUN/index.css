@@ -15,7 +15,10 @@ h1 {
     margin-top: 0;
 }
 
-.botones__nube a {
+.botones__nube button:first-child {
 
-    margin-right: 25px;
+    margin-right: 10px;
+    margin-bottom: 25px;
+
+    
 }
