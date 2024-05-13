@@ -18,7 +18,7 @@ export const IndexNube = () => {
                 <p>Convierte las exposiciones en una experiencia colaborativa única, ayudando a los asistentes a compartir sus dudas e impresiones.</p>
                 <div className="botones__nube">
                     <Link to='/palabraEnviada'><Button variant="primary">Ingresar palabra</Button></Link>
-                    <br />
+                    
                     <Link to='/verNube'><Button variant="primary">Ver la NUBE</Button></Link>
                 </div>
 
