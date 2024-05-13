@@ -14,6 +14,7 @@ import { QRGenerator as Qr1 } from './componentes/Sala1/qr.js';
 
 import { IndexNube } from './componentes/COMUN/IndexNube.js';
 import { IndexChatBot } from './componentes/COMUN/IndexChatBot.js'
+import { IndexChat } from './componentes/CHAT-BOT/chatBot.js'
 
 import { PadreComponente } from './componentes/NUBE/PadreComponente.js';
 import { VerPalabraPadre } from './componentes/NUBE/verPalabraPadre.js';
@@ -52,7 +53,10 @@ function App() {
               
               <Route path='/palabraEnviada' element={<PadreComponente titulo="PadreComponente" />} />
               <Route path='/verNube' element={<VerPalabraPadre titulo="verPalabraPadre" />} />
-              <Route path='/chatBot' element={<IndexChatBot titulo="IndexchatBot" />} />
+
+              
+              <Route path='/chatBot' element={<IndexChatBot titulo="IndexChatBot" />} />
+              <Route path='/chat' element={<IndexChat titulo="IndexChat" />} />
 
 
               <Route path='/sala1_qr1/sala/:salaId/pregunta/:preguntaId' element={<Qr1 titulo="Qr1" />} />
