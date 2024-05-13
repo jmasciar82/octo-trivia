@@ -52,7 +52,7 @@ const HomePage = ({ onEnterClick }) => {
                         Presione Enter para ingresar
                     </Card.Text>
                     
-                    <Link to=''>
+                    <Link to='/chatBot'>
                         <Button onClick={mensaje} variant="primary">Enter</Button>
                     </Link>
                 </Card.Body>
