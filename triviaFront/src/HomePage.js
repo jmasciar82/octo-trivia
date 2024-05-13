@@ -45,7 +45,7 @@ const HomePage = ({ onEnterClick }) => {
             </Card>
 
             <Card style={{ position: 'relative', width: '18rem', backgroundColor: 'rgb(5, 227, 71, 0.7)' }}>
-                <div className={`workingOn ${mensajeGrande ? 'big' : ''}`}>Estamos Trabajando</div> {/* Aplica la clase workingOn y la clase big si mensajeGrande es true */}
+                
                 <Card.Body>
                     <Card.Title>Bienvenido a ChatBot IA</Card.Title>
                     <Card.Text>

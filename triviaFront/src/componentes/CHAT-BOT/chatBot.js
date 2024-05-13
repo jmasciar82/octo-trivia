@@ -1,20 +1,19 @@
-// Importa el componente BotPressChat
-import { BotPressChat } from './BotPressChat';
-import './index.css'
+import React from 'react';
+import { BotPressChat } from './BotPressChat'; // Importa el componente BotPressChat
+import './index.css';
 
 // Define el componente IndexChat
 export const IndexChat = () => {
     return (
-        // Agrega el componente BotPressChat fuera del cuerpo del documento
         <>
-            
             <div className='chat__container'>
-                <h1>Contenido de la página</h1> 
-                
-               
+                {/* Contenido del componente */}
             </div>
-
+            
+            {/* Renderiza BotPressChat solo en este componente */}
             <BotPressChat />
         </>
     );
 };
+
+export default IndexChat; // Exporta el componente IndexChat
