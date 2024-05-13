@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 
-const BotPressChat = () => {
+export const BotPressChat = () => {
     useEffect(() => {
         const script = document.createElement('script')
         script.src = 'https://cdn.botpress.cloud/webchat/v1/inject.js'
@@ -20,4 +20,4 @@ const BotPressChat = () => {
     return <div id="webchat" />
 }
 
-export { BotPressChat }; // Exportar BotPressChat como un componente nombrado
+ 

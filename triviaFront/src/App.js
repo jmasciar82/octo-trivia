@@ -37,7 +37,8 @@ function App() {
     <div className="App">
       <div className="container-fluid mt-3">
         <div className="">
-          <h1 className='nombre_marca'>Octopus Trivia  <span><img src={require("./img/pngimg.com - octopus_PNG24.png")} alt="" />
+          <h1 className='nombre_marca'>Octopus Trivia  <span><img src={require("./assets/pngimg.com - octopus_PNG24.png")} alt="" />
+
           </span></h1>
           <hr />
           <BrowserRouter>
