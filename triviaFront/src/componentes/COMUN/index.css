@@ -1,11 +1,11 @@
-
 .index__chat {
     height: 100vh;
 }
+
 .container {
     margin-top: 50px;
-    
-    
+
+
     max-width: 600px;
     padding: 20px;
     background-color: #fff;
@@ -23,5 +23,39 @@ h1 {
     margin-right: 10px;
     margin-bottom: 25px;
 
-    
+
+}
+
+/* index.css */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+}
+
+button,
+.btn {
+    cursor: pointer;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+a:focus,
+button:focus,
+input:focus {
+    outline: 2px solid #0056b3;
+    outline-offset: 2px;
+}
+
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
 }
