@@ -24,8 +24,8 @@ function App() {
     <div className="App">
       <div className="container-fluid mt-3">
         <div>
-          <h1 className='nombre_marca'>Octopus Trivia
-            <span><img src={require("./assets/pngimg.com - octopus_PNG24.png")} alt="" /></span>
+          <h1 className='nombre_marca'>KraKen Trivia
+            <span><img src={require("./assets/imgbin_kraken-rum-logo-octopus-png.png")} alt="" /></span>
           </h1>
           <hr />
           <BrowserRouter>

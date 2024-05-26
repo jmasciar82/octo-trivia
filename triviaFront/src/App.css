@@ -65,7 +65,8 @@
 }
 
 .nombre_marca::before {
-  top: -20%;
+  top: 30%;
+  left: 5%;
   background-image: radial-gradient(circle, #7d2ae8 20%, transparent 20%),
     radial-gradient(circle, transparent 20%, #7d2ae8 20%, transparent 30%),
     radial-gradient(circle, #7d2ae8 20%, transparent 20%),
@@ -80,7 +81,7 @@
 }
 
 .nombre_marca::after {
-  bottom: -70%;
+  bottom: -50%;
   background-image: radial-gradient(circle, #7d2ae8 20%, transparent 20%),
     radial-gradient(circle, transparent 20%, #7d2ae8 20%, transparent 30%),
     radial-gradient(circle, #7d2ae8 20%, transparent 20%),

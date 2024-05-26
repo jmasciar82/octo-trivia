@@ -4,7 +4,11 @@ const app = express();
 const { inicializarDatos } = require('./model/initDB');
 const dotenv = require('dotenv');
 
+
+
 dotenv.config();
+
+
 
 // Configurar CORS globalmente
 app.use(cors());
@@ -25,6 +29,7 @@ app.use('/resultado', resultado1);
 app.use('/palabraEnviada', palabraRouter);
 app.use('/palabrasDeSala', getQuestions);
 app.use('/verNube', verNubeRouter);
+
 
 // Inicializar los datos y luego iniciar el servidor
 const inicializar = async () => {
