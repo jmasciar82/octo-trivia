@@ -17,6 +17,10 @@ import { IndexChat } from './componentes/CHAT-BOT/chatBot';
 import { PadreComponente } from './componentes/NUBE/PadreComponente';
 import { VerPalabraPadre } from './componentes/NUBE/verPalabraPadre';
 
+import PollComponent from './componentes/PollComponent';
+import PreguntaList from './componentes/Crud/votacion/PreguntaList';
+import SalaList from './componentes/Crud/votacion/SalaList';
+
 import { RutaNoValida } from './componentes/RutaNoValida';
 
 function App() {
@@ -30,6 +34,8 @@ function App() {
           <hr />
           <BrowserRouter>
             <Routes>
+            
+
               <Route path='/index/sala/:salaId/pregunta/:preguntaId' element={<Sala1 titulo="Sala1" />} />
               <Route path='/resultado/sala/:salaId/pregunta/:preguntaId' element={<R11 titulo="R11" />} />
               <Route path='/' element={<HomePage />} />
@@ -40,6 +46,9 @@ function App() {
               <Route path='/chatBot' element={<IndexChatBot titulo="IndexChatBot" />} />
               <Route path='/chat' element={<IndexChat titulo="IndexChat" />} />
               <Route path='/sala1_qr1/sala/:salaId/pregunta/:preguntaId' element={<Qr1 titulo="Qr1" />} />
+              <Route path="/admin/index/sala/:salaId/pregunta/:preguntaId" element={<PollComponent titulo="PollComponent" />} />
+              <Route path="/admin/preguntas" element={<PreguntaList titulo="PreguntaList" />} />
+              <Route path="/admin/salas" element={<SalaList titulo="SalaList" />} />
               <Route path='*' element={<RutaNoValida />} />
             </Routes>
           </BrowserRouter>

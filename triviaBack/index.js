@@ -24,11 +24,17 @@ const palabraRouter = require('./router/sala1/palabra');
 const verNubeRouter = require('./router/sala1/verNube');
 const getQuestions = require('./router/sala1/preguntasDeSala');
 
+const preguntaRoutes = require('./router/crud/votacion/preguntaRoutes.js');
+const salaRoutes = require('./router/crud/votacion/salaRoutes');
+
 app.use('/index', sala1Pregunta1Routes);
 app.use('/resultado', resultado1);
 app.use('/palabraEnviada', palabraRouter);
 app.use('/palabrasDeSala', getQuestions);
 app.use('/verNube', verNubeRouter);
+
+app.use('/admin', preguntaRoutes);
+app.use('/admin', salaRoutes);
 
 
 // Inicializar los datos y luego iniciar el servidor

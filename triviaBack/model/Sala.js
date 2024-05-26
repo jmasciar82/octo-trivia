@@ -1,4 +1,3 @@
-// Sala.js
 const mongoose = require('mongoose');
 
 const salaSchema = new mongoose.Schema({

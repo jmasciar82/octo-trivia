@@ -8,9 +8,9 @@ const preguntaSchema = new mongoose.Schema({
     opciones: {
         type: [
             {
-                opcion: String, // Nombre de la opción
-                votos: { type: Number, default: 0 }, // Cantidad de votos para esta opción
-                porcentajeVotos: { type: Number, default: 0 } // Porcentaje de votos para esta opción
+                opcion: String,
+                votos: { type: Number, default: 0 },
+                porcentajeVotos: { type: Number, default: 0 }
             }
         ],
         required: true
@@ -20,13 +20,15 @@ const preguntaSchema = new mongoose.Schema({
         ref: 'Sala',
         required: true
     },
+    num_orden: {
+        type: Number,
+        required: true
+    },
     totalVotos: {
         type: Number,
-        default: 0 // Inicialmente no hay votos
+        default: 0
     }
 });
-
-
 
 const Pregunta = mongoose.model('Pregunta', preguntaSchema);
 
