@@ -15,6 +15,7 @@ export default function PollComponent({ pollData, preguntasDeSala, info }) {
     useEffect(() => {
         if (pollData && pollData.pregunta) {
             setCurrentPollData(pollData.pregunta);
+            
         }
     }, [pollData]);
 
