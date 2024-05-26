@@ -15,7 +15,7 @@ export default function PollComponent({ pollData, preguntasDeSala, info }) {
     useEffect(() => {
         if (pollData && pollData.pregunta) {
             setCurrentPollData(pollData.pregunta);
-            
+
         }
     }, [pollData]);
 
@@ -85,11 +85,7 @@ export default function PollComponent({ pollData, preguntasDeSala, info }) {
                     </div>
                 </div>
             ))}
-            {selectedOption && (
-                <div className="poll__message">
-                    Usted votó la opción: {selectedOption}
-                </div>
-            )}
+            
             <div className="poll__navigation">
                 <NavBarPreguntas   />
             </div>
