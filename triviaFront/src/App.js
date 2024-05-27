@@ -30,7 +30,7 @@ function App() {
     <div className="App">
       <div className="container-fluid mt-3">
         <div>
-          <h1 className='nombre_marca'>KraKen Trivia
+          <h1 className='nombre_marca'>KraKen Trivia 2.0
             <span><img src={require("./assets/imgbin_kraken-rum-logo-octopus-png.png")} alt="" /></span>
           </h1>
           <hr />
