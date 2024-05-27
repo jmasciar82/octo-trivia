@@ -28,6 +28,12 @@
     padding-right: 0.5rem;
     padding-left: 0.5rem;
 }
+.dropdown button{
+    margin-left: 20px;
+}
+.dropdown-item{
+    font-size: 14px !important;
+}
 
 .dropdown-menu {
     background-color: #343a40;
@@ -39,4 +45,11 @@
 
 .dropdown-item:hover {
     background-color: #495057;
+}
+
+@media (max-width: 768px) {
+    .dropdown button{
+        margin-bottom: 10px;
+    }
+    
 }
