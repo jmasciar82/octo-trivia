@@ -1,13 +1,21 @@
-const Pregunta = require('../../model/Pregunta');
 const mongoose = require('mongoose');
+const Pregunta = require('../../model/Pregunta');
 const { updateTotalVotes } = require('../../model/initDB');
+
+// Helper function to find a question by ID and Sala ID
+const findQuestion = async (salaId, preguntaId) => {
+    return await Pregunta.findOne({ _id: preguntaId, salaId: salaId });
+};
 
 const getQuestionAndOptions = async (req, res) => {
     try {
         const { salaId, preguntaId } = req.params;
-        const pregunta = await Pregunta.findOne({ _id: preguntaId, salaId: salaId });
 
-        console.log('sala:' ,salaId, 'pregunta:', preguntaId);
+        if (!mongoose.Types.ObjectId.isValid(salaId) || !mongoose.Types.ObjectId.isValid(preguntaId)) {
+            return res.status(400).json({ error: 'Invalid Sala ID or Pregunta ID' });
+        }
+
+        const pregunta = await findQuestion(salaId, preguntaId);
 
         if (!pregunta) {
             return res.status(404).json({ error: 'Pregunta no encontrada en la sala especificada' });
@@ -23,12 +31,15 @@ const getQuestionAndOptions = async (req, res) => {
 const getQuestions = async (req, res) => {
     try {
         const { salaId } = req.params;
-        const preguntas = await Pregunta.find({salaId: salaId });
 
-        console.log('sala:' ,salaId);
+        if (!mongoose.Types.ObjectId.isValid(salaId)) {
+            return res.status(400).json({ error: 'Invalid Sala ID' });
+        }
 
-        if (!preguntas) {
-            return res.status(404).json({ error: 'Pregunta no encontrada en la sala especificada' });
+        const preguntas = await Pregunta.find({ salaId });
+
+        if (preguntas.length === 0) {
+            return res.status(404).json({ error: 'No hay preguntas en la sala especificada' });
         }
 
         res.json(preguntas);
@@ -42,33 +53,39 @@ const voteInPoll = async (req, res) => {
     const { salaId, preguntaId } = req.params;
     const { option } = req.body;
 
-    try {
-        // Encuentra la pregunta en la base de datos
-        const pregunta = await Pregunta.findOne({ _id: preguntaId, salaId: salaId });
-        const optionObjectId = new mongoose.Types.ObjectId(option);
+    if (!mongoose.Types.ObjectId.isValid(salaId) || !mongoose.Types.ObjectId.isValid(preguntaId) || !mongoose.Types.ObjectId.isValid(option)) {
+        return res.status(400).json({ error: 'Invalid Sala ID, Pregunta ID or Option ID' });
+    }
 
-        // Verifica si la pregunta existe
+    try {
+        const pregunta = await findQuestion(salaId, preguntaId);
+
         if (!pregunta) {
             return res.status(404).json({ error: 'La pregunta no existe' });
         }
 
-        const opcionSeleccionadaIndex = pregunta.opciones.findIndex(opcion => opcion._id.equals(optionObjectId)); // Comparar con equals()
+        const opcionSeleccionadaIndex = pregunta.opciones.findIndex(opcion => opcion._id.equals(option));
 
-        // Incrementa el contador de votos para la opción seleccionada
-        pregunta.opciones[opcionSeleccionadaIndex].votos += 1;
-
-        // Verifica si la opción seleccionada existe
         if (opcionSeleccionadaIndex === -1) {
             return res.status(404).json({ error: 'La opción seleccionada no existe' });
         }
 
+        // Calcular la cantidad de votos antes de incrementar el voto
+        const totalVotosAntes = pregunta.opciones.reduce((total, opcion) => total + opcion.votos, 0);
 
-        await updateTotalVotes(pregunta._id);//************************************* */
+        // Incrementar el voto en la opción seleccionada
+        pregunta.opciones[opcionSeleccionadaIndex].votos += 1;
 
-        // Guarda los cambios
+        // Guardar los cambios
         await pregunta.save();
 
-        res.status(200).json({ message: 'Voto registrado exitosamente' });
+        // Actualizar el total de votos y porcentajes
+        await updateTotalVotes(pregunta._id);
+
+        // Calcular la cantidad de votos después de incrementar el voto
+        const totalVotosDespues = pregunta.opciones.reduce((total, opcion) => total + opcion.votos, 0);
+
+        res.status(200).json({ message: 'Voto registrado exitosamente', totalVotosAntes, totalVotosDespues });
     } catch (error) {
         console.error('Error al votar:', error);
         res.status(500).json({ error: 'Error interno del servidor' });
