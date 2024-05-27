@@ -1,6 +1,12 @@
-/* styles.css */
-
 .nav-button {
-    margin-right: 5px;
-  }
-  
+  margin: 5px;
+  padding: 10px;
+  background-color: #007bff;
+  border: none;
+  color: white;
+  text-decoration: none;
+}
+
+.nav-button:hover {
+  background-color: #0056b3;
+}

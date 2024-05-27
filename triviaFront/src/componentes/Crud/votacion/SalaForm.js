@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import './styles.css';
 
 const backendURL = process.env.NODE_ENV === 'production' ? process.env.REACT_APP_PROD_BACKEND_URL : 'http://localhost:3000';
 
@@ -37,16 +38,17 @@ const SalaForm = ({ salaId, onSave }) => {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
-            <div>
-                <label>Nombre:</label>
+        <form className="form-container" onSubmit={handleSubmit}>
+            <div className="form-group">
+                <label className="form-label">Nombre:</label>
                 <input
                     type="text"
+                    className="form-input"
                     value={nombre}
                     onChange={(e) => setNombre(e.target.value)}
                 />
             </div>
-            <button type="submit">{salaId ? 'Actualizar' : 'Crear'}</button>
+            <button type="submit" className="form-button">{salaId ? 'Actualizar' : 'Crear'}</button>
         </form>
     );
 };

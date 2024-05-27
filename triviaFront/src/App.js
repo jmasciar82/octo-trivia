@@ -21,6 +21,8 @@ import PollComponent from './componentes/PollComponent';
 import PreguntaList from './componentes/Crud/votacion/PreguntaList';
 import SalaList from './componentes/Crud/votacion/SalaList';
 
+import { NavBarPreguntas } from './componentes/COMUN/NavBarPreguntas';
+
 import { RutaNoValida } from './componentes/RutaNoValida';
 
 function App() {
@@ -37,6 +39,7 @@ function App() {
             
 
               <Route path='/index/sala/:salaId/pregunta/:preguntaId' element={<Sala1 titulo="Sala1" />} />
+              <Route path="/index/sala/:salaId" element={<NavBarPreguntas />} />
               <Route path='/resultado/sala/:salaId/pregunta/:preguntaId' element={<R11 titulo="R11" />} />
               <Route path='/' element={<HomePage />} />
               <Route path='/index' element={<Index titulo="Index" />} />

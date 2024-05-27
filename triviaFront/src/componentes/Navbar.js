@@ -1,13 +1,43 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom'; 
 import Dropdown from 'react-bootstrap/Dropdown';
+import axios from 'axios';
 import './Navbar.css';
 
+const backendURL = process.env.NODE_ENV === 'production' ? process.env.REACT_APP_PROD_BACKEND_URL : 'http://localhost:3000';
+
 export const Navbar = () => {
-    const salas = [
-        { title: 'Sala 1', links: [{ to: 'sala/6617f798c3eb3b3b51f8df76/pregunta/6617f799c3eb3b3b51f8df78', label: 'Pregunta 1' }, { to: '/resultado/sala/6617f798c3eb3b3b51f8df76/pregunta/6617f799c3eb3b3b51f8df78', label: 'Resultado 1' }, { to: '/sala1_qr1/sala/6617f798c3eb3b3b51f8df76/pregunta/6617f799c3eb3b3b51f8df78', label: 'QR Sala1' }, { to: 'sala/6617f798c3eb3b3b51f8df76/pregunta/66244bb203d88da06a04ae8b', label: 'Pregunta 2' }, { to: '/resultado/sala/6617f798c3eb3b3b51f8df76/pregunta/66244bb203d88da06a04ae8b', label: 'Resultado 2' }] },
-        { title: 'Sala 2', links: [{ to: 'sala/6617f798c3eb3b3b51f8df76/pregunta/6617f799c3eb3b3b51f8df78', label: 'Pregunta 1' }, { to: '/resultado/sala/6617f798c3eb3b3b51f8df76/pregunta/6617f799c3eb3b3b51f8df78', label: 'Resultado 1' }, { to: '/sala1_qr1/sala/6617f798c3eb3b3b51f8df76/pregunta/6617f799c3eb3b3b51f8df78', label: 'QR Sala1' }, { to: 'sala/6617f798c3eb3b3b51f8df76/pregunta/66244bb203d88da06a04ae8b', label: 'Pregunta 2' }, { to: '/resultado/sala/6617f798c3eb3b3b51f8df76/pregunta/66244bb203d88da06a04ae8b', label: 'Resultado 2' }] },
-    ];
+    const [salas, setSalas] = useState([]);
+
+    useEffect(() => {
+        const fetchSalas = async () => {
+            try {
+                const response = await axios.get(`${backendURL}/admin/salas`);
+                const salasData = response.data;
+
+                // Para cada sala, obtener las preguntas asociadas
+                const salasWithPreguntas = await Promise.all(salasData.map(async (sala) => {
+                    const preguntasResponse = await axios.get(`${backendURL}/admin/preguntas?salaId=${sala._id}`);
+                    const preguntas = preguntasResponse.data;
+
+                    // Crear los links para cada pregunta
+                    const links = preguntas.map((pregunta, index) => [
+                        { to: `/index/sala/${sala._id}/pregunta/${pregunta._id}`, label: `Pregunta ${index + 1}` },
+                        { to: `/resultado/sala/${sala._id}/pregunta/${pregunta._id}`, label: `Resultado ${index + 1}` },
+                        { to: `/sala_qr/${sala._id}/pregunta/${pregunta._id}`, label: `QR Sala ${index + 1}` }
+                    ]).flat();
+
+                    return { title: sala.nombre, links };
+                }));
+
+                setSalas(salasWithPreguntas);
+            } catch (error) {
+                console.error('Error al obtener las salas:', error);
+            }
+        };
+
+        fetchSalas();
+    }, []);
 
     return (
         <div className="nav-container">
