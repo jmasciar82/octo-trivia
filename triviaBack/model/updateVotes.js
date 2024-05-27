@@ -2,10 +2,11 @@ const Pregunta = require('./Pregunta');
 
 const updateTotalVotesForAllQuestions = async () => {
     try {
-        const preguntas = await Pregunta.find({});
+        
         for (const pregunta of preguntas) {
             await updateTotalVotes(pregunta._id);
         }
+        const preguntas = await Pregunta.find({});
     } catch (error) {
         console.error('Error al actualizar el total de votos para todas las preguntas:', error);
         throw error;

@@ -22,15 +22,14 @@ export const NavBarPreguntas = () => {
                 console.error('Error al obtener las preguntas:', error);
             }
         };
-    
+
         fetchPreguntas();
     }, [salaId]);
-    
 
     return (
         <div>
             <nav>
-                {preguntas.map((pregunta, index) => (
+                {preguntas.length > 0 && preguntas.map((pregunta, index) => (
                     <Button key={pregunta._id} href={`${frontendURL}/index/sala/${salaId}/pregunta/${pregunta._id}`} className="nav-button">
                         {index + 1}
                     </Button>

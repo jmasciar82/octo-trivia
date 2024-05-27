@@ -119,7 +119,6 @@ const PreguntaForm = ({ preguntaId, onSave }) => {
                 <button type="button" className="add-option-button" onClick={addOption}>Agregar Opción</button>
             </div>
             <button type="submit" className="form-button">{preguntaId ? 'Actualizar' : 'Crear'}</button>
-            
         </form>
     );
 };

@@ -54,13 +54,14 @@ const voteInPoll = async (req, res) => {
 
         const opcionSeleccionadaIndex = pregunta.opciones.findIndex(opcion => opcion._id.equals(optionObjectId)); // Comparar con equals()
 
+        // Incrementa el contador de votos para la opción seleccionada
+        pregunta.opciones[opcionSeleccionadaIndex].votos += 1;
+
         // Verifica si la opción seleccionada existe
         if (opcionSeleccionadaIndex === -1) {
             return res.status(404).json({ error: 'La opción seleccionada no existe' });
         }
 
-        // Incrementa el contador de votos para la opción seleccionada
-        pregunta.opciones[opcionSeleccionadaIndex].votos += 1;
 
         await updateTotalVotes(pregunta._id);//************************************* */
 

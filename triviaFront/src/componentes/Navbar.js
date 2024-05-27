@@ -20,12 +20,12 @@ export const Navbar = () => {
                     const preguntasResponse = await axios.get(`${backendURL}/admin/preguntas?salaId=${sala._id}`);
                     const preguntas = preguntasResponse.data;
 
-                    // Crear los links para cada pregunta
-                    const links = preguntas.map((pregunta, index) => [
+                    // Crear los links para cada pregunta, solo si hay preguntas
+                    const links = preguntas.length > 0 ? preguntas.map((pregunta, index) => [
                         { to: `/index/sala/${sala._id}/pregunta/${pregunta._id}`, label: `Pregunta ${index + 1}` },
                         { to: `/resultado/sala/${sala._id}/pregunta/${pregunta._id}`, label: `Resultado ${index + 1}` },
                         { to: `/sala_qr/${sala._id}/pregunta/${pregunta._id}`, label: `QR Sala ${index + 1}` }
-                    ]).flat();
+                    ]).flat() : [];
 
                     return { title: sala.nombre, links };
                 }));
@@ -49,18 +49,20 @@ export const Navbar = () => {
                     <div className="collapse navbar-collapse" id="navbarNav" style={{ color: 'white' }}>
                         <ul className="navbar-nav ms-auto">
                             {salas.map((sala, index) => (
-                                <Dropdown key={index}>
-                                    <Dropdown.Toggle variant="success" id="dropdown-basic">
-                                        {sala.title}
-                                    </Dropdown.Toggle>
-                                    <Dropdown.Menu>
-                                        {sala.links.map((link, idx) => (
-                                            <Dropdown.Item key={idx}>
-                                                <Link className="nav-link" to={link.to}>{link.label}</Link>
-                                            </Dropdown.Item>
-                                        ))}
-                                    </Dropdown.Menu>
-                                </Dropdown>
+                                sala.links.length > 0 && (
+                                    <Dropdown key={index}>
+                                        <Dropdown.Toggle variant="success" id="dropdown-basic">
+                                            {sala.title}
+                                        </Dropdown.Toggle>
+                                        <Dropdown.Menu>
+                                            {sala.links.map((link, idx) => (
+                                                <Dropdown.Item key={idx}>
+                                                    <Link className="nav-link" to={link.to}>{link.label}</Link>
+                                                </Dropdown.Item>
+                                            ))}
+                                        </Dropdown.Menu>
+                                    </Dropdown>
+                                )
                             ))}
                         </ul>
                     </div>

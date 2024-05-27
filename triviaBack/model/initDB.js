@@ -11,13 +11,13 @@ const inicializarDatos = async () => {
             useNewUrlParser: true,
             useUnifiedTopology: true
         });
-        console.log(`Conexión exitosa a MongoDB`);
+        console.log('Conexión exitosa a MongoDB');
 
-        // Crear una nueva sala
+        // Crear una nueva sala (comentado como ejemplo)
         /* const nuevaSala = new Sala({ nombre: 'Sala 1' });
         await nuevaSala.save(); */
 
-        // Crear una nueva pregunta asociada a la sala con las opciones y los votos iniciales
+        // Crear una nueva pregunta asociada a la sala con las opciones y los votos iniciales (comentado como ejemplo)
         /* const nuevaPregunta = new Pregunta({
             titulo: 'Pregunta 1 sala 1',
             opciones: [
@@ -31,8 +31,6 @@ const inicializarDatos = async () => {
 
         // Actualizar el total de votos para todas las preguntas existentes
         await updateTotalVotesForAllQuestions();
-        // Llama a la función para actualizar el total de votos y porcentajes
-
 
         console.log('Datos inicializados correctamente');
     } catch (error) {
@@ -90,4 +88,4 @@ const updateTotalVotes = async (questionId) => {
 };
 
 // Exportar la función inicializarDatos
-module.exports = { inicializarDatos, updateTotalVotes };
+module.exports = { inicializarDatos, updateTotalVotes, updateTotalVotesForAllQuestions };

@@ -11,6 +11,5 @@ const palabraSchema = new mongoose.Schema({
     }
 });
 
-const Palabra = mongoose.model('Palabra', palabraSchema);
-
-module.exports = Palabra;
+// Exporta el modelo si no está definido, de lo contrario usa el ya definido
+module.exports = mongoose.models.Palabra || mongoose.model('Palabra', palabraSchema);

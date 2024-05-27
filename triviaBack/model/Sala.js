@@ -7,6 +7,5 @@ const salaSchema = new mongoose.Schema({
     }
 });
 
-const Sala = mongoose.model('Sala', salaSchema);
-
-module.exports = Sala;
+// Exporta el modelo si no está definido, de lo contrario usa el ya definido
+module.exports = mongoose.models.Sala || mongoose.model('Sala', salaSchema);

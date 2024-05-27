@@ -8,11 +8,16 @@ const backendURL = process.env.NODE_ENV === 'production' ? process.env.REACT_APP
 const PreguntaList = () => {
     const [preguntas, setPreguntas] = useState([]);
     const [salas, setSalas] = useState([]);
-    const [editingPreguntaId, setEditingPreguntaId] = useState(null);
+    const [editingPregunta, setEditingPregunta] = useState(null);
     const [editingOrdenId, setEditingOrdenId] = useState(null);
     const [numOrden, setNumOrden] = useState({});
 
     useEffect(() => {
+        fetchPreguntas();
+        fetchSalas();
+    }, []);
+
+    const fetchPreguntas = () => {
         axios.get(`${backendURL}/admin/preguntas`)
             .then(response => {
                 setPreguntas(response.data);
@@ -25,7 +30,9 @@ const PreguntaList = () => {
             .catch(error => {
                 console.error('Error al obtener las preguntas:', error);
             });
+    };
 
+    const fetchSalas = () => {
         axios.get(`${backendURL}/admin/salas`)
             .then(response => {
                 setSalas(response.data);
@@ -33,7 +40,7 @@ const PreguntaList = () => {
             .catch(error => {
                 console.error('Error al obtener las salas:', error);
             });
-    }, []);
+    };
 
     const handleDelete = (id) => {
         axios.delete(`${backendURL}/admin/pregunta/${id}`)
@@ -46,14 +53,8 @@ const PreguntaList = () => {
     };
 
     const handleSave = () => {
-        setEditingPreguntaId(null);
-        axios.get(`${backendURL}/admin/preguntas`)
-            .then(response => {
-                setPreguntas(response.data);
-            })
-            .catch(error => {
-                console.error('Error al obtener las preguntas:', error);
-            });
+        setEditingPregunta(null);
+        fetchPreguntas();
     };
 
     const getSalaNombre = (salaId) => {
@@ -87,43 +88,47 @@ const PreguntaList = () => {
     return (
         <div className="form-container">
             <h1 className="form-title">Lista de Preguntas</h1>
-            <button className="form-button" onClick={() => setEditingPreguntaId(null)}>Crear Nueva Pregunta</button>
-            {editingPreguntaId !== null && (
-                <PreguntaForm preguntaId={editingPreguntaId} onSave={handleSave} />
+            <button className="form-button" onClick={() => setEditingPregunta({})}>Crear Nueva Pregunta</button>
+            {editingPregunta && (
+                <PreguntaForm preguntaId={editingPregunta._id || null} onSave={handleSave} />
             )}
-            <ul className="form-list">
-                <li className="form-list-header">
-                    <span className="header-orden">Orden</span>
-                    <span className="header-pregunta">Pregunta</span>
-                    <span className="header-sala">Sala</span>
-                    <span>Edit</span>
-                </li>
-                {preguntas.sort((a, b) => a.num_orden - b.num_orden).map(pregunta => (
-                    <li className="form-list-item" key={pregunta._id}>
-                        {editingOrdenId === pregunta._id ? (
-                            <>
-                                <input
-                                    type="number"
-                                    className="item-orden-input"
-                                    value={numOrden[pregunta._id]}
-                                    onChange={(e) => handleOrdenChange(pregunta._id, e.target.value)}
-                                />
-                                <button className="form-save-button" onClick={() => handleOrdenSave(pregunta._id)}>Guardar</button>
-                            </>
-                        ) : (
-                            <>
-                                <span className="item-orden" onClick={() => setEditingOrdenId(pregunta._id)}>{pregunta.num_orden}</span>
-                                <span className="item-pregunta">{pregunta.titulo} ({getSalaNombre(pregunta.salaId)})</span>
-                                <span className="item-pregunta">({getSalaNombre(pregunta.salaId)})</span>
-                            </>
-                        )}
-                        <div className="form-list-actions">
-                            <button className="form-edit-button" onClick={() => setEditingPreguntaId(pregunta._id)}>Editar</button>
-                            <button className="form-delete-button" onClick={() => handleDelete(pregunta._id)}>Eliminar</button>
-                        </div>
-                    </li>
-                ))}
-            </ul>
+            <table className="table">
+                <thead>
+                    <tr>
+                        <th>Orden</th>
+                        <th>Pregunta</th>
+                        <th>Sala</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {preguntas.sort((a, b) => a.num_orden - b.num_orden).map(pregunta => (
+                        <tr key={pregunta._id}>
+                            <td>
+                                {editingOrdenId === pregunta._id ? (
+                                    <>
+                                        <input
+                                            type="number"
+                                            className="form-control"
+                                            value={numOrden[pregunta._id]}
+                                            onChange={(e) => handleOrdenChange(pregunta._id, e.target.value)}
+                                        />
+                                        <button className="btn btn-primary mt-2" onClick={() => handleOrdenSave(pregunta._id)}>Guardar</button>
+                                    </>
+                                ) : (
+                                    <span onClick={() => setEditingOrdenId(pregunta._id)}>{pregunta.num_orden}</span>
+                                )}
+                            </td>
+                            <td>{pregunta.titulo}</td>
+                            <td>{getSalaNombre(pregunta.salaId)}</td>
+                            <td>
+                                <button className="btn btn-secondary mr-2" onClick={() => setEditingPregunta(pregunta)}>Editar</button>
+                                <button className="btn btn-danger" onClick={() => handleDelete(pregunta._id)}>Eliminar</button>
+                            </td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
         </div>
     );
 };
