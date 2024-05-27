@@ -48,7 +48,7 @@ function App() {
               <Route path='/verNube' element={<VerPalabraPadre titulo="verPalabraPadre" />} />
               <Route path='/chatBot' element={<IndexChatBot titulo="IndexChatBot" />} />
               <Route path='/chat' element={<IndexChat titulo="IndexChat" />} />
-              <Route path='/sala1_qr1/sala/:salaId/pregunta/:preguntaId' element={<Qr1 titulo="Qr1" />} />
+              <Route path='/sala1_qr/sala/:salaId/pregunta/:preguntaId' element={<Qr1 titulo="Qr1" />} />
               <Route path="/admin/index/sala/:salaId/pregunta/:preguntaId" element={<PollComponent titulo="PollComponent" />} />
               <Route path="/admin/preguntas" element={<PreguntaList titulo="PreguntaList" />} />
               <Route path="/admin/salas" element={<SalaList titulo="SalaList" />} />
