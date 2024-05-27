@@ -24,7 +24,7 @@ export const Navbar = () => {
                     const links = preguntas.length > 0 ? preguntas.map((pregunta, index) => [
                         { to: `/index/sala/${sala._id}/pregunta/${pregunta._id}`, label: `Pregunta ${index + 1}` },
                         { to: `/resultado/sala/${sala._id}/pregunta/${pregunta._id}`, label: `Resultado ${index + 1}` },
-                        { to: `/sala_qr/${sala._id}/pregunta/${pregunta._id}`, label: `QR Sala ${index + 1}` }
+                        { to: `/sala_qr/sala/${sala._id}/pregunta/${pregunta._id}`, label: `QR Sala ${index + 1}` }
                     ]).flat() : [];
 
                     return { title: sala.nombre, links };
