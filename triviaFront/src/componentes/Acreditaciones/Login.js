@@ -1,4 +1,6 @@
-import React, { useState, useRef } from 'react';
+// client/src/componentes/Acreditaciones/Login.js
+
+import React, { useState, useRef, useEffect } from 'react';
 import axios from 'axios';
 import CredentialCard from './CredentialCard';
 import printJS from 'print-js';
@@ -8,7 +10,22 @@ import './Login.css';
 const Login = () => {
   const [code, setCode] = useState('');
   const [user, setUser] = useState(null);
+  const [users, setUsers] = useState([]);
   const credentialRef = useRef();
+
+  useEffect(() => {
+    const fetchUsers = async () => {
+      const backendURL = process.env.NODE_ENV === 'production' ? process.env.REACT_APP_PROD_BACKEND_URL : 'http://localhost:5000';
+      try {
+        const response = await axios.get(`${backendURL}/usersAcreditaciones`);
+        setUsers(response.data);
+      } catch (error) {
+        console.error('Error al obtener los usuarios:', error);
+      }
+    };
+
+    fetchUsers();
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -83,6 +100,20 @@ const Login = () => {
             <button onClick={handlePrint} className="btn btn-secondary btn-block mt-3">Imprimir Credencial</button>
           </div>
         )}
+
+        <h2>Usuarios Registrados</h2>
+        <div className="user-list-container">
+          <ul className="list-group">
+            {users.map((u) => (
+              <li key={u._id} className="list-group-item">
+                <p><strong>Nombre:</strong> {u.name}</p>
+                <p><strong>Email:</strong> {u.email}</p>
+                <p><strong>Código:</strong> {u.code}</p>
+                <img src={u.qrCode} alt="Código QR" className="qr-code" />
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     </div>
   );
