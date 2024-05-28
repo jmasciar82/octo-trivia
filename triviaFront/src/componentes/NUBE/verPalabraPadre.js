@@ -6,13 +6,10 @@ export const VerPalabraPadre = () => {
     const [palabras, setPalabras] = useState([]);
     const [maxIngresosIndex, setMaxIngresosIndex] = useState(-1);
 
-    useEffect(() => {
-        const intervalId = setInterval(() => {
-            obtenerPalabras();
-        }, 30000);
 
-        return () => clearInterval(intervalId);
-    }, []);
+
+
+
 
     const obtenerPalabras = async () => {
         const URL_API = process.env.NODE_ENV === 'production' ? `${process.env.REACT_APP_PROD_BACKEND_URL}/verNube` : `http://localhost:3000/verNube`;
@@ -40,6 +37,17 @@ export const VerPalabraPadre = () => {
             console.error('Error al obtener las palabras:', error);
         }
     };
+
+    
+
+    useEffect( () =>  {
+        obtenerPalabras();
+        const intervalId = setInterval(() => {
+            obtenerPalabras();
+        }, 40000);
+
+        return () => clearInterval(intervalId);
+    }, []);
 
     return (
         <div className="palabraContainer">

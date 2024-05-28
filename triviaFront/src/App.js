@@ -15,10 +15,11 @@ import { IndexChatBot } from './componentes/COMUN/IndexChatBot';
 import { IndexChat } from './componentes/CHAT-BOT/chatBot';
 
 import { PadreComponente } from './componentes/NUBE/PadreComponente';
-
 import { VerPalabraPadre } from './componentes/NUBE/verPalabraPadre';
 
 import PollComponent from './componentes/PollComponent';
+
+import Admin from './componentes/Crud/votacion/Admin.js';
 import PreguntaList from './componentes/Crud/votacion/PreguntaList';
 import SalaList from './componentes/Crud/votacion/SalaList';
 
@@ -55,6 +56,7 @@ function App() {
               <Route path="/admin/index/sala/:salaId/pregunta/:preguntaId" element={<PollComponent titulo="PollComponent" />} />
               <Route path="/admin/preguntas" element={<PreguntaList titulo="PreguntaList" />} />
               <Route path="/admin/salas" element={<SalaList titulo="SalaList" />} />
+              <Route path="/admin" element={<Admin titulo="Admin" />} />
               <Route path='*' element={<RutaNoValida />} />
             </Routes>
           </BrowserRouter>

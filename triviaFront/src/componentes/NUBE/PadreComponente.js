@@ -1,12 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState  } from 'react';
 import { IngresaPalabra } from './IngresaPalabra.js';
 import { VerPalabraPadre } from './verPalabraPadre.js';
-import { ToastContainer } from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Button, Spinner } from 'react-bootstrap';
 
 export const PadreComponente = () => {
     const [palabrasIngresadas, setPalabrasIngresadas] = useState([]);
     const [mostrarVerPalabra, setMostrarVerPalabra] = useState(false);
+    const [contador, setContador] = useState(30); // Inicializa el contador con 30 segundos
+    const [cargando, setCargando] = useState(false);
 
     const handlePalabraIngresada = (palabra) => {
         setPalabrasIngresadas([...palabrasIngresadas, palabra]);
@@ -14,12 +17,23 @@ export const PadreComponente = () => {
 
     const handleFinish = () => {
         if (palabrasIngresadas.length + 1 === 3) {
-            setTimeout(() => setMostrarVerPalabra(true), 5000); // Muestra VerPalabraPadre después de 5 segundos
+            toast.success('Palabra ingresada correctamente');
         }
     };
 
     const handleButtonClick = () => {
-        setMostrarVerPalabra(true);
+        setCargando(true); // Muestra el spinner de carga
+        const intervalId = setInterval(() => {
+            setContador((prev) => {
+                if (prev <= 1) {
+                    clearInterval(intervalId);
+                    setCargando(false); // Oculta el spinner de carga
+                    setMostrarVerPalabra(true);
+                    return 0;
+                }
+                return prev - 1;
+            });
+        }, 1000);
     };
 
     return (
@@ -32,8 +46,17 @@ export const PadreComponente = () => {
                     <div><label>palabra 3</label><IngresaPalabra onPalabraIngresada={handlePalabraIngresada} onFinish={handleFinish} /></div>
                 </>
             )}
-            {palabrasIngresadas.length === 3 && (
-                <button onClick={handleButtonClick}>Mostrar</button>
+            {palabrasIngresadas.length === 3 && !mostrarVerPalabra && (
+                <div>
+                    <Button onClick={handleButtonClick}>Mostrar</Button>
+                    {contador > 0 && <p>Mostrando en: {contador} segundos</p>}
+                    {cargando && (
+                        <div>
+                            <p>Cargando palabras de la nube</p>
+                            <Spinner animation="border" />
+                        </div>
+                    )}
+                </div>
             )}
             {mostrarVerPalabra && <VerPalabraPadre />}
         </div>
