@@ -6,11 +6,6 @@ export const VerPalabraPadre = () => {
     const [palabras, setPalabras] = useState([]);
     const [maxIngresosIndex, setMaxIngresosIndex] = useState(-1);
 
-
-
-
-
-
     const obtenerPalabras = async () => {
         const URL_API = process.env.NODE_ENV === 'production' ? `${process.env.REACT_APP_PROD_BACKEND_URL}/verNube` : `http://localhost:5000/verNube`;
 
@@ -38,9 +33,7 @@ export const VerPalabraPadre = () => {
         }
     };
 
-    
-
-    useEffect( () =>  {
+    useEffect(() => {
         obtenerPalabras();
         const intervalId = setInterval(() => {
             obtenerPalabras();
@@ -56,13 +49,9 @@ export const VerPalabraPadre = () => {
                 let size = Math.min(item.cantidadIngresos * (100 / maxIngresos), 100);
 
                 return (
-                    <div key={index}>
-                        <div
-                            className={`${item.randomNumber < 0.5 ? 'vertical' : ''} palabraItem ${index !== maxIngresosIndex ? `my-${index}` : 'centro horizontal'}`}
-                            style={{ fontSize: `calc(${size}vh / 10)`, color: `rgb(${Math.random() * 255}, ${Math.random() * 255}, ${Math.random() * 255})` }}
-                        >
-                            {item.palabra}
-                        </div>
+                    <div key={index} className={`palabraItem ${item.randomNumber < 0.5 ? 'vertical' : ''} ${index !== maxIngresosIndex ? `my-${index}` : 'centro horizontal'}`}
+                        style={{ fontSize: `calc(${size}vh / 10)`, color: `rgb(${Math.random() * 255}, ${Math.random() * 255}, ${Math.random() * 255})` }}>
+                        {item.palabra}
                     </div>
                 );
             })}

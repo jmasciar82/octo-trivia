@@ -6,8 +6,8 @@ import './index.css';
 const HomePage = () => {
     return (
         <div className="home-page">
-            <div><Link className='admin-link' to='/admin'><Button>Admin</Button></Link></div>
-            <Card style={{ width: '18rem', backgroundColor: 'rgba(5, 227, 71, 0.7)' }}>
+            <><Link className='admin-link' to='/admin'><Button>Admin</Button></Link></>
+            <Card>
                 <Card.Body>
                     <Card.Title>Bienvenido al Sistema de Votaciones</Card.Title>
                     <Card.Text>
@@ -17,7 +17,7 @@ const HomePage = () => {
                 </Card.Body>
             </Card>
 
-            <Card style={{ width: '18rem', backgroundColor: 'rgba(5, 227, 71, 0.7)' }}>
+            <Card>
                 <Card.Body >
                     <Card.Title>Bienvenido al Sistema Word Cloud</Card.Title>
                     <Card.Text>
@@ -27,7 +27,7 @@ const HomePage = () => {
                 </Card.Body>
             </Card>
 
-            <Card style={{ position: 'relative', width: '18rem', backgroundColor: 'rgba(5, 227, 71, 0.7)' }}>
+           {/*  <Card>
                 <Card.Body>
                     <Card.Title>Bienvenido a ChatBot IA</Card.Title>
                     <Card.Text>
@@ -37,9 +37,9 @@ const HomePage = () => {
                         <Button variant="primary">Enter</Button>
                     </Link>
                 </Card.Body>
-            </Card> 
+            </Card>  */}
 
-             <Card style={{ position: 'relative', width: '18rem', backgroundColor: 'rgba(5, 227, 71, 0.7)' }}>
+           {/*  <Card>
                 <Card.Body>
                     <Card.Title>e-Posters <br /><br /></Card.Title>
                     <Card.Text>
@@ -48,8 +48,9 @@ const HomePage = () => {
                     <Link to=''>
                         <Button variant="primary">Enter</Button></Link>
                 </Card.Body>
-            </Card>
-            <Card style={{ position: 'relative', width: '18rem', backgroundColor: 'rgba(5, 227, 71, 0.7)' }}>
+            </Card> */}
+
+            <Card>
                 <Card.Body>
                     <Card.Title>Acreditaciones <br /><br /></Card.Title>
                     <Card.Text>

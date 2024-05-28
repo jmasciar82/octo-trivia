@@ -1,60 +1,68 @@
 /* index.css */
-html, body, #root, .App {
-    height: 100%;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
     background-color: #f8f9fa;
-  }
-  
-  .jumbotron {
-    padding-top: 40px;
-    padding-bottom: 40px;
-  }
-  
-  .home-page {
-    width: 100vw;
+    margin: 0;
+    padding: 0;
+    height: 90vh;
+}
+
+.home-page {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    gap: 25px;
+    align-items: center;
     justify-content: center;
-  }
-  
-  .card {
-    margin-top: 50px;
-    width: 80%;
-    max-width: 600px;
+    min-height: 90vh;
+    gap: 20px;
     padding: 20px;
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.home-page .card {
+    width: 25rem;
+    
+    background-color: rgba(5, 227, 71, 0.7);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+}
+
+.home-page .card:hover {
+    transform: scale(1.05);
+}
+
+.home-page .card-body {
+    
     text-align: center;
-  }
-  
-  .workingOn {
-    position: absolute;
+}
+
+.home-page .card-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.home-page .card-text {
     font-size: 1rem;
-    padding: 2px;
-    color: rgb(248, 248, 251);
-    background-color: rgba(250, 5, 50, 0.7);
-    border-radius: 5px;
-    opacity: 0.8;
-    z-index: 1;
-  }
-  
-  .big {
-    font-size: 2rem; 
-    background-color: rgba(250, 5, 50);
-  }
-  
-  /* Media query para pantallas más pequeñas, como dispositivos móviles */
-  @media (max-width: 768px) {
+    margin-bottom: 20px;
+}
+
+.home-page .btn {
+    width: 100%;
+}
+
+.admin-link {
+    margin-bottom: 20px;
+}
+
+@media (max-width: 768px) {
     .home-page {
-      flex-direction: column;
-      align-items: center;
+        flex-direction: column;
+        padding: 10px;
     }
-  }
-  
+
+    .home-page .card {
+        width: 100%;
+        max-width: 300px;
+    }
+}

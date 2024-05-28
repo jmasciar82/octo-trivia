@@ -1,43 +1,44 @@
-/* Login.css */
-body, html, #root, .App {
-    height: 100%;
-    margin: 0;
+/* Estilo general para el contenedor de login */
+.login-container-wrapper {
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 100vh;
     background-color: #f8f9fa;
-}
-
-.login-container {
+    margin: 0;
+  }
+  
+  .login-container {
     width: 100%;
-    max-width: 400px;
+    max-width: 800px;
+    height: 300px;
     padding: 2rem;
     background-color: #fff;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
-    margin: 20px; /* Añade algo de margen para que no esté pegado a los bordes */
-}
-
-.login-container h1,
-.login-container h2 {
+    margin: 20px;
+  }
+  
+  .login-container h1,
+  .login-container h2 {
     margin-bottom: 1.5rem;
-}
-
-.login-container form {
+  }
+  
+  .login-container form {
     margin-top: 1rem;
-}
-
-.login-container input[type="text"],
-.login-container input[type="email"] {
+  }
+  
+  .login-container input[type="text"],
+  .login-container input[type="email"] {
     width: 100%;
     padding: 0.5rem;
     margin-bottom: 1rem;
     border: 1px solid #ced4da;
     border-radius: 4px;
-}
-
-.login-container button {
+  }
+  
+  .login-container button {
     width: 100%;
     padding: 0.5rem;
     background-color: #007bff;
@@ -45,17 +46,17 @@ body, html, #root, .App {
     border: none;
     border-radius: 4px;
     cursor: pointer;
-}
-
-.login-container button:hover {
+  }
+  
+  .login-container button:hover {
     background-color: #0056b3;
-}
-
-.login-container .credential {
+  }
+  
+  .login-container .credential {
     margin-top: 2rem;
-}
-
-.credential-card {
+  }
+  
+  .credential-card {
     border: 1px solid black;
     padding: 20px;
     width: 300px;
@@ -63,25 +64,26 @@ body, html, #root, .App {
     background-color: #fff;
     border-radius: 10px;
     margin: 0 auto;
-}
-
-.credential-logo {
+  }
+  
+  .credential-logo {
     width: 100px;
     height: auto;
     margin-bottom: 1rem;
-}
-
-.credential-title {
+  }
+  
+  .credential-title {
     margin-bottom: 1.5rem;
-}
-
-.credential-card p {
+  }
+  
+  .credential-card p {
     color: #343a40;
     margin-bottom: 0.5rem;
-}
-
-.qr-code {
+  }
+  
+  .qr-code {
     max-width: 100%;
     height: auto;
     margin-top: 1rem;
-}
+  }
+  

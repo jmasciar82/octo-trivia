@@ -61,27 +61,29 @@ const Login = () => {
   };
 
   return (
-    <div className="login-container">
-      <h1>Login de Usuario</h1>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          className="form-control mb-3"
-          placeholder="Ingrese el código"
-          value={code}
-          onChange={(e) => setCode(e.target.value)}
-        />
-        <button type="submit" className="btn btn-primary btn-block">Ingresar</button>
-      </form>
+    <div className="login-container-wrapper">
+      <div className="login-container">
+        <h1>Login de Usuario</h1>
+        <form onSubmit={handleSubmit}>
+          <input
+            type="text"
+            className="form-control mb-3"
+            placeholder="Ingrese el código"
+            value={code}
+            onChange={(e) => setCode(e.target.value)}
+          />
+          <button type="submit" className="btn btn-primary btn-block">Ingresar</button>
+        </form>
 
-      {user && (
-        <div>
-          <div ref={credentialRef} className="credential mt-4">
-            <CredentialCard user={user} />
+        {user && (
+          <div>
+            <div ref={credentialRef} className="credential mt-4">
+              <CredentialCard user={user} />
+            </div>
+            <button onClick={handlePrint} className="btn btn-secondary btn-block mt-3">Imprimir Credencial</button>
           </div>
-          <button onClick={handlePrint} className="btn btn-secondary btn-block mt-3">Imprimir Credencial</button>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 };

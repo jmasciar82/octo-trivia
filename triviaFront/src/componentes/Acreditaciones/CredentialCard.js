@@ -34,7 +34,7 @@ const CredentialCard = forwardRef(({ user }, ref) => {
       }}
     >
       <h2>Credencial de Usuario</h2>
-      <p><strong>Nombre:</strong><br></br> {user.name.toUpperCase()}</p>
+      <p><strong>Nombre:</strong><br></br> {user.name}</p>
       <p><strong>Email:</strong><br></br> {user.email}</p>
       <p><strong>Código:</strong> {user.code}</p>
       <p><strong>Tipo:</strong> {user.tipo}</p>
