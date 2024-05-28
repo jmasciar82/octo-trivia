@@ -5,10 +5,8 @@ import './index.css';
 
 const HomePage = () => {
     return (
-        
         <div className="home-page">
             <div><Link className='admin-link' to='/admin'><Button>Admin</Button></Link></div>
-            
             <Card style={{ width: '18rem', backgroundColor: 'rgba(5, 227, 71, 0.7)' }}>
                 <Card.Body>
                     <Card.Title>Bienvenido al Sistema de Votaciones</Card.Title>
@@ -48,8 +46,7 @@ const HomePage = () => {
                         Presione Enter para ingresar
                     </Card.Text>
                     <Link to=''>
-                        <Button variant="primary">Enter</Button>
-                    </Link>
+                        <Button variant="primary">Enter</Button></Link>
                 </Card.Body>
             </Card>
             <Card style={{ position: 'relative', width: '18rem', backgroundColor: 'rgba(5, 227, 71, 0.7)' }}>
@@ -59,8 +56,7 @@ const HomePage = () => {
                         Presione Enter para ingresar
                     </Card.Text>
                     <Link to='/login'>
-                        <Button variant="primary">Enter</Button>
-                    </Link>
+                        <Button variant="primary">Enter</Button></Link>
                 </Card.Body>
             </Card>
         </div>

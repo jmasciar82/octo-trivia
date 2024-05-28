@@ -23,10 +23,8 @@ import Admin from './componentes/Crud/votacion/Admin';
 import PreguntaList from './componentes/Crud/votacion/PreguntaList';
 import SalaList from './componentes/Crud/votacion/SalaList';
 
-
 import UsersAcreditaciones from './componentes/Acreditaciones/UsersAcreditaciones';
 import Login from './componentes/Acreditaciones/Login';
-
 
 import { NavBarPreguntas } from './componentes/COMUN/NavBarPreguntas';
 
@@ -34,11 +32,11 @@ import { RutaNoValida } from './componentes/RutaNoValida';
 
 function App() {
   return (
-    <div className="App">
+    <div>
       <div className="container-fluid mt-3">
         <div>
           <h1 className='nombre_marca'>KraKen Trivia 2.0
-            <span><img src={require("./assets/imgbin_kraken-rum-logo-octopus-png.png")} alt="KraKen Logo" /></span>
+            <span><img src={require("./assets/imgbin_kraken-rum-logo-octopus-png.png")} alt="KraKen Logo" width={'45px'} /></span>
           </h1>
           <hr />
           <BrowserRouter>
@@ -60,8 +58,6 @@ function App() {
               <Route path="/admin" element={<Admin titulo="Admin" />} />
               <Route path="admin/users/acreditaciones" element={<UsersAcreditaciones titulo="UsersAcreditaciones" />} />
               <Route path="/login" element={<Login titulo="Login" />} />
-              
-              
               <Route path='*' element={<RutaNoValida />} />
             </Routes>
           </BrowserRouter>

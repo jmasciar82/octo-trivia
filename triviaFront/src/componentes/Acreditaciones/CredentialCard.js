@@ -1,19 +1,44 @@
-// client/src/componentes/Acreditaciones/CredentialCard.js
-
 import React, { forwardRef } from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import './CredentialCard.css';
-import logo from '../../assets/imgbin_kraken-rum-logo-octopus-png.png';  // Asegúrate de usar la ruta correcta al logo
+import './CredentialCard.css'
+
 
 const CredentialCard = forwardRef(({ user }, ref) => {
+  const getColorByTipo = (tipo) => {
+    switch (tipo) {
+      case 1: return 'green';
+      case 2: return 'blue';
+      case 3: return 'purple';
+      case 4: return 'yellow';
+      case 5: return 'orange';
+      case 6: return 'purple';
+      case 7: return 'pink';
+      case 8: return 'brown';
+      case 9: return 'grey';
+      case 10: return 'black';
+      default: return 'white';
+    }
+  };
+
+  const backgroundColor = getColorByTipo(user.tipo);
+
   return (
-    <div ref={ref} className="credential-card">
-      <img src={logo} alt="Logo" className="credential-logo" />
-      <h2 className="credential-title">Credencial de Usuario</h2>
-      <p><strong>Nombre:</strong> {user.name}</p>
-      <p><strong>Email:</strong> {user.email}</p>
+    <div 
+      ref={ref} 
+      style={{ 
+        
+        border: `10px solid ${backgroundColor}`, 
+        padding: '20px', 
+        width: '300px', 
+        textAlign: 'center',
+        
+      }}
+    >
+      <h2>Credencial de Usuario</h2>
+      <p><strong>Nombre:</strong><br></br> {user.name.toUpperCase()}</p>
+      <p><strong>Email:</strong><br></br> {user.email}</p>
       <p><strong>Código:</strong> {user.code}</p>
-      {user.qrCode && <img src={user.qrCode} alt="Código QR" className="qr-code" />}
+      <p><strong>Tipo:</strong> {user.tipo}</p>
+      <img src={user.qrCode} alt="Código QR" />
     </div>
   );
 });

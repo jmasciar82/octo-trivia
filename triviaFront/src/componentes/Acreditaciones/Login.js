@@ -1,13 +1,9 @@
-// client/src/componentes/Acreditaciones/Login.js
-
 import React, { useState, useRef } from 'react';
 import axios from 'axios';
 import CredentialCard from './CredentialCard';
 import printJS from 'print-js';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Login.css';
-
-
 
 const Login = () => {
   const [code, setCode] = useState('');
@@ -64,7 +60,6 @@ const Login = () => {
     }
   };
 
-  
   return (
     <div className="login-container">
       <h1>Login de Usuario</h1>

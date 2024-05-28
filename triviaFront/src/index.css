@@ -1,19 +1,29 @@
-.jumbotron {
+/* index.css */
+html, body, #root, .App {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #f8f9fa;
+  }
+  
+  .jumbotron {
     padding-top: 40px;
     padding-bottom: 40px;
-}
-
-.home-page {
-
+  }
+  
+  .home-page {
+    width: 100vw;
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     gap: 25px;
     justify-content: center;
-}
-
-
-
-.card {
+  }
+  
+  .card {
     margin-top: 50px;
     width: 80%;
     max-width: 600px;
@@ -22,36 +32,29 @@
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     text-align: center;
-}
-
-.workingOn {
+  }
+  
+  .workingOn {
     position: absolute;
-    
     font-size: 1rem;
     padding: 2px;
     color: rgb(248, 248, 251);
     background-color: rgba(250, 5, 50, 0.7);
     border-radius: 5px;
     opacity: 0.8;
-    /* ajusta la opacidad según tus preferencias */
     z-index: 1;
-    /* para asegurarse de que el mensaje esté por encima de la tarjeta */
-}
-
-.big {
-  font-size: 2rem; 
-  background-color: rgba(250, 5, 50);
-}
-
-
-
-
-/* Media query para pantallas más pequeñas, como dispositivos móviles */
-@media (max-width: 768px) {
+  }
+  
+  .big {
+    font-size: 2rem; 
+    background-color: rgba(250, 5, 50);
+  }
+  
+  /* Media query para pantallas más pequeñas, como dispositivos móviles */
+  @media (max-width: 768px) {
     .home-page {
-        flex-direction: column;
-        /* Cambia la dirección de flexión a columna */
-        align-items: center;
-        /* Centra los elementos en el eje transversal */
+      flex-direction: column;
+      align-items: center;
     }
-}
+  }
+  

@@ -18,18 +18,17 @@ const generateQRCode = async (text) => {
 };
 
 const crear = async (req, res) => {
+    const { name, email, tipo } = req.body;
+    const code = generateCode();
+    const qrCode = await generateQRCode(code);
+
     try {
-        const { name, email } = req.body;
-        const code = generateCode();
-        const qrCode = await generateQRCode(code);
-
-        const newUser = new User({ name, email, code, qrCode });
+        const newUser = new User({ name, email, code, qrCode, tipo });
         await newUser.save();
-
         res.json(newUser);
     } catch (error) {
         console.error('Error al crear el usuario:', error);
-        res.status(500).json({ error: 'Error interno del servidor' });
+        res.status(400).json({ error: 'Error al crear el usuario' });
     }
 };
 
