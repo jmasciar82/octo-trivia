@@ -6,16 +6,16 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import HomePage from './HomePage';
 import { Index } from './componentes/COMUN/Index';
-import { Index as Sala1 } from './componentes/Sala1/Pregunta1';
-import { Resultado as R11 } from './componentes/Sala1/Resultado1';
-import { QRGenerator as Qr1 } from './componentes/Sala1/Qr';
+import { Index as Sala1 } from './componentes/Sala1/pregunta1';
+import { Resultado as R11 } from './componentes/Sala1/resultado1';
+import { QRGenerator as Qr1 } from './componentes/Sala1/qr';
 
 import { IndexNube } from './componentes/COMUN/IndexNube';
 import { IndexChatBot } from './componentes/COMUN/IndexChatBot';
 import { IndexChat } from './componentes/CHAT-BOT/ChatBot';
 
 import { PadreComponente } from './componentes/NUBE/PadreComponente';
-import { VerPalabraPadre } from './componentes/NUBE/VerPalabraPadre';
+import { VerPalabraPadre } from './componentes/NUBE/verPalabraPadre';
 
 import PollComponent from './componentes/PollComponent';
 

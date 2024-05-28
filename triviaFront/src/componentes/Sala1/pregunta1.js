@@ -16,16 +16,17 @@ export const Index = () => {
                     `${process.env.REACT_APP_PROD_BACKEND_URL}/palabrasDeSala/sala/${salaId}` :
                     `http://localhost:5000/palabrasDeSala/sala/${salaId}`;
 
-                const response = await fetch(URL_API);
+                const response = await fetch(URL_API, { headers: { 'Accept': 'application/json' } });
                 if (!response.ok) {
-                    throw new Error("Error " + response.status + " al llamar al API: " + response.statusText);
+                    const errorText = await response.text();
+                    throw new Error("Error " + response.status + " al llamar al API: " + response.statusText + " - " + errorText);
                 }
                 const data = await response.json();
                 setPreguntasDeSala(data);
-                setLoading(false); // Desactivar estado de carga
             } catch (error) {
-                console.error(error);
-                setLoading(false); // Desactivar estado de carga incluso en caso de error
+                console.error("Error al obtener preguntas de sala:", error);
+            } finally {
+                setLoading(false); // Desactivar estado de carga
             }
         };
 
@@ -33,18 +34,19 @@ export const Index = () => {
             try {
                 const URL_API_PREGUNTA = process.env.NODE_ENV === 'production' ?
                     `${process.env.REACT_APP_PROD_BACKEND_URL}/index/sala/${salaId}/pregunta/${preguntaId}` :
-                    `http://localhost:3000/index/sala/${salaId}/pregunta/${preguntaId}`;
+                    `http://localhost:5000/index/sala/${salaId}/pregunta/${preguntaId}`;
 
-                const response = await fetch(URL_API_PREGUNTA);
+                const response = await fetch(URL_API_PREGUNTA, { headers: { 'Accept': 'application/json' } });
                 if (!response.ok) {
-                    throw new Error("Error " + response.status + " al llamar al API: " + response.statusText);
+                    const errorText = await response.text();
+                    throw new Error("Error " + response.status + " al llamar al API: " + response.statusText + " - " + errorText);
                 }
                 const data = await response.json();
                 setPregunta(data);
-                setLoading(false); // Desactivar estado de carga
             } catch (error) {
-                console.error(error);
-                setLoading(false); // Desactivar estado de carga incluso en caso de error
+                console.error("Error al obtener la pregunta:", error);
+            } finally {
+                setLoading(false); // Desactivar estado de carga
             }
         };
 

@@ -1,6 +1,6 @@
 import React, { useState  } from 'react';
 import { IngresaPalabra } from './IngresaPalabra.js';
-import { VerPalabraPadre } from './VerPalabraPadre.js';
+import { VerPalabraPadre } from './verPalabraPadre.js';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Button, Spinner } from 'react-bootstrap';

@@ -4,8 +4,8 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import './estiloBotonPreguntas.css'; // Importa el archivo CSS
 
-const frontendURL = process.env.NODE_ENV === 'production' ? process.env.REACT_APP_PROD_FRONT_URL : 'http://localhost:3001';
-const backendURL = process.env.NODE_ENV === 'production' ? process.env.REACT_APP_PROD_BACKEND_URL : 'http://localhost:3000';
+const frontendURL = process.env.NODE_ENV === 'production' ? process.env.REACT_APP_PROD_FRONT_URL : 'http://localhost:3000';
+const backendURL = process.env.NODE_ENV === 'production' ? process.env.REACT_APP_PROD_BACKEND_URL : 'http://localhost:5000';
 
 export const NavBarPreguntas = () => {
     const { salaId } = useParams();
