@@ -14,7 +14,7 @@ export const Index = () => {
             try {
                 const URL_API = process.env.NODE_ENV === 'production' ?
                     `${process.env.REACT_APP_PROD_BACKEND_URL}/palabrasDeSala/sala/${salaId}` :
-                    `http://localhost:3000/palabrasDeSala/sala/${salaId}`;
+                    `http://localhost:5000/palabrasDeSala/sala/${salaId}`;
 
                 const response = await fetch(URL_API);
                 if (!response.ok) {

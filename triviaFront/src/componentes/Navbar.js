@@ -4,7 +4,7 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import axios from 'axios';
 import './Navbar.css';
 
-const backendURL = process.env.NODE_ENV === 'production' ? process.env.REACT_APP_PROD_BACKEND_URL : 'http://localhost:3000';
+const backendURL = process.env.NODE_ENV === 'production' ? process.env.REACT_APP_PROD_BACKEND_URL : 'http://localhost:5000';
 
 export const Navbar = () => {
     const [salas, setSalas] = useState([]);

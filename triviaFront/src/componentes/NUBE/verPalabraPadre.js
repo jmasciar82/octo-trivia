@@ -12,7 +12,7 @@ export const VerPalabraPadre = () => {
 
 
     const obtenerPalabras = async () => {
-        const URL_API = process.env.NODE_ENV === 'production' ? `${process.env.REACT_APP_PROD_BACKEND_URL}/verNube` : `http://localhost:3000/verNube`;
+        const URL_API = process.env.NODE_ENV === 'production' ? `${process.env.REACT_APP_PROD_BACKEND_URL}/verNube` : `http://localhost:5000/verNube`;
 
         try {
             const response = await axios.get(URL_API);

@@ -58,6 +58,6 @@ const inicializar = async () => {
 
 // Inicializar y arrancar el servidor
 inicializar();
-app.listen(5000, () => console.log("Server ready on port 5000."));
+app.listen(5000, () => console.log("Server ready on port 3000."));
 app.on('error', error => console.log(`Error en servidor: ${error.message}`));
 module.exports = app;

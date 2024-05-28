@@ -9,7 +9,7 @@ export const Resultado = () => {
     
     const URL_API = process.env.NODE_ENV === 'production' ?
         `${process.env.REACT_APP_PROD_BACKEND_URL}/index/sala/${salaId}/pregunta/${preguntaId}` :
-        `http://localhost:3000/index/sala/${salaId}/pregunta/${preguntaId}`;
+        `http://localhost:5000/index/sala/${salaId}/pregunta/${preguntaId}`;
 
     console.log('URL_API', URL_API);
 

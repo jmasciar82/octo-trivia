@@ -18,7 +18,7 @@ export const QRGenerator = () => {
     // Construye el texto del código QR concatenando los parámetros a la URL base
     const URL_QR = process.env.NODE_ENV === 'production'
         ? `${process.env.REACT_APP_PROD_FRONT_URL}/index/sala/${salaId}/pregunta/${preguntaId}`
-        : `http://localhost:3001/index/sala/${salaId}/pregunta/${preguntaId}`;
+        : `http://localhost:3000/index/sala/${salaId}/pregunta/${preguntaId}`;
     
     console.log('qr text', URL_QR);
 

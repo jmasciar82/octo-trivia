@@ -3,7 +3,7 @@ import axios from 'axios';
 import PreguntaForm from './PreguntaForm';
 import './styles.css';
 
-const backendURL = process.env.NODE_ENV === 'production' ? process.env.REACT_APP_PROD_BACKEND_URL : 'http://localhost:3000';
+const backendURL = process.env.NODE_ENV === 'production' ? process.env.REACT_APP_PROD_BACKEND_URL : 'http://localhost:5000';
 
 const PreguntaList = () => {
     const [preguntas, setPreguntas] = useState([]);
