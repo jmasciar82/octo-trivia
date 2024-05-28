@@ -26,7 +26,7 @@ import SalaList from './componentes/Crud/votacion/SalaList';
 
 import UsersAcreditaciones from './componentes/Acreditaciones/UsersAcreditaciones';
 import Login from './componentes/Acreditaciones/Login';
-import QRScanner from './componentes/Acreditaciones/QRScanner';
+
 
 import { NavBarPreguntas } from './componentes/COMUN/NavBarPreguntas';
 
@@ -61,7 +61,7 @@ function App() {
               <Route path="admin/users/acreditaciones" element={<UsersAcreditaciones titulo="UsersAcreditaciones" />} />
               <Route path="/login" element={<Login titulo="Login" />} />
               
-              <Route path="/qrscanner" element={<QRScanner />} />
+              
               <Route path='*' element={<RutaNoValida />} />
             </Routes>
           </BrowserRouter>
