@@ -15,6 +15,7 @@ import { IndexChatBot } from './componentes/COMUN/IndexChatBot';
 import { IndexChat } from './componentes/CHAT-BOT/chatBot';
 
 import { PadreComponente } from './componentes/NUBE/PadreComponente';
+
 import { VerPalabraPadre } from './componentes/NUBE/verPalabraPadre';
 
 import PollComponent from './componentes/PollComponent';
@@ -47,6 +48,7 @@ function App() {
               <Route path='/index' element={<Index titulo="Index" />} />
               <Route path='/indexNube' element={<IndexNube titulo="IndexNube" />} />
               <Route path='/palabraEnviada' element={<PadreComponente titulo="PadreComponente" />} />
+              
               <Route path='/verNube' element={<VerPalabraPadre titulo="verPalabraPadre" />} />
               <Route path='/chatBot' element={<IndexChatBot titulo="IndexChatBot" />} />
               <Route path='/chat' element={<IndexChat titulo="IndexChat" />} />
