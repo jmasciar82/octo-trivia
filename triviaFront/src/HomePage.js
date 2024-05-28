@@ -29,7 +29,7 @@ const HomePage = () => {
                 </Card.Body>
             </Card>
 
-            {/* <Card style={{ position: 'relative', width: '18rem', backgroundColor: 'rgba(5, 227, 71, 0.7)' }}>
+            <Card style={{ position: 'relative', width: '18rem', backgroundColor: 'rgba(5, 227, 71, 0.7)' }}>
                 <Card.Body>
                     <Card.Title>Bienvenido a ChatBot IA</Card.Title>
                     <Card.Text>
@@ -39,9 +39,9 @@ const HomePage = () => {
                         <Button variant="primary">Enter</Button>
                     </Link>
                 </Card.Body>
-            </Card> */}
+            </Card> 
 
-            {/* <Card style={{ position: 'relative', width: '18rem', backgroundColor: 'rgba(5, 227, 71, 0.7)' }}>
+             <Card style={{ position: 'relative', width: '18rem', backgroundColor: 'rgba(5, 227, 71, 0.7)' }}>
                 <Card.Body>
                     <Card.Title>e-Posters <br /><br /></Card.Title>
                     <Card.Text>
@@ -51,7 +51,7 @@ const HomePage = () => {
                         <Button variant="primary">Enter</Button>
                     </Link>
                 </Card.Body>
-            </Card> */}
+            </Card>
             <Card style={{ position: 'relative', width: '18rem', backgroundColor: 'rgba(5, 227, 71, 0.7)' }}>
                 <Card.Body>
                     <Card.Title>Acreditaciones <br /><br /></Card.Title>
