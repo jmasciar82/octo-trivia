@@ -2,6 +2,8 @@ import React from 'react';
 import { BotPressChat } from './BotPressChat'; // Importa el componente BotPressChat
 import './index.css';
 
+console.log('prueba');
+
 // Define el componente IndexChat
 export const IndexChat = () => {
     return (
@@ -14,6 +16,7 @@ export const IndexChat = () => {
             <BotPressChat />
         </>
     );
+    
 };
 
 export default IndexChat; // Exporta el componente IndexChat
