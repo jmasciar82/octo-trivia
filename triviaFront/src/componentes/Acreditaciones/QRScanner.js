@@ -14,7 +14,7 @@ import { Button } from 'react-bootstrap';
 
 const QRScanner = () => {
   const [user, setUser] = useState(null);
- 
+
   const videoRef = useRef(null);
   const credentialRef = useRef(null);
   const codeReaderRef = useRef(null);
@@ -118,6 +118,7 @@ const QRScanner = () => {
     <div className="scanner-container-wrapper">
       <div className="scanner-container">
         <h1>Escáner de QR</h1>
+        <Button onClick={handleNavigateHome} >Volver al Home</Button>
         <div className="video-container">
           <video ref={videoRef} style={{ width: "50%" }}></video>
         </div>
@@ -126,17 +127,19 @@ const QRScanner = () => {
             <div ref={credentialRef} className="credential mt-4">
               <CredentialCard user={user} />
               
-           
+
+
+
             </div>
-            <div className='boton-login'>          
-              
-            <Button onClick={handlePrint} >Imprimir Credencial</Button>
-            <Button onClick={handleNavigateHome} >Volver al Home</Button>
+            <div className='boton-login'>
+
+              <Button onClick={handlePrint} >Imprimir Credencial</Button>
+              <Button onClick={handleNavigateHome} >Volver al Home</Button>
             </div>
-            
+
           </div>
         )}
-        
+
       </div>
       <ToastContainer />
     </div>

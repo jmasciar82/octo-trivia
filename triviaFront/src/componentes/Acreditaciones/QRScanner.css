@@ -66,4 +66,10 @@
     height: auto;
     margin-top: 1rem;
   }
+
+  .boton-login{
+    display: flex;
+    justify-content: space-around;
+    margin-top: 10px;
+  }
   
