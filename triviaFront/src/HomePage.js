@@ -56,7 +56,7 @@ const HomePage = () => {
                     <Card.Text>
                         Presione Enter para ingresar
                     </Card.Text>
-                    <Link to='/login'>
+                    <Link to='/loginHome'>
                         <Button variant="primary">Enter</Button></Link>
                 </Card.Body>
             </Card>

@@ -4,8 +4,14 @@ import CredentialCard from './CredentialCard';
 import printJS from 'print-js';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Login.css';
+import { Link } from 'react-router-dom';
+import { Button } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
+
 
 const Login = () => {
+  const navigate = useNavigate();
+
   const [code, setCode] = useState('');
   const [user, setUser] = useState(null);
   const credentialRef = useRef();
@@ -56,6 +62,7 @@ const Login = () => {
             margin-top: 1rem;
           }
         `,
+        onPrintDialogClose: () => navigate('/loginHome')
       });
     }
   };
@@ -72,7 +79,11 @@ const Login = () => {
             value={code}
             onChange={(e) => setCode(e.target.value)}
           />
-          <button type="submit" className="btn btn-primary btn-block">Ingresar</button>
+          <div className='boton-login'>
+            <button type="submit" className="btn btn-primary btn-block">Ingresar</button>
+
+
+          </div>
         </form>
 
         {user && (
@@ -80,7 +91,12 @@ const Login = () => {
             <div ref={credentialRef} className="credential mt-4">
               <CredentialCard user={user} />
             </div>
-            <button onClick={handlePrint} className="btn btn-secondary btn-block mt-3">Imprimir Credencial</button>
+            <div className='boton-login'>
+              <button onClick={handlePrint} className="btn btn-secondary btn-block mt-3">Imprimir Credencial</button>
+              
+            </div>
+
+
           </div>
         )}
       </div>

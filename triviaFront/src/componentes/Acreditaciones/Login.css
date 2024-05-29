@@ -8,6 +8,10 @@
   background-color: #f8f9fa;
   overflow: hidden;
 }
+.boton-login{
+  display: flex;
+  justify-content: space-around;
+}
 
 .login-container {
   width: 100%;

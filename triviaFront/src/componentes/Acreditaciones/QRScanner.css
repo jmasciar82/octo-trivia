@@ -1,0 +1,68 @@
+/* client/src/componentes/Acreditaciones/QRScanner.css */
+
+.scanner-container-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f8f9fa;
+    overflow: hidden;
+  }
+  
+  .scanner-container {
+    width: 100%;
+    max-width: 600px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+  }
+  
+  .video-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  video {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+  }
+  
+  .credential {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .credential .credential-card {
+    border: 1px solid black;
+    padding: 20px;
+    width: 300px;
+    text-align: center;
+    background-color: #fff;
+    border-radius: 10px;
+    margin: 0 auto;
+  }
+  
+  .credential-logo {
+    width: 100px;
+    height: auto;
+    margin-bottom: 1rem;
+  }
+  
+  .credential-title {
+    margin-bottom: 1.5rem;
+  }
+  
+  .credential-card p {
+    color: #343a40;
+    margin-bottom: 0.5rem;
+  }
+  
+  .qr-code {
+    max-width: 100%;
+    height: auto;
+    margin-top: 1rem;
+  }
+  

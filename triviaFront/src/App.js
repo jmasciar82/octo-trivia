@@ -25,10 +25,12 @@ import SalaList from './componentes/Crud/votacion/SalaList';
 
 import UsersAcreditaciones from './componentes/Acreditaciones/UsersAcreditaciones';
 import Login from './componentes/Acreditaciones/Login';
+import LoginHome from './componentes/Acreditaciones/LoginHome';
 
 import { NavBarPreguntas } from './componentes/COMUN/NavBarPreguntas';
 
 import { RutaNoValida } from './componentes/RutaNoValida';
+import QRScanner from './componentes/Acreditaciones/QRScanner';
 
 function App() {
   return (
@@ -57,7 +59,9 @@ function App() {
               <Route path="/admin/salas" element={<SalaList titulo="SalaList" />} />
               <Route path="/admin" element={<Admin titulo="Admin" />} />
               <Route path="admin/users/acreditaciones" element={<UsersAcreditaciones titulo="UsersAcreditaciones" />} />
+              <Route path="/loginHome" element={<LoginHome titulo="LoginHome" />} />
               <Route path="/login" element={<Login titulo="Login" />} />
+              <Route path="/qrscanner" element={<QRScanner titulo="QRScanner" />} />
               <Route path='*' element={<RutaNoValida />} />
             </Routes>
           </BrowserRouter>
