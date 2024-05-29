@@ -13,7 +13,7 @@ const QRScanner = () => {
   const [user, setUser] = useState(null);
   const [error, setError] = useState('');
   const videoRef = useRef(null);
-  const credentialRef = useRef(null);  // Definir credentialRef aquí
+  const credentialRef = useRef(null);
   const codeReaderRef = useRef(null);
   const navigate = useNavigate();
 

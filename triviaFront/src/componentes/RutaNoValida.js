@@ -1,3 +1,5 @@
+import React from 'react';
+
 export const RutaNoValida = () => 
     <div className="RutaNoValida">
         <div className="alert alert-danger">
