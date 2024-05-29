@@ -7,32 +7,47 @@ import { BrowserQRCodeReader } from '@zxing/library';
 import CredentialCard from './CredentialCard';
 import printJS from 'print-js';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './QRScanner.css'; // Importa el nuevo archivo CSS
+import './QRScanner.css';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { Button } from 'react-bootstrap';
 
 const QRScanner = () => {
   const [user, setUser] = useState(null);
-  const [error, setError] = useState('');
+ 
   const videoRef = useRef(null);
   const credentialRef = useRef(null);
   const codeReaderRef = useRef(null);
   const navigate = useNavigate();
 
-  const handleScanSuccess = async (decodedText) => {
+  const stopScanner = useCallback(() => {
+    if (codeReaderRef.current) {
+      codeReaderRef.current.reset();
+    }
+  }, []);
+
+  const handleScanSuccess = useCallback(async (decodedText) => {
     const backendURL = process.env.NODE_ENV === 'production' ? process.env.REACT_APP_PROD_BACKEND_URL : 'http://localhost:5000';
     try {
       const response = await axios.get(`${backendURL}/usersAcreditaciones/${decodedText}`);
       setUser(response.data);
-      setError('');
+      toast.success('Usuario encontrado');
       stopScanner();
     } catch (err) {
       console.error('Error al obtener el usuario:', err);
-      setError('Usuario no encontrado');
+      if (err.response && err.response.status === 400) {
+        toast.warn('Código ya utilizado');
+        stopScanner();
+      } else {
+        toast.error('Usuario no encontrado');
+      }
     }
-  };
+  }, [stopScanner]);
 
-  const handleScanFailure = (err) => {
+  const handleScanFailure = useCallback((err) => {
     console.warn(`Error scanning QR code: ${err}`);
-  };
+    toast.error('Error scanning QR code: ' + err.message);
+  }, []);
 
   const startScanner = useCallback(() => {
     const codeReader = new BrowserQRCodeReader();
@@ -45,20 +60,14 @@ const QRScanner = () => {
       .catch(err => {
         handleScanFailure(err);
       });
-  }, []);
-
-  const stopScanner = () => {
-    if (codeReaderRef.current) {
-      codeReaderRef.current.reset();
-    }
-  };
+  }, [handleScanSuccess, handleScanFailure]);
 
   useEffect(() => {
     startScanner();
     return () => {
       stopScanner();
     };
-  }, [startScanner]);
+  }, [startScanner, stopScanner]);
 
   const handlePrint = () => {
     if (user) {
@@ -93,9 +102,16 @@ const QRScanner = () => {
             margin-top: 1rem;
           }
         `,
-        onPrintDialogClose: () => navigate('/loginHome') // Redirigir después de imprimir
+        onPrintDialogClose: () => {
+          navigate('/loginHome'); // Redirigir después de imprimir
+        }
       });
     }
+  };
+
+  const handleNavigateHome = () => {
+    stopScanner();
+    navigate('/loginHome');
   };
 
   return (
@@ -105,17 +121,24 @@ const QRScanner = () => {
         <div className="video-container">
           <video ref={videoRef} style={{ width: "50%" }}></video>
         </div>
-        {error && <p style={{ color: 'red' }}>{error}</p>}
         {user && (
           <div>
             <div ref={credentialRef} className="credential mt-4">
               <CredentialCard user={user} />
+              
+           
             </div>
-            <button onClick={handlePrint} className="btn btn-secondary btn-block mt-3">Imprimir Credencial</button>
+            <div className='boton-login'>          
+              
+            <Button onClick={handlePrint} >Imprimir Credencial</Button>
+            <Button onClick={handleNavigateHome} >Volver al Home</Button>
+            </div>
+            
           </div>
         )}
-        <button onClick={() => navigate('/loginHome')} className="btn btn-secondary btn-block mt-3">Volver al Home</button>
+        
       </div>
+      <ToastContainer />
     </div>
   );
 };

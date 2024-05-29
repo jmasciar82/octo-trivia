@@ -11,6 +11,7 @@
 .boton-login{
   display: flex;
   justify-content: space-around;
+  margin-top: 10px;
 }
 
 .login-container {
@@ -36,6 +37,8 @@
 }
 
 .credential {
+  display: flex;
+  justify-content: center;
   text-align: center;
 }
 

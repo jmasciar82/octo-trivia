@@ -4,6 +4,10 @@ import CredentialCard from './CredentialCard';
 import printJS from 'print-js';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Login.css';
+import { Button } from 'react-bootstrap';
+
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import { useNavigate } from 'react-router-dom';
 
@@ -22,11 +26,20 @@ const Login = () => {
     try {
       const response = await axios.get(`${backendURL}/usersAcreditaciones/${code}`);
       setUser(response.data);
+      toast.success('Usuario encontrado');
     } catch (error) {
       console.error('Error al obtener el usuario:', error);
-      alert('Usuario no encontrado');
+      if (error.response && error.response.status === 400) {
+        toast.warn('Código ya utilizado');
+
+      } else {
+        toast.error('Usuario no encontrado');
+      }
+
     }
   };
+
+
 
   const handlePrint = () => {
     if (user) {
@@ -65,6 +78,10 @@ const Login = () => {
       });
     }
   };
+  const handleNavigateHome = () => {
+
+    navigate('/loginHome');
+  };
 
   return (
     <div className="login-container-wrapper">
@@ -78,8 +95,10 @@ const Login = () => {
             value={code}
             onChange={(e) => setCode(e.target.value)}
           />
+          <span><button type="submit" className="btn btn-primary btn-block">Ingresar</button></span>
           <div className='boton-login'>
-            <button type="submit" className="btn btn-primary btn-block">Ingresar</button>
+
+            <Button onClick={handleNavigateHome} >Volver al Home</Button>
 
 
           </div>
@@ -91,14 +110,16 @@ const Login = () => {
               <CredentialCard user={user} />
             </div>
             <div className='boton-login'>
-              <button onClick={handlePrint} className="btn btn-secondary btn-block mt-3">Imprimir Credencial</button>
-              
+              <Button style={{ backgroundColor: 'green', color: 'white' }} onClick={handlePrint}>
+                Imprimir Credencial
+              </Button>
             </div>
 
 
           </div>
         )}
       </div>
+      <ToastContainer />
     </div>
   );
 };
