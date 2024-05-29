@@ -37,7 +37,7 @@ export const IngresaPalabra = ({ onPalabraIngresada, onFinish }) => {
     const enviarPalabra = async (palabra) => {
         const URL_API = process.env.NODE_ENV === 'production' ?
             `${process.env.REACT_APP_PROD_BACKEND_URL}/palabraEnviada` :
-            `http://localhost:3000/palabraEnviada`;
+            `http://localhost:5000/palabraEnviada`;
         await axios.post(URL_API, { palabra });
     };
 
