@@ -98,7 +98,7 @@ const Login = () => {
           <span><button type="submit" className="btn btn-primary btn-block">Ingresar</button></span>
           <div className='boton-login'>
 
-            <Button onClick={handleNavigateHome} >Volver al Home</Button>
+            <Button onClick={handleNavigateHome} >Reiniciar</Button>
 
 
           </div>

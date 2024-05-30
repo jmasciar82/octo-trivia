@@ -14,17 +14,25 @@ import { Button } from 'react-bootstrap';
 
 const QRScanner = () => {
   const [user, setUser] = useState(null);
-
+  
   const videoRef = useRef(null);
   const credentialRef = useRef(null);
   const codeReaderRef = useRef(null);
   const navigate = useNavigate();
+
+  const handleNavigateHome = () => {
+    stopScanner();
+    navigate('/loginHome');
+  };
+ 
 
   const stopScanner = useCallback(() => {
     if (codeReaderRef.current) {
       codeReaderRef.current.reset();
     }
   }, []);
+
+
 
   const handleScanSuccess = useCallback(async (decodedText) => {
     const backendURL = process.env.NODE_ENV === 'production' ? process.env.REACT_APP_PROD_BACKEND_URL : 'http://localhost:5000';
@@ -37,6 +45,9 @@ const QRScanner = () => {
       console.error('Error al obtener el usuario:', err);
       if (err.response && err.response.status === 400) {
         toast.warn('Código ya utilizado');
+
+        
+
         stopScanner();
       } else {
         toast.error('Usuario no encontrado');
@@ -109,36 +120,40 @@ const QRScanner = () => {
     }
   };
 
-  const handleNavigateHome = () => {
-    stopScanner();
-    navigate('/loginHome');
-  };
+  
 
   return (
     <div className="scanner-container-wrapper">
       <div className="scanner-container">
-        <h1>Escáner de QR</h1>
-        <Button onClick={handleNavigateHome} >Volver al Home</Button>
-        <div className="video-container">
-          <video ref={videoRef} style={{ width: "50%" }}></video>
-        </div>
-        {user && (
-          <div>
-            <div ref={credentialRef} className="credential mt-4">
-              <CredentialCard user={user} />
-              
-
-
-
-            </div>
-            <div className='boton-login'>
-
-              <Button onClick={handlePrint} >Imprimir Credencial</Button>
-              <Button onClick={handleNavigateHome} >Volver al Home</Button>
-            </div>
-
+        <div>
+          <h1>Escáner de QR</h1>
+          <Button onClick={handleNavigateHome} >Reiniciar</Button>
+          
+          <div className="video-container">
+            <video ref={videoRef} style={{ width: "50%" }}></video>
           </div>
-        )}
+        </div>
+        <div>
+          {user && (
+            <div>
+
+
+              <div ref={credentialRef} className="credential mt-4">
+                <CredentialCard user={user} />
+
+
+
+
+              </div>
+              <div className='boton-login'>
+
+                <Button onClick={handlePrint} >Imprimir Credencial</Button>
+                <Button onClick={handleNavigateHome} >Volver al Home</Button>
+              </div>
+
+
+            </div>
+          )}</div>
 
       </div>
       <ToastContainer />
