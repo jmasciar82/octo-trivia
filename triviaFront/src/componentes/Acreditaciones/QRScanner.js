@@ -130,7 +130,7 @@ const QRScanner = () => {
           <Button onClick={handleNavigateHome} >Reiniciar</Button>
           
           <div className="video-container">
-            <video ref={videoRef} style={{ width: "50%" }}></video>
+            <video ref={videoRef} style={{ width: "70%" }}></video>
           </div>
         </div>
         <div>
