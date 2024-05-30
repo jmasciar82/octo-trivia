@@ -37,7 +37,9 @@ function App() {
     <div>
       <div className="container-fluid mt-3">
         <div>
-          
+          {/* <h1 className='nombre_marca'>KraKen Trivia 2.0
+            <span><img src={require("./assets/imgbin_kraken-rum-logo-octopus-png.png")} alt="KraKen Logo" width={'45px'} /></span>
+          </h1> */}
           <hr />
           <BrowserRouter>
             <Routes>
