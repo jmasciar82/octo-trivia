@@ -148,7 +148,7 @@ const QRScanner = () => {
               <div className='boton-login'>
 
                 <Button onClick={handlePrint} >Imprimir Credencial</Button>
-                <Button onClick={handleNavigateHome} >Volver al Home</Button>
+                
               </div>
 
 
