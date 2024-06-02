@@ -8,7 +8,11 @@ const bodyParser = require('body-parser');
 dotenv.config();
 
 // Configurar CORS globalmente
-app.use(cors());
+app.use(cors({
+  origin: '*', // Reemplaza con el dominio de tu frontend
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  credentials: true
+}));
 
 // Parsear body de solicitudes
 app.use(express.urlencoded({ extended: true }));
@@ -21,21 +25,17 @@ const resultado1 = require('./router/sala1/respuestaRoutes');
 const palabraRouter = require('./router/sala1/palabra');
 const verNubeRouter = require('./router/sala1/verNube');
 const getQuestions = require('./router/sala1/preguntasDeSala');
-
 const preguntaRoutes = require('./router/crud/votacion/preguntaRoutes.js');
 const salaRoutes = require('./router/crud/votacion/salaRoutes');
 const usersAcreditaciones = require('./router/acreditaciones/usersAcreditacionesRoutes');
-
 const authAdminRoutes = require('./router/admin/authAdmin.js');
 
 app.use('/admin/auth', authAdminRoutes);
-
 app.use('/index', sala1Pregunta1Routes);
 app.use('/resultado', resultado1);
 app.use('/palabraEnviada', palabraRouter);
 app.use('/palabrasDeSala', getQuestions);
 app.use('/verNube', verNubeRouter);
-
 app.use('/admin', preguntaRoutes);
 app.use('/admin', salaRoutes);
 app.use('/usersAcreditaciones', usersAcreditaciones);
@@ -46,7 +46,6 @@ const inicializar = async () => {
         await inicializarDatos();
         console.log('Datos inicializados correctamente');
         console.log('JWT_SECRET:', process.env.JWT_SECRET);
-
     } catch (error) {
         console.error('Error al inicializar los datos:', error);
     }
