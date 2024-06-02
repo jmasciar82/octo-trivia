@@ -9,7 +9,7 @@ dotenv.config();
 
 // Configurar CORS globalmente
 app.use(cors({
-  origin: '*', // Reemplaza con el dominio de tu frontend
+  origin: 'https://octo-trivia-front.vercel.app', // Reemplaza con el dominio de tu frontend
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   credentials: true
 }));
