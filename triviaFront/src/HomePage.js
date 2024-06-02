@@ -6,7 +6,7 @@ import './index.css';
 const HomePage = () => {
     return (
         <div className="home-page">
-            <><Link className='admin-link' to='/admin'><Button>Admin</Button></Link></>
+            <><Link className='admin-link' to='/loginAdmin'><Button>Admin</Button></Link></>
             <Card>
                 <Card.Body>
                     <Card.Title>Bienvenido al Sistema de Votaciones</Card.Title>

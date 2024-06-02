@@ -5,15 +5,10 @@ const { inicializarDatos } = require('./model/initDB');
 const dotenv = require('dotenv');
 const bodyParser = require('body-parser');
 
-
-
 dotenv.config();
-
-
 
 // Configurar CORS globalmente
 app.use(cors());
-
 
 // Parsear body de solicitudes
 app.use(express.urlencoded({ extended: true }));
@@ -31,9 +26,9 @@ const preguntaRoutes = require('./router/crud/votacion/preguntaRoutes.js');
 const salaRoutes = require('./router/crud/votacion/salaRoutes');
 const usersAcreditaciones = require('./router/acreditaciones/usersAcreditacionesRoutes');
 
+const authAdminRoutes = require('./router/admin/authAdmin.js');
 
-
-
+app.use('/admin/auth', authAdminRoutes);
 
 app.use('/index', sala1Pregunta1Routes);
 app.use('/resultado', resultado1);
@@ -45,12 +40,13 @@ app.use('/admin', preguntaRoutes);
 app.use('/admin', salaRoutes);
 app.use('/usersAcreditaciones', usersAcreditaciones);
 
-
 // Inicializar los datos y luego iniciar el servidor
 const inicializar = async () => {
     try {
         await inicializarDatos();
         console.log('Datos inicializados correctamente');
+        console.log('JWT_SECRET:', process.env.JWT_SECRET);
+
     } catch (error) {
         console.error('Error al inicializar los datos:', error);
     }
@@ -58,6 +54,7 @@ const inicializar = async () => {
 
 // Inicializar y arrancar el servidor
 inicializar();
-app.listen(5000, () => console.log("Server ready on port 3000."));
+app.listen(5000, () => console.log("Server ready on port 5000."));  // Puerto correcto
 app.on('error', error => console.log(`Error en servidor: ${error.message}`));
+
 module.exports = app;
