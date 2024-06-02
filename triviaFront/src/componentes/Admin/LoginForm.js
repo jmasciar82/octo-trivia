@@ -25,8 +25,9 @@ const LoginForm = ({ onLogin }) => {
             notifySuccess('Login successful!');
             navigate('/admin');  // Redirige a la ruta /admin
         } catch (err) {
-            setError('Invalid credentials');
-            notifyError('Invalid credentials');
+            const errorMessage = err.response?.data?.message || 'Invalid credentials';
+            setError(errorMessage);
+            notifyError(errorMessage);
             console.error('Error during login:', err);
         }
     };
