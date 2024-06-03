@@ -25,7 +25,16 @@ const LoginForm = ({ onLogin }) => {
             notifySuccess('Login successful!');
             navigate('/admin');  // Redirige a la ruta /admin
         } catch (err) {
-            const errorMessage = err.response?.data?.message || 'Invalid credentials';
+            let errorMessage = 'An error occurred. Please try again.';
+            if (err.response) {
+                if (err.response.status === 403) {
+                    errorMessage = 'Permission error. Please check your credentials.';
+                } else if (err.response.status === 401) {
+                    errorMessage = 'Invalid credentials. Please try again.';
+                } else if (err.response.status === 500) {
+                    errorMessage = 'Server error. Please try again later.';
+                }
+            }
             setError(errorMessage);
             notifyError(errorMessage);
             console.error('Error during login:', err);

@@ -79,11 +79,13 @@ function App() {
               <Route path='/verNube' element={<VerPalabraPadre titulo="VerPalabraPadre" />} />
               <Route path='/chatBot' element={<IndexChatBot titulo="IndexChatBot" />} />
               <Route path='/chat' element={<IndexChat titulo="IndexChat" />} />
+              
               <Route path="/admin/index/sala/:salaId/pregunta/:preguntaId" element={<ProtectedRoute token={token} element={<PollComponent titulo="PollComponent" />} />} />
+              <Route path="admin/users/acreditaciones" element={<ProtectedRoute token={token} element={<UsersAcreditaciones titulo="UsersAcreditaciones" />} />} />
+              
               <Route path="/admin/preguntas" element={<ProtectedRoute token={token} element={<PreguntaList titulo="PreguntaList" />} />} />
               <Route path="/admin/salas" element={<ProtectedRoute token={token} element={<SalaList titulo="SalaList" />} />} />
               <Route path="/admin" element={<ProtectedRoute token={token} element={<Admin titulo="Admin" />} />} />
-              <Route path="admin/users/acreditaciones" element={<ProtectedRoute token={token} element={<UsersAcreditaciones titulo="UsersAcreditaciones" />} />} />
               <Route path="/loginHome" element={<LoginHome titulo="LoginHome" />} />
               <Route path="/login" element={<Login titulo="Login" />} />  {/* Usar LoginForm y pasar onLogin */}
               <Route path="/qrscanner" element={<QRScanner titulo="QRScanner" />} />

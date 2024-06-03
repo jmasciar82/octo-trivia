@@ -7,9 +7,9 @@ const bodyParser = require('body-parser');
 
 dotenv.config();
 
-// Configurar CORS globalmente
+// Configurar CORS globalmente  
 app.use(cors({
-  origin: 'https://octo-trivia-front.vercel.app', // Reemplaza con el dominio de tu frontend
+  origin: '*', // Reemplaza con el dominio de tu frontend
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   credentials: true
 }));
