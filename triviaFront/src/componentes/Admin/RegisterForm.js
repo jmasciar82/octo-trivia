@@ -1,35 +1,65 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
+import 'react-toastify/dist/ReactToastify.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './Register.css'; // Asegúrate de importar el CSS
 
 const RegisterForm = ({ onRegister }) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
+    const navigate = useNavigate();
+
+    const notifySuccess = (message) => toast.success(message);
+    const notifyError = (message) => toast.error(message);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        try {const backendURL = process.env.NODE_ENV === 'production' ? process.env.REACT_APP_PROD_BACKEND_URL : 'http://localhost:5000';
-        const res = await axios.post(`${backendURL}/admin/auth/register`, { username, password });
+        try {
+            const backendURL = process.env.NODE_ENV === 'production' ? process.env.REACT_APP_PROD_BACKEND_URL : 'http://localhost:5000';
+            const res = await axios.post(`${backendURL}/admin/auth/register`, { username, password });
             onRegister(res.data.token);
             setError('');
+            notifySuccess('Registration successful!');
+            navigate('/'); 
         } catch (err) {
-            setError(err.response.data.error || 'Error registering');
+            const errorMessage = err.response?.data?.error || 'Error registering';
+            setError(errorMessage);
+            notifyError(errorMessage);
         }
     };
 
     return (
-        <form onSubmit={handleSubmit}>
-            <div>
-                <label>Username:</label>
-                <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
+        <div className="body-register">
+            <div className="card card-register">
+                <h2>Register</h2>
+                <form onSubmit={handleSubmit}>
+                    <div className="mb-3">
+                        <label className="form-label">Username:</label>
+                        <input
+                            type="text"
+                            className="form-control"
+                            value={username}
+                            onChange={(e) => setUsername(e.target.value)}
+                        />
+                    </div>
+                    <div className="mb-3">
+                        <label className="form-label">Password:</label>
+                        <input
+                            type="password"
+                            className="form-control"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                        />
+                    </div>
+                    <button type="submit" className="btn btn-primary">Register</button>
+                    {error && <p className="text-danger">{error}</p>}
+                </form>
+                <ToastContainer />
             </div>
-            <div>
-                <label>Password:</label>
-                <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-            </div>
-            <button type="submit">Register</button>
-            {error && <p>{error}</p>}
-        </form>
+        </div>
     );
 };
 

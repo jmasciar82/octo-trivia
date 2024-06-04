@@ -1,0 +1,33 @@
+/* RegisterForm.css */
+
+.body-register {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f8f9fa;
+}
+
+.card-register {
+    padding: 2rem;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card-register h2 {
+    margin-bottom: 1.5rem;
+}
+
+.card-register .form-control {
+    margin-bottom: 1rem;
+}
+
+.card-register .btn-primary {
+    
+    width: 100%;
+}
+
+.card-register .text-danger {
+    margin-top: 1rem;
+}
