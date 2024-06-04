@@ -4,20 +4,28 @@ const app = express();
 const { inicializarDatos } = require('./model/initDB');
 const dotenv = require('dotenv');
 const bodyParser = require('body-parser');
-
+const path = require('path');
+const fs = require('fs');  // Importar fs
 dotenv.config();
 
-// Configurar CORS globalmente  
 app.use(cors({
-  origin: '*', // Reemplaza con el dominio de tu frontend
+  origin: '*',
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-  credentials: true
+  credentials: true,
 }));
 
-// Parsear body de solicitudes
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(bodyParser.json());
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
+
+// Asegúrate de que la carpeta uploads exista
+const uploadDir = path.join(__dirname, 'uploads');
+if (!fs.existsSync(uploadDir)) {
+    fs.mkdirSync(uploadDir);
+}
+
 
 // Rutas API RESTful
 const sala1Pregunta1Routes = require('./router/sala1/pregunta1Routes');
@@ -30,6 +38,13 @@ const salaRoutes = require('./router/crud/votacion/salaRoutes');
 const usersAcreditaciones = require('./router/acreditaciones/usersAcreditacionesRoutes');
 const authAdminRoutes = require('./router/admin/authAdmin.js');
 
+const fileRoutes = require('./router/file/fileRoutes.js');
+
+
+
+
+
+
 app.use('/admin/auth', authAdminRoutes);
 app.use('/index', sala1Pregunta1Routes);
 app.use('/resultado', resultado1);
@@ -40,7 +55,12 @@ app.use('/admin', preguntaRoutes);
 app.use('/admin', salaRoutes);
 app.use('/usersAcreditaciones', usersAcreditaciones);
 
-// Inicializar los datos y luego iniciar el servidor
+
+// Rutas
+app.use('/api/files', fileRoutes);
+
+
+
 const inicializar = async () => {
     try {
         await inicializarDatos();
@@ -51,9 +71,8 @@ const inicializar = async () => {
     }
 };
 
-// Inicializar y arrancar el servidor
 inicializar();
-app.listen(5000, () => console.log("Server ready on port 5000."));  // Puerto correcto
+app.listen(5000, () => console.log("Server ready on port 5000."));
 app.on('error', error => console.log(`Error en servidor: ${error.message}`));
 
 module.exports = app;

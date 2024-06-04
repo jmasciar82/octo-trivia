@@ -42,6 +42,16 @@ const AdminPage = () => {
                     </Link>
                 </Card.Body>
             </Card>
+
+            <Card style={{ position: 'relative', width: '18rem', backgroundColor: 'rgba(5, 227, 71, 0.7)' }}>
+                <Card.Body >
+                    <Card.Title>File<br></br> Manager</Card.Title>
+                    <Card.Text>
+                        Presione Enter para ingresar
+                    </Card.Text>
+                    <Link to='/'><Button variant="primary">Enter</Button></Link>
+                </Card.Body>
+            </Card>
         </div>
     );
 };

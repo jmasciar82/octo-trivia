@@ -60,6 +60,16 @@ const HomePage = () => {
                         <Button variant="primary">Enter</Button></Link>
                 </Card.Body>
             </Card>
+            <Card>
+                <Card.Body>
+                    <Card.Title>File Manager <br /><br /></Card.Title>
+                    <Card.Text>
+                        Presione Enter para ingresar
+                    </Card.Text>
+                    <Link to='/fileManager'>
+                        <Button variant="primary">Enter</Button></Link>
+                </Card.Body>
+            </Card>
         </div>
     );
 };
