@@ -36,7 +36,13 @@ const FileManager = () => {
         formData.append('date', date);
         formData.append('startTime', startTime);
         formData.append('endTime', endTime);
-        const backendURL = process.env.REACT_APP_BACKEND_URL || 'http://localhost:5000';
+
+        /* const backendURL = process.env.NODE_ENV === 'production' ?
+                    `${process.env.REACT_APP_PROD_BACKEND_URL}` :
+                    `http://localhost:5000`; */
+        const backendURL = process.env.NODE_ENV === 'production' ?
+            `${process.env.REACT_APP_PROD_BACKEND_URL}` :
+            `http://localhost:5000`;
         try {
             const res = await axios.post(`${backendURL}/api/files/upload`, formData);
             fetchFiles();
@@ -51,7 +57,9 @@ const FileManager = () => {
     const replaceFile = async (fileId, file) => {
         const formData = new FormData();
         formData.append('file', file);
-        const backendURL = process.env.REACT_APP_BACKEND_URL || 'http://localhost:5000';
+        const backendURL = process.env.NODE_ENV === 'production' ?
+            `${process.env.REACT_APP_PROD_BACKEND_URL}` :
+            `http://localhost:5000`;
         try {
             const res = await axios.put(`${backendURL}/api/files/replace/${fileId}`, formData);
             fetchFiles();
@@ -64,7 +72,9 @@ const FileManager = () => {
     };
 
     const deleteFile = async (fileId) => {
-        const backendURL = process.env.REACT_APP_BACKEND_URL || 'http://localhost:5000';
+        const backendURL = process.env.NODE_ENV === 'production' ?
+            `${process.env.REACT_APP_PROD_BACKEND_URL}` :
+            `http://localhost:5000`;
         try {
             await axios.delete(`${backendURL}/api/files/${fileId}`);
             fetchFiles();
@@ -76,7 +86,9 @@ const FileManager = () => {
     };
 
     const updateFileDetails = async (fileId, updatedDetails) => {
-        const backendURL = process.env.REACT_APP_BACKEND_URL || 'http://localhost:5000';
+        const backendURL = process.env.NODE_ENV === 'production' ?
+            `${process.env.REACT_APP_PROD_BACKEND_URL}` :
+            `http://localhost:5000`;
         try {
             await axios.put(`${backendURL}/api/files/update/${fileId}`, updatedDetails);
             fetchFiles();
@@ -88,7 +100,9 @@ const FileManager = () => {
     };
 
     const fetchFiles = async () => {
-        const backendURL = process.env.REACT_APP_BACKEND_URL || 'http://localhost:5000';
+        const backendURL = process.env.NODE_ENV === 'production' ?
+            `${process.env.REACT_APP_PROD_BACKEND_URL}` :
+            `http://localhost:5000`;
         try {
             const response = await axios.get(`${backendURL}/api/files`);
             setFiles(response.data);
@@ -99,7 +113,9 @@ const FileManager = () => {
     };
 
     const fetchFilteredFiles = async () => {
-        const backendURL = process.env.REACT_APP_BACKEND_URL || 'http://localhost:5000';
+        const backendURL = process.env.NODE_ENV === 'production' ?
+            `${process.env.REACT_APP_PROD_BACKEND_URL}` :
+            `http://localhost:5000`;
         try {
             const response = await axios.get(`${backendURL}/api/files`, {
                 params: {
