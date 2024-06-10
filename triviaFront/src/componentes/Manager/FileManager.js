@@ -37,9 +37,10 @@ const FileManager = () => {
         formData.append('endTime', endTime);
         const backendURL = process.env.REACT_APP_BACKEND_URL || 'http://localhost:5000';
         try {
-            await axios.post(`${backendURL}/api/files/upload`, formData);
+            const res = await axios.post(`${backendURL}/api/files/upload`, formData);
             fetchFiles();
             toast.success('File uploaded successfully!');
+            console.log('File uploaded successfully:', res.data.url);
         } catch (error) {
             console.error('Error uploading file:', error);
             toast.error('Error uploading file.');
@@ -51,9 +52,10 @@ const FileManager = () => {
         formData.append('file', file);
         const backendURL = process.env.REACT_APP_BACKEND_URL || 'http://localhost:5000';
         try {
-            await axios.put(`${backendURL}/api/files/replace/${fileId}`, formData);
+            const res = await axios.put(`${backendURL}/api/files/replace/${fileId}`, formData);
             fetchFiles();
             toast.success('File replaced successfully!');
+            console.log('File replaced successfully:', res.data.url);
         } catch (error) {
             console.error('Error replacing file:', error);
             toast.error('Error replacing file.');
@@ -176,7 +178,6 @@ const FileManager = () => {
 
     return (
         <div className="container mt-4">
-
             <div className="row">
                 <div className="col-md-6">
                     <h2>Upload File</h2>
@@ -354,12 +355,11 @@ const FileManager = () => {
                             <td>{formatDate(file.date)}</td>
                             <td>{formatTime(file.startTime)} - {formatTime(file.endTime)}</td>
                             <td className='botones-accion'>
-                                <a href={`${process.env.REACT_APP_BACKEND_URL || 'http://localhost:5000'}/api/files/${file._id}`} target="_blank" rel="noopener noreferrer" className="btn btn-sm btn-secondary">Download</a>
+                                <a href={file.path} target="_blank" rel="noopener noreferrer" className="btn btn-sm btn-secondary">Download</a>
                                 {file.isEditing ? (
                                     <>
                                         <button className="btn btn-sm btn-success" onClick={() => handleSave(file._id)}>Save</button>
                                         <button className="btn btn-sm btn-secondary" onClick={() => handleCancel(file._id)}>Cancel</button>
-                                        
                                     </>
                                 ) : (
                                     <>
@@ -368,7 +368,6 @@ const FileManager = () => {
                                         <button className="btn btn-sm btn-danger" onClick={() => deleteFile(file._id)}>Delete</button>
                                     </>
                                 )}
-                                
                                 <input
                                     type="file"
                                     style={{ display: 'none' }}

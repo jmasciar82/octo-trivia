@@ -6,6 +6,9 @@ const dotenv = require('dotenv');
 const bodyParser = require('body-parser');
 const path = require('path');
 const fs = require('fs');  // Importar fs
+
+const fileUpload = require('express-fileupload');
+const { uploadFile } = require('./storage');
 dotenv.config();
 
 app.use(cors({
@@ -17,9 +20,29 @@ app.use(cors({
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(bodyParser.json());
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 
+app.use(fileUpload());
+
+
+
+app.post('/upload', async (req, res) => {
+  try {
+    if (!req.files || Object.keys(req.files).length === 0) {
+      return res.status(400).send('No files were uploaded.');
+    }
+
+    const file = req.files.file;
+    const result = await uploadFile(file.data, file.name);
+
+    res.send({
+      message: 'File uploaded successfully',
+      url: result.url
+    });
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
+});
 
 // Asegúrate de que la carpeta uploads exista
 const uploadDir = path.join(__dirname, 'uploads');

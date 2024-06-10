@@ -1,53 +1,42 @@
 // controllers/fileController.js
 
 const File = require('../../model/file/File');
-
-const multer = require('multer');
+const { uploadFile: uploadToBlob } = require('../../storage');
 const path = require('path');
 const fs = require('fs');
 
-// Configuración de Multer para la carga de archivos
-const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        cb(null, 'uploads/');
-    },
-    filename: (req, file, cb) => {
-        cb(null, `${Date.now()}-${file.originalname}`);
-    },
-});
-
-const upload = multer({ storage }).single('file');
-
-const uploadFile = (req, res) => {
-    upload(req, res, async (err) => {
-        if (err) {
-            console.error('Error during file upload:', err);
-            return res.status(500).json({ error: err.message });
+const uploadFile = async (req, res) => {
+    try {
+        if (!req.files || Object.keys(req.files).length === 0) {
+            return res.status(400).send('No files were uploaded.');
         }
-        try {
-            const { speakerName, speakerEmail, room, date, startTime, endTime } = req.body;
 
-            const file = new File({
-                originalFilename: req.file.originalname,
-                filename: req.file.filename,
-                path: req.file.path,
-                fileType: req.file.mimetype,
-                speaker: {
-                    name: speakerName,
-                    email: speakerEmail
-                },
-                room,
-                date: new Date(date),
-                startTime,
-                endTime
-            });
-            await file.save();
-            res.sendStatus(201);
-        } catch (error) {
-            console.error('Error saving file to database:', error);
-            res.status(500).json({ error: error.message });
-        }
-    });
+        const file = req.files.file;
+        const { speakerName, speakerEmail, room, date, startTime, endTime } = req.body;
+
+        // Subir archivo a Vercel Blob
+        const result = await uploadToBlob(file.data, file.name);
+
+        const newFile = new File({
+            originalFilename: file.name,
+            filename: file.name,
+            path: result.url, // Guardar la URL del blob
+            fileType: file.mimetype,
+            speaker: {
+                name: speakerName,
+                email: speakerEmail
+            },
+            room,
+            date: new Date(date),
+            startTime,
+            endTime
+        });
+        await newFile.save();
+        res.send({ message: 'File uploaded successfully', url: result.url });
+    } catch (error) {
+        console.error('Error uploading file to Blob:', error);
+        res.status(500).send(error.message);
+    }
 };
 
 const listFiles = async (req, res) => {
@@ -75,37 +64,39 @@ const downloadFile = async (req, res) => {
     try {
         const file = await File.findById(req.params.id);
         if (!file) return res.sendStatus(404);
-        res.download(path.resolve(file.path), file.originalFilename);
+
+        res.redirect(file.path); // Redireccionar a la URL del blob
     } catch (error) {
         console.error('Error downloading file:', error);
         res.status(500).json({ error: error.message });
     }
 };
 
-const replaceFile = (req, res) => {
-    upload(req, res, async (err) => {
-        if (err) {
-            console.error('Error during file upload:', err);
-            return res.status(500).json({ error: err.message });
+const replaceFile = async (req, res) => {
+    try {
+        if (!req.files || Object.keys(req.files).length === 0) {
+            return res.status(400).send('No files were uploaded.');
         }
-        try {
-            const file = await File.findById(req.params.id);
-            if (!file) return res.sendStatus(404);
 
-            fs.unlinkSync(file.path);
+        const file = await File.findById(req.params.id);
+        if (!file) return res.sendStatus(404);
 
-            file.originalFilename = req.file.originalname;
-            file.filename = req.file.filename;
-            file.path = req.file.path;
-            file.fileType = req.file.mimetype;
-            await file.save();
+        const newFile = req.files.file;
 
-            res.sendStatus(200);
-        } catch (error) {
-            console.error('Error replacing file in database:', error);
-            res.status(500).json({ error: error.message });
-        }
-    });
+        // Subir el nuevo archivo a Vercel Blob
+        const result = await uploadToBlob(newFile.data, newFile.name);
+
+        file.originalFilename = newFile.name;
+        file.filename = newFile.name;
+        file.path = result.url; // Actualizar la URL del blob
+        file.fileType = newFile.mimetype;
+        await file.save();
+
+        res.send({ message: 'File replaced successfully', url: result.url });
+    } catch (error) {
+        console.error('Error replacing file in database:', error);
+        res.status(500).json({ error: error.message });
+    }
 };
 
 const deleteFile = async (req, res) => {
@@ -113,7 +104,7 @@ const deleteFile = async (req, res) => {
         const file = await File.findById(req.params.id);
         if (!file) return res.sendStatus(404);
 
-        fs.unlinkSync(file.path);
+        // No hay necesidad de eliminar el archivo en Vercel Blob, solo eliminar la referencia en la base de datos
         await file.remove();
 
         res.sendStatus(200);
