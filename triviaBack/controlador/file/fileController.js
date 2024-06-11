@@ -38,13 +38,13 @@ const uploadFile = async (req, res) => {
         res.status(500).send(error.message);
     }
 };
-
 const listFiles = async (req, res) => {
     try {
-        const { name, room, date, startTime, endTime } = req.query;
+        const { name, email, room, date, startTime, endTime } = req.query;
         let query = {};
 
         if (name) query['speaker.name'] = new RegExp(name, 'i');
+        if (email) query['speaker.email'] = new RegExp(email, 'i');
         if (room) query.room = room;
         if (date) query.date = new Date(date);
         if (startTime && endTime) {
@@ -59,6 +59,7 @@ const listFiles = async (req, res) => {
         res.status(500).json({ error: error.message });
     }
 };
+
 
 const downloadFile = async (req, res) => {
     try {

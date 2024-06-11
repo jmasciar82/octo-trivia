@@ -1,4 +1,3 @@
-// FileFilter.js
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
@@ -9,6 +8,7 @@ import './index.css';
 const FileFilter = () => {
     const [files, setFiles] = useState([]);
     const [filterName, setFilterName] = useState('');
+    const [filterEmail, setFilterEmail] = useState('');
     const [filterRoom, setFilterRoom] = useState('');
     const [filterDate, setFilterDate] = useState('');
     const [filterStartTime, setFilterStartTime] = useState('');
@@ -41,6 +41,7 @@ const FileFilter = () => {
             const response = await axios.get(`${backendURL}/api/files`, {
                 params: {
                     name: filterName.toUpperCase(),
+                    email: filterEmail.toUpperCase(),
                     room: filterRoom.toUpperCase(),
                     date: filterDate,
                     startTime: filterStartTime,
@@ -57,6 +58,7 @@ const FileFilter = () => {
 
     const resetFilterFields = () => {
         setFilterName('');
+        setFilterEmail('');
         setFilterRoom('');
         setFilterDate('');
         setFilterStartTime('');
@@ -76,6 +78,10 @@ const FileFilter = () => {
         return `${hours}${minutes}`;
     };
 
+    const getFileExtension = (filename) => {
+        return filename.substring(filename.lastIndexOf('.') + 1);
+    };
+
     const downloadAllFiles = async () => {
         const backendURL = process.env.NODE_ENV === 'production' ?
             `${process.env.REACT_APP_PROD_BACKEND_URL}` :
@@ -85,7 +91,8 @@ const FileFilter = () => {
         const conflicts = [];
 
         for (const file of files) {
-            const fileName = `${file.speaker.name}_${file.room}_${formatDate(file.date)}_${formatTime(file.startTime)}.pdf`;
+            const extension = getFileExtension(file.originalFilename);
+            const fileName = `${file.speaker.name}_${file.speaker.email}_${file.room}_${formatDate(file.date)}_${formatTime(file.startTime)}.${extension}`;
 
             if (downloadedFiles[fileName]) {
                 conflicts.push({ file, fileName });
@@ -111,8 +118,9 @@ const FileFilter = () => {
         if (action === 'copy') {
             let copyNumber = 1;
             let newFileName;
+            const extension = getFileExtension(file.originalFilename);
             do {
-                newFileName = `${file.speaker.name}_${file.room}_${formatDate(file.date)}_${formatTime(file.startTime)}_copy${copyNumber}.pdf`;
+                newFileName = `${file.speaker.name}_${file.speaker.email}_${file.room}_${formatDate(file.date)}_${formatTime(file.startTime)}_copy${copyNumber}.${extension}`;
                 copyNumber++;
             } while (localStorage.getItem('downloadedFiles')[newFileName]);
 
@@ -168,6 +176,18 @@ const FileFilter = () => {
                         placeholder="Name"
                         value={filterName}
                         onChange={(e) => setFilterName(e.target.value.toUpperCase())}
+                        autoComplete="off"
+                        className="form-control"
+                        style={{ textTransform: 'uppercase' }}
+                    />
+                </div>
+                <div className="form-group">
+                    <input
+                        name="emailFilter"
+                        type="text"
+                        placeholder="Email"
+                        value={filterEmail}
+                        onChange={(e) => setFilterEmail(e.target.value.toUpperCase())}
                         autoComplete="off"
                         className="form-control"
                         style={{ textTransform: 'uppercase' }}
