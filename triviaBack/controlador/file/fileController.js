@@ -105,7 +105,7 @@ const deleteFile = async (req, res) => {
         if (!file) return res.sendStatus(404);
 
         // No hay necesidad de eliminar el archivo en Vercel Blob, solo eliminar la referencia en la base de datos
-        await file.remove();
+        await File.deleteOne({ _id: req.params.id });
 
         res.sendStatus(200);
     } catch (error) {
