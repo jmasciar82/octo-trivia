@@ -15,6 +15,7 @@ const FileFilter = () => {
     const [filterEndTime, setFilterEndTime] = useState('');
     const [conflicts, setConflicts] = useState([]);
     const [downloadQueue, setDownloadQueue] = useState([]);
+    const [selectedFiles, setSelectedFiles] = useState([]);
 
     useEffect(() => {
         fetchFiles();
@@ -82,15 +83,19 @@ const FileFilter = () => {
         return filename.substring(filename.lastIndexOf('.') + 1);
     };
 
-    const downloadAllFiles = async () => {
-        const backendURL = process.env.NODE_ENV === 'production' ?
-            `${process.env.REACT_APP_PROD_BACKEND_URL}` :
-            `http://localhost:5000`;
+    const addToDownloadList = (file) => {
+        setSelectedFiles((prevSelectedFiles) => [...prevSelectedFiles, file]);
+    };
 
+    const removeFromDownloadList = (fileId) => {
+        setSelectedFiles((prevSelectedFiles) => prevSelectedFiles.filter(file => file._id !== fileId));
+    };
+
+    const downloadAllFiles = async () => {
         const downloadedFiles = JSON.parse(localStorage.getItem('downloadedFiles')) || {};
         const conflicts = [];
 
-        for (const file of files) {
+        for (const file of selectedFiles) {
             const extension = getFileExtension(file.originalFilename);
             const fileName = `${file.speaker.name}_${file.speaker.email}_${file.room}_${formatDate(file.date)}_${formatTime(file.startTime)}.${extension}`;
 
@@ -237,7 +242,6 @@ const FileFilter = () => {
                 </div>
                 <button type="submit" className="btn btn-primary">Filter</button>
             </form>
-            <button onClick={downloadAllFiles} className="btn btn-success mt-4">Download All Files</button>
             <h2 className="mt-4">Files</h2>
             <table className="table table-bordered">
                 <thead>
@@ -248,6 +252,7 @@ const FileFilter = () => {
                         <th>Room</th>
                         <th>Date</th>
                         <th>Time</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -263,10 +268,47 @@ const FileFilter = () => {
                             <td>{file.room}</td>
                             <td>{formatDate(file.date)}</td>
                             <td>{formatTime(file.startTime)} - {formatTime(file.endTime)}</td>
+                            <td>
+                                <button className="btn btn-sm btn-primary" onClick={() => addToDownloadList(file)}>Add to Download List</button>
+                            </td>
                         </tr>
                     ))}
                 </tbody>
             </table>
+            <h2 className="mt-4">Download List</h2>
+            <table className="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Filename</th>
+                        <th>Speaker Name</th>
+                        <th>Speaker Email</th>
+                        <th>Room</th>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {selectedFiles.map(file => (
+                        <tr key={file._id}>
+                            <td>
+                                <a href={file.path} target="_blank" rel="noopener noreferrer">
+                                    {file.originalFilename}
+                                </a>
+                            </td>
+                            <td>{file.speaker.name}</td>
+                            <td>{file.speaker.email}</td>
+                            <td>{file.room}</td>
+                            <td>{formatDate(file.date)}</td>
+                            <td>{formatTime(file.startTime)} - {formatTime(file.endTime)}</td>
+                            <td>
+                                <button className="btn btn-sm btn-danger" onClick={() => removeFromDownloadList(file._id)}>Remove</button>
+                            </td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+            <button onClick={downloadAllFiles} className="btn btn-success mt-4">Download All Selected Files</button>
             {conflicts.length > 0 && (
                 <div className="mt-4">
                     <h3>File Conflicts</h3>

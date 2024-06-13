@@ -1,3 +1,8 @@
 .botones-accion{
     width: auto;
 }
+
+tbody td {
+font-size: 10px;
+
+}
