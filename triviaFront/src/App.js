@@ -16,7 +16,7 @@
     import { PadreComponente } from './componentes/NUBE/PadreComponente';
     import { VerPalabraPadre } from './componentes/NUBE/verPalabraPadre';
     import PollComponent from './componentes/PollComponent';
-    import Admin from './componentes/Crud/votacion/Admin';
+    import Admin from './componentes/Admin';
     import PreguntaList from './componentes/Crud/votacion/PreguntaList';
     import SalaList from './componentes/Crud/votacion/SalaList';
     import UsersAcreditaciones from './componentes/Acreditaciones/UsersAcreditaciones';

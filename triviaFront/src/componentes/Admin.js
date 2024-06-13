@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import '../../../index';
+import '../index';
 
 const AdminPage = () => {
     return (
@@ -49,7 +49,7 @@ const AdminPage = () => {
                     <Card.Text>
                         Presione Enter para ingresar
                     </Card.Text>
-                    <Link to='/'><Button variant="primary">Enter</Button></Link>
+                    <Link to='/fileManager'><Button variant="primary">Enter</Button></Link>
                 </Card.Body>
             </Card>
         </div>

@@ -27,7 +27,7 @@ const HomePage = () => {
                 </Card.Body>
             </Card>
 
-           {/*  <Card>
+            {/*  <Card>
                 <Card.Body>
                     <Card.Title>Bienvenido a ChatBot IA</Card.Title>
                     <Card.Text>
@@ -39,7 +39,7 @@ const HomePage = () => {
                 </Card.Body>
             </Card>  */}
 
-           {/*  <Card>
+            {/*  <Card>
                 <Card.Body>
                     <Card.Title>e-Posters <br /><br /></Card.Title>
                     <Card.Text>
@@ -66,7 +66,7 @@ const HomePage = () => {
                     <Card.Text>
                         Presione Enter para ingresar
                     </Card.Text>
-                    <Link to='/fileManager'>
+                    <Link to='/filterFile'>
                         <Button variant="primary">Enter</Button></Link>
                 </Card.Body>
             </Card>
