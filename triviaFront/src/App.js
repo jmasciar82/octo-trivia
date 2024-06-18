@@ -33,6 +33,8 @@
     import FileManager from './componentes/Manager/FileManager';
     import FileUpload from './componentes/Manager/FileUpload';
     import FilterFile from './componentes/Manager/FilterFile';
+    
+    
 
     function App() {
       const [token, setToken] = useState(localStorage.getItem('token') || null);
@@ -91,6 +93,8 @@
                   <Route path="/fileManager" element={<FileManager titulo="FileManager" />} />
                   <Route path="/fileUpload" element={<FileUpload titulo="FileUpload" />} />
                   <Route path="/filterFile" element={<FilterFile titulo="FilterFile" />} />
+                  
+                  
 
                   <Route path="/loginHome" element={<LoginHome titulo="LoginHome" />} />
                   <Route path="/login" element={<Login titulo="Login" />} /> 

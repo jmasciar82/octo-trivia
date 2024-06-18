@@ -5,10 +5,10 @@ const { inicializarDatos } = require('./model/initDB');
 const dotenv = require('dotenv');
 const bodyParser = require('body-parser');
 const path = require('path');
-const fs = require('fs');  // Importar fs
+
 
 const fileUpload = require('express-fileupload');
-const { uploadFile } = require('./storage');
+const { uploadFile } = require('./storage/cloudStorage.js');
 dotenv.config();
 
 app.use(cors({
@@ -23,6 +23,12 @@ app.use(bodyParser.json());
 
 
 app.use(fileUpload());
+
+
+/* *************************************** */
+
+
+/* *************************************** */
 
 
 
@@ -44,11 +50,7 @@ app.post('/upload', async (req, res) => {
   }
 });
 
-// Asegúrate de que la carpeta uploads exista
-const uploadDir = path.join(__dirname, 'uploads');
-if (!fs.existsSync(uploadDir)) {
-    fs.mkdirSync(uploadDir);
-}
+
 
 
 // Rutas API RESTful
