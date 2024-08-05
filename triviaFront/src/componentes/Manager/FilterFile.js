@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
-import { Button } from 'react-bootstrap';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -86,21 +84,11 @@ const FileFilter = () => {
     };
 
     const addToDownloadList = (file) => {
-        const extension = getFileExtension(file.originalFilename);
-        const fileName = `${file.speaker.name}_${file.speaker.email}_${file.room}_${formatDate(file.date)}_${formatTime(file.startTime)}.${extension}`;
-
-        // Verificar si hay conflicto por email en la lista de descargas
-        const conflictFile = selectedFiles.find(f => f.speaker.email === file.speaker.email && f.originalFilename !== file.originalFilename);
-        
-        if (conflictFile) {
-            setConflicts(prevConflicts => [...prevConflicts, { file, fileName }]);
-        } else {
-            setSelectedFiles(prevSelectedFiles => [...prevSelectedFiles, file]);
-        }
+        setSelectedFiles((prevSelectedFiles) => [...prevSelectedFiles, file]);
     };
 
     const removeFromDownloadList = (fileId) => {
-        setSelectedFiles(prevSelectedFiles => prevSelectedFiles.filter(file => file._id !== fileId));
+        setSelectedFiles((prevSelectedFiles) => prevSelectedFiles.filter(file => file._id !== fileId));
     };
 
     const downloadAllFiles = async () => {
@@ -181,11 +169,7 @@ const FileFilter = () => {
 
     return (
         <div className="container mt-4">
-            <Link to='/fileUpload' style={{ display: 'flex', justifyContent: 'left' }}>
-            <Button variant="primary">Upload Files</Button></Link>
-
             <h2>Filter Files</h2>
-            
             <form onSubmit={(e) => {
                 e.preventDefault();
                 fetchFilteredFiles();
