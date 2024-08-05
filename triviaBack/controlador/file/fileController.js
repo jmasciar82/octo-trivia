@@ -1,6 +1,9 @@
 // controllers/fileController.js
-const cloudStorage = require('../../storage/cloudStorage');
+
 const File = require('../../model/file/File');
+const { uploadFile: uploadToBlob } = require('../../storage');
+const path = require('path');
+const fs = require('fs');
 
 const uploadFile = async (req, res) => {
     try {
@@ -11,13 +14,13 @@ const uploadFile = async (req, res) => {
         const file = req.files.file;
         const { speakerName, speakerEmail, room, date, startTime, endTime } = req.body;
 
-        // Subir archivo al proveedor de cloud storage configurado
-        const result = await cloudStorage.uploadFile(file.data, file.name);
+        // Subir archivo a Vercel Blob
+        const result = await uploadToBlob(file.data, file.name);
 
         const newFile = new File({
             originalFilename: file.name,
             filename: file.name,
-            path: result.url, // Guardar la URL del archivo
+            path: result.url, // Guardar la URL del blob
             fileType: file.mimetype,
             speaker: {
                 name: speakerName,
@@ -31,11 +34,10 @@ const uploadFile = async (req, res) => {
         await newFile.save();
         res.send({ message: 'File uploaded successfully', url: result.url });
     } catch (error) {
-        console.error('Error uploading file to storage:', error);
+        console.error('Error uploading file to Blob:', error);
         res.status(500).send(error.message);
     }
 };
-
 const listFiles = async (req, res) => {
     try {
         const { name, email, room, date, startTime, endTime } = req.query;
@@ -58,12 +60,13 @@ const listFiles = async (req, res) => {
     }
 };
 
+
 const downloadFile = async (req, res) => {
     try {
         const file = await File.findById(req.params.id);
         if (!file) return res.sendStatus(404);
 
-        res.redirect(file.path); // Redireccionar a la URL del archivo
+        res.redirect(file.path); // Redireccionar a la URL del blob
     } catch (error) {
         console.error('Error downloading file:', error);
         res.status(500).json({ error: error.message });
@@ -81,12 +84,12 @@ const replaceFile = async (req, res) => {
 
         const newFile = req.files.file;
 
-        // Subir el nuevo archivo al proveedor de cloud storage configurado
-        const result = await cloudStorage.uploadFile(newFile.data, newFile.name);
+        // Subir el nuevo archivo a Vercel Blob
+        const result = await uploadToBlob(newFile.data, newFile.name);
 
         file.originalFilename = newFile.name;
         file.filename = newFile.name;
-        file.path = result.url; // Actualizar la URL del archivo
+        file.path = result.url; // Actualizar la URL del blob
         file.fileType = newFile.mimetype;
         await file.save();
 
@@ -102,10 +105,7 @@ const deleteFile = async (req, res) => {
         const file = await File.findById(req.params.id);
         if (!file) return res.sendStatus(404);
 
-        // Eliminar el archivo del proveedor de cloud storage configurado
-        await cloudStorage.deleteFile(file.filename);
-
-        // Eliminar el registro de la base de datos
+        // No hay necesidad de eliminar el archivo en Vercel Blob, solo eliminar la referencia en la base de datos
         await File.deleteOne({ _id: req.params.id });
 
         res.sendStatus(200);

@@ -37,8 +37,5 @@
     "qrcode": "^1.5.3",
     "vercel": "^32.3.0",
     "ws": "^8.17.0"
-  },
-  "devDependencies": {
-    "electron": "^31.0.1"
   }
 }
