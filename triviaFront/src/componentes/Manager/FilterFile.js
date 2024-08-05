@@ -87,7 +87,7 @@ const FileFilter = () => {
 
     const addToDownloadList = (file) => {
         const extension = getFileExtension(file.originalFilename);
-        const fileName = `${file.speaker.name}_${file.speaker.email}_${file.room}_${formatDate(file.date)}_${formatTime(file.startTime)}.${extension}`;
+        const fileName = `${file.speaker.name}_${file.speaker.email}_${file.room}_${formatDate(file.date)}.${extension}`;
 
         // Verificar si hay conflicto por email en la lista de descargas
         const conflictFile = selectedFiles.find(f => f.speaker.email === file.speaker.email && f.originalFilename !== file.originalFilename);
