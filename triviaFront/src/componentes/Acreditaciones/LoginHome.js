@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 const HomePage = () => {
     return (
-        <div className="home-page">
+        <div className="home-page" style={{background:"triviaFront/src/assets/PLACA.jpg"}}>
             
             <Card>
                 <Card.Body>
