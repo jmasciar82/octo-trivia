@@ -15,8 +15,16 @@ const HomePage = () => {
 
     return (
         <div className="home-page">
+            {/* Botón para cambiar el fondo */}
+            <Button
+                variant="secondary"
+                onClick={() => changeBackground('triviaFront/src/assets/PLACA.jpg')}
+            >
+                Cambiar Fondo
+            </Button>
+
             <Link className='admin-link' to='/loginAdmin'><Button>Admin</Button></Link>
-            
+
             <Card>
                 <Card.Body>
                     <Card.Title>Bienvenido al Sistema de Votaciones</Card.Title>
@@ -37,13 +45,7 @@ const HomePage = () => {
                 </Card.Body>
             </Card>
 
-            {/* Botón para cambiar el fondo */}
-            <Button 
-                variant="secondary" 
-                onClick={() => changeBackground('https://ejemplo.com/imagen-de-fondo.jpg')}
-            >
-                Cambiar Fondo
-            </Button>
+
 
             <Card>
                 <Card.Body>
