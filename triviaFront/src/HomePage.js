@@ -7,14 +7,16 @@ const HomePage = () => {
     const [background, setBackground] = useState('');
 
     const changeBackground = (imageUrl) => {
+        console.log('Cambiando fondo a:', imageUrl); // Esto debería aparecer en la consola
         document.body.style.backgroundImage = `url(${imageUrl})`;
-        document.body.style.backgroundSize = 'cover'; // Para que la imagen cubra todo el fondo
+        document.body.style.backgroundSize = 'cover';
         document.body.style.backgroundRepeat = 'no-repeat';
     };
 
     return (
         <div className="home-page">
             <Link className='admin-link' to='/loginAdmin'><Button>Admin</Button></Link>
+            
             <Card>
                 <Card.Body>
                     <Card.Title>Bienvenido al Sistema de Votaciones</Card.Title>
@@ -49,8 +51,7 @@ const HomePage = () => {
                     <Card.Text>
                         Presione Enter para ingresar
                     </Card.Text>
-                    <Link to='/loginHome'>
-                        <Button variant="primary">Enter</Button></Link>
+                    <Link to='/loginHome'><Button variant="primary">Enter</Button></Link>
                 </Card.Body>
             </Card>
 
@@ -60,8 +61,7 @@ const HomePage = () => {
                     <Card.Text>
                         Presione Enter para ingresar
                     </Card.Text>
-                    <Link to='/fileManager'>
-                        <Button variant="primary">Enter</Button></Link>
+                    <Link to='/fileManager'><Button variant="primary">Enter</Button></Link>
                 </Card.Body>
             </Card>
         </div>
