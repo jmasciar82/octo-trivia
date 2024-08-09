@@ -22,7 +22,7 @@ body {
 .home-page .card {
     width: 25rem;
     
-    background-color: rgba(5, 227, 71, 0.7);
+    background-color: white;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.2s;
 }
