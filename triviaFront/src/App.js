@@ -1,4 +1,5 @@
 // /frontend/src/App.js
+
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
 import './App.css';
@@ -25,17 +26,16 @@ import LoginHome from './componentes/Acreditaciones/LoginHome';
 import { NavBarPreguntas } from './componentes/COMUN/NavBarPreguntas';
 import { RutaNoValida } from './componentes/RutaNoValida';
 import QRScanner from './componentes/Acreditaciones/QRScanner';
+import EquipmentCheckout from './componentes/Equipos/EquipmentCheckout'; // Importa el nuevo componente
 import LoginAdminForm from './componentes/Admin/LoginForm';
 import RegisterAdminForm from './componentes/Admin/RegisterForm';
 import LogoutButton from './componentes/COMUN/LogoutButton';
-
 
 import FileManager from './componentes/Manager/FileManager';
 import FileUpload from './componentes/Manager/FileUpload';
 import FilterFile from './componentes/Manager/FilterFile';
 
 import backgroundImage from '../src/assets/placa3.webp'; // Asegúrate de que la ruta sea correcta
-
 
 function App() {
   const [token, setToken] = useState(localStorage.getItem('token') || null);
@@ -90,7 +90,6 @@ function App() {
               <Route path="/admin/salas" element={<ProtectedRoute token={token} element={<SalaList titulo="SalaList" />} />} />
               <Route path="/admin" element={<ProtectedRoute token={token} element={<Admin titulo="Admin" />} />} />
 
-
               <Route path="/fileManager" element={<FileManager titulo="FileManager" />} />
               <Route path="/fileUpload" element={<FileUpload titulo="FileUpload" />} />
               <Route path="/filterFile" element={<FilterFile titulo="FilterFile" />} />
@@ -98,6 +97,7 @@ function App() {
               <Route path="/loginHome" element={<LoginHome titulo="LoginHome" />} />
               <Route path="/login" element={<Login titulo="Login" />} />
               <Route path="/qrscanner" element={<QRScanner titulo="QRScanner" />} />
+              <Route path="/equipment-checkout" element={<ProtectedRoute token={token} element={<EquipmentCheckout titulo="EquipmentCheckout" />} />} /> {/* Nueva ruta */}
               <Route path='*' element={<RutaNoValida />} />
             </Routes>
           </BrowserRouter>
