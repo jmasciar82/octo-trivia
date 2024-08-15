@@ -12,7 +12,7 @@ const AdminPage = () => {
             
             <Card >
                 <Card.Body>
-                    <Card.Title>Administracion de las salas</Card.Title>
+                    <Card.Title>Administración de las salas</Card.Title>
                     <Card.Text>
                         Presione Enter para ingresar
                     </Card.Text>
@@ -24,7 +24,7 @@ const AdminPage = () => {
 
             <Card >
                 <Card.Body>
-                    <Card.Title>Administracion de las preguntas</Card.Title>
+                    <Card.Title>Administración de las preguntas</Card.Title>
                     <Card.Text>
                         Presione Enter para ingresar
                     </Card.Text>
@@ -48,7 +48,7 @@ const AdminPage = () => {
 
             <Card >
                 <Card.Body >
-                    <Card.Title>File<br></br> Manager</Card.Title>
+                    <Card.Title>File<br></br>Manager</Card.Title>
                     <Card.Text>
                         Presione Enter para ingresar
                     </Card.Text>

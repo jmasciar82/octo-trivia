@@ -58,7 +58,7 @@ function App() {
   }, []);
 
   return (
-    <div style={{ backgroundImage: `url(${backgroundImage})`, backgroundSize: 'cover', backgroundRepeat: 'no-repeat', backgroundAttachment: 'fixed' }}>
+    <div style={{ backgroundImage: `url(${backgroundImage})`, backgroundSize: 'cover', backgroundRepeat: 'no-repeat', minHeight: '90vh', backgroundAttachment: 'fixed' }}>
       <div className="container-fluid mt-3">
         <div>
           <hr />
