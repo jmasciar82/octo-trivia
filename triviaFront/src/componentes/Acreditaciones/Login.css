@@ -1,14 +1,28 @@
 /* client/src/componentes/Acreditaciones/Login.css */
 
+
+
 .login-container-wrapper {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  background-color: #f8f9fa;
+  
+  justify-content: flex-end; /* Alinea el contenedor a la derecha */
+  align-content: flex-end;
+  
+  
+  padding-right: 20px; /* Espacio a la derecha, opcional */
   overflow: hidden;
 }
-.boton-login{
+
+.login-container {
+  height: 90vh;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+
+.boton-login {
   display: flex;
   justify-content: space-around;
   margin-top: 10px;
