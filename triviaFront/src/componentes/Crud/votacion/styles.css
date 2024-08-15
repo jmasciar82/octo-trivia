@@ -164,3 +164,16 @@
 .form-group-half:last-child {
     margin-right: 0;
 }
+
+.home-page .card {
+    width: 25rem;
+    
+    background-color: rgba(255, 255, 255, 0.603);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+}
+
+.home-page .card:hover {
+    transform: scale(1.05);
+    background-color: rgb(10, 216, 103);
+}

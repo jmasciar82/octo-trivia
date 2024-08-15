@@ -2,12 +2,15 @@ import React from 'react';
 import { Card, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import '../../../index';
+import './styles.css';
+
+
 
 const AdminPage = () => {
     return (
         <div className="home-page">
             
-            <Card style={{ position: 'relative', width: '18rem', backgroundColor: 'rgba(5, 227, 71, 0.7)' }}>
+            <Card >
                 <Card.Body>
                     <Card.Title>Administracion de las salas</Card.Title>
                     <Card.Text>
@@ -19,7 +22,7 @@ const AdminPage = () => {
                 </Card.Body>
             </Card>
 
-            <Card style={{ position: 'relative', width: '18rem', backgroundColor: 'rgba(5, 227, 71, 0.7)' }}>
+            <Card >
                 <Card.Body>
                     <Card.Title>Administracion de las preguntas</Card.Title>
                     <Card.Text>
@@ -31,7 +34,7 @@ const AdminPage = () => {
                 </Card.Body>
             </Card>
 
-            <Card style={{ position: 'relative', width: '18rem', backgroundColor: 'rgba(5, 227, 71, 0.7)' }}>
+            <Card >
                 <Card.Body>
                     <Card.Title>Registro de Acreditaciones </Card.Title>
                     <Card.Text>
@@ -43,7 +46,7 @@ const AdminPage = () => {
                 </Card.Body>
             </Card>
 
-            <Card style={{ position: 'relative', width: '18rem', backgroundColor: 'rgba(5, 227, 71, 0.7)' }}>
+            <Card >
                 <Card.Body >
                     <Card.Title>File<br></br> Manager</Card.Title>
                     <Card.Text>
