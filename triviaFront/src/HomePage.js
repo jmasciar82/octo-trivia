@@ -2,11 +2,10 @@ import React from 'react';
 import { Card, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import './index.css';
-import backgroundImage from '../src/assets/PLACA.jpg'; // Asegúrate de que la ruta sea correcta
 
 const HomePage = () => {
     return (
-        <div className="home-page" style={{ backgroundImage: `url(${backgroundImage})`, backgroundSize: 'cover', backgroundRepeat: 'no-repeat', backgroundAttachment: 'fixed' }}>
+        <div className="home-page" >
             <Link className='admin-link' to='/loginAdmin'><Button>Admin</Button></Link>
             <Card>
                 <Card.Body>

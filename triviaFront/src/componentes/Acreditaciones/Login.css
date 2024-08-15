@@ -16,6 +16,7 @@
 
 .login-container {
   width: 100%;
+  margin-top: 20px;
   max-width: 600px;
   padding: 20px;
   background-color: #fff;
