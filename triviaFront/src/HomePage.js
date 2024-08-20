@@ -9,7 +9,7 @@ const HomePage = () => {
             <Link className='admin-link' to='/loginAdmin'><Button>Admin</Button></Link>
             <Card>
                 <Card.Body>
-                    <Card.Title>Bienvenido al Sistema de Votaciones</Card.Title>
+                    <Card.Title>Votaciones</Card.Title>
                     <Card.Text>
                         Presione Enter para ingresar
                     </Card.Text>
@@ -19,7 +19,7 @@ const HomePage = () => {
 
             <Card>
                 <Card.Body>
-                    <Card.Title>Bienvenido al Sistema Word Cloud</Card.Title>
+                    <Card.Title>Word Cloud</Card.Title>
                     <Card.Text>
                         Presione Enter para ingresar
                     </Card.Text>
@@ -29,7 +29,7 @@ const HomePage = () => {
 
             <Card>
                 <Card.Body>
-                    <Card.Title>Acreditaciones <br /><br /></Card.Title>
+                    <Card.Title>Acreditaciones</Card.Title>
                     <Card.Text>
                         Presione Enter para ingresar
                     </Card.Text>
@@ -39,7 +39,7 @@ const HomePage = () => {
 
             <Card>
                 <Card.Body>
-                    <Card.Title>File Manager <br /><br /></Card.Title>
+                    <Card.Title>File Manager</Card.Title>
                     <Card.Text>
                         Presione Enter para ingresar
                     </Card.Text>
