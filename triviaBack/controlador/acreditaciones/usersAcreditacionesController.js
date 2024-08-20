@@ -83,7 +83,7 @@ const obtener = async (req, res) => {
         if (!user) return res.status(404).send('User not found');
         if (user.codeUsed) return res.status(400).send('Código ya utilizado');
 
-        user.codeUsed = true;  // Marcar el código como utilizado
+        user.codeUsed = false;  // Marcar el código como utilizado
         await user.save();
 
         res.json(user);
