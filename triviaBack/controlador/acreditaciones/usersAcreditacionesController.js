@@ -81,17 +81,15 @@ const obtener = async (req, res) => {
     try {
         const user = await User.findOne({ code: req.params.code });
         if (!user) return res.status(404).send('User not found');
-        if (user.codeUsed) return res.status(400).send('Código ya utilizado');
-
-        user.codeUsed = true;  // Marcar el código como utilizado
-        await user.save();
-
+        
+        // Aquí no devolvemos un error, solo los datos del usuario
         res.json(user);
     } catch (error) {
         console.error('Error al obtener el usuario:', error);
         res.status(500).json({ error: 'Error interno del servidor' });
     }
 };
+
 
 // Obtener todos los usuarios
 const obtenerTodos = async (req, res) => {
