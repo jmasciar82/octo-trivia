@@ -7,7 +7,10 @@ const config = require('../config');
 const inicializarDatos = async () => {
     try {
         // Conexión a la base de datos
+        console.log(config.databaseURL);  // Debe ser una cadena de texto, como 'mongodb://localhost:27017/mydatabase'
+
         await mongoose.connect(config.databaseURL, {
+            
             useNewUrlParser: true,
             useUnifiedTopology: true
         });

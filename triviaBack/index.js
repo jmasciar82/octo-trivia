@@ -6,6 +6,11 @@ const dotenv = require('dotenv');
 const bodyParser = require('body-parser');
 const path = require('path');
 const fs = require('fs');  // Importar fs
+const mongoose = require('mongoose');
+
+
+const config = require('../triviaBack/config.js');  // Asegúrate de que la ruta es correcta
+
 
 const fileUpload = require('express-fileupload');
 const { uploadFile } = require('./storage');
@@ -23,6 +28,7 @@ app.use(bodyParser.json());
 
 
 app.use(fileUpload());
+
 
 
 
@@ -84,19 +90,34 @@ app.use('/usersAcreditaciones', usersAcreditaciones);
 app.use('/api/files', fileRoutes);
 
 
-
 const inicializar = async () => {
-    try {
-        await inicializarDatos();
-        console.log('Datos inicializados correctamente');
-        console.log('JWT_SECRET:', process.env.JWT_SECRET);
-    } catch (error) {
-        console.error('Error al inicializar los datos:', error);
-    }
+  try {
+      console.log('Conectando a la base de datos:', config.databaseURL);
+
+      await mongoose.connect(config.databaseURL, {
+          useNewUrlParser: true,
+          useUnifiedTopology: true,
+      });
+
+      const isLocalDB = config.databaseURL.includes('localhost') || config.databaseURL.includes('127.0.0.1');
+      
+      if (isLocalDB) {
+          console.log('Conectado a la base de datos local');
+      } else {
+          console.log('Conectado a la base de datos en la nube');
+      }
+
+      console.log('Datos inicializados correctamente');
+      console.log('JWT_SECRET:', config.jwtSecret);
+  } catch (error) {
+      console.error('Error al inicializar los datos:', error);
+  }
 };
 
 inicializar();
-app.listen(5000, () => console.log("Server ready on port 5000."));
+
+app.listen(config.PORT, () => console.log(`Server ready on port ${config.PORT}.`));
+
 app.on('error', error => console.log(`Error en servidor: ${error.message}`));
 
 module.exports = app;

@@ -101,7 +101,7 @@ function App() {
               <Route path='*' element={<RutaNoValida />} />
             </Routes>
           </BrowserRouter>
-          <hr />
+          
         </div>
       </div>
     </div>
