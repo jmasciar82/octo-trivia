@@ -14,7 +14,7 @@ import { Button } from 'react-bootstrap';
 
 const QRScanner = () => {
   const [user, setUser] = useState(null);
-  
+
   const videoRef = useRef(null);
   const credentialRef = useRef(null);
   const codeReaderRef = useRef(null);
@@ -24,7 +24,7 @@ const QRScanner = () => {
     stopScanner();
     navigate('/loginHome');
   };
- 
+
 
   const stopScanner = useCallback(() => {
     if (codeReaderRef.current) {
@@ -46,7 +46,7 @@ const QRScanner = () => {
       if (err.response && err.response.status === 400) {
         toast.warn('Código ya utilizado');
 
-        
+
 
         stopScanner();
       } else {
@@ -120,7 +120,7 @@ const QRScanner = () => {
     }
   };
 
-  
+
 
   return (
     <div className="scanner-container-wrapper">
@@ -128,7 +128,7 @@ const QRScanner = () => {
         <div>
           <h1>Escáner de QR</h1>
           <Button onClick={handleNavigateHome} >Reiniciar</Button>
-          
+
           <div className="video-container">
             <video ref={videoRef} style={{ width: "70%" }}></video>
           </div>
@@ -148,7 +148,7 @@ const QRScanner = () => {
               <div className='boton-login'>
 
                 <Button onClick={handlePrint} >Imprimir Credencial</Button>
-                
+
               </div>
 
 
