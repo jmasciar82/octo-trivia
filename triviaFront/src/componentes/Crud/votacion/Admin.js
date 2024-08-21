@@ -5,11 +5,7 @@ import '../../../index';
 import './styles.css';
 
 
-
-const AdminPage = () => {
-    return (
-        <div className="home-page">
-            {{/* <Card >
+/* <Card >
                 <Card.Body>
                     <Card.Title>Administración de las salas</Card.Title>
                     <Card.Text>
@@ -45,7 +41,12 @@ const AdminPage = () => {
 
 
 
-            */}}
+            */
+
+const AdminPage = () => {
+    return (
+        <div className="home-page">
+
 
 
 
