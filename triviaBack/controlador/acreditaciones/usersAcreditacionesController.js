@@ -3,17 +3,22 @@ const nodemailer = require('nodemailer');
 const User = require('../../model/acreditaciones/Users.js');
 const qrcode = require('qrcode');
 
-// Configuración de Nodemailer
+// Configuración de Nodemailer con Hostinger
 const transporter = nodemailer.createTransport({
-    service: 'gmail',
+    host: 'smtp.hostinger.com', // Servidor SMTP de Hostinger
+    port: 587, // Puerto para TLS, usa 465 si prefieres SSL
+    secure: false, // Usa true si estás utilizando el puerto 465 (SSL)
     auth: {
-        user: process.env.EMAIL_USER, // Usa la variable de entorno
-        pass: process.env.EMAIL_PASS, // Usa la variable de entorno
+        user: process.env.EMAIL_USER, // Tu dirección de correo electrónico de Hostinger
+        pass: process.env.EMAIL_PASS, // Tu contraseña de correo electrónico de Hostinger
     },
+    tls: {
+        rejectUnauthorized: false // Configura esta opción si tienes problemas de seguridad con los certificados
+    }
 });
 
 // Función para enviar el correo
-const sendEmail = (email, qrCode, code) => {
+const sendEmail = async (email, qrCode, code) => {
     const mailOptions = {
         from: process.env.EMAIL_USER, // Usa la variable de entorno
         to: email,
@@ -28,16 +33,15 @@ const sendEmail = (email, qrCode, code) => {
         }],
     };
 
-    transporter.sendMail(mailOptions, (error, info) => {
-        if (error) {
-            console.error('Error al enviar el correo:', error);
-            if (error.responseCode === 421) {
-                console.error('Se ha alcanzado el límite de envío de correos.');
-            }
-        } else {
-            console.log('Correo enviado: ' + info.response);
+    try {
+        const info = await transporter.sendMail(mailOptions);
+        console.log('Correo enviado: ' + info.response);
+    } catch (error) {
+        console.error('Error al enviar el correo:', error);
+        if (error.responseCode === 421) {
+            console.error('Se ha alcanzado el límite de envío de correos.');
         }
-    });
+    }
 };
 
 // Generar código aleatorio
@@ -67,7 +71,7 @@ const crear = async (req, res) => {
         await newUser.save();
 
         // Enviar correo electrónico con los datos del usuario
-        sendEmail(email, qrCode, code);
+        await sendEmail(email, qrCode, code);
 
         res.json(newUser);
     } catch (error) {
