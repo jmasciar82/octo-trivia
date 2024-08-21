@@ -5,16 +5,12 @@ import printJS from 'print-js';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Login.css';
 import { Button } from 'react-bootstrap';
-
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
 import { useNavigate } from 'react-router-dom';
-
 
 const Login = () => {
   const navigate = useNavigate();
-
   const [code, setCode] = useState('');
   const [user, setUser] = useState(null);
   const credentialRef = useRef();
@@ -31,15 +27,11 @@ const Login = () => {
       console.error('Error al obtener el usuario:', error);
       if (error.response && error.response.status === 400) {
         toast.warn('Código ya utilizado');
-
       } else {
         toast.error('Usuario no encontrado');
       }
-
     }
   };
-
-
 
   const handlePrint = () => {
     if (user) {
@@ -78,8 +70,8 @@ const Login = () => {
       });
     }
   };
-  const handleNavigateHome = () => {
 
+  const handleNavigateHome = () => {
     navigate('/loginHome');
   };
 
@@ -95,12 +87,9 @@ const Login = () => {
             value={code}
             onChange={(e) => setCode(e.target.value)}
           />
-          <span><button type="submit" className="btn btn-primary btn-block">Ingresar</button></span>
+          <Button type="submit" className="btn btn-primary btn-block">Ingresar</Button>
           <div className='boton-login'>
-
-            <Button onClick={handleNavigateHome} >Reiniciar</Button>
-
-
+            <Button onClick={handleNavigateHome}>Reiniciar</Button>
           </div>
         </form>
 
@@ -114,8 +103,6 @@ const Login = () => {
                 Imprimir Credencial
               </Button>
             </div>
-
-
           </div>
         )}
       </div>

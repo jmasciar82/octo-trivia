@@ -1,26 +1,24 @@
 /* client/src/componentes/Acreditaciones/Login.css */
 
-
-
 .login-container-wrapper {
   display: flex;
-  
-  justify-content: flex-end; /* Alinea el contenedor a la derecha */
-  align-content: flex-end;
-  
-  
-  padding-right: 20px; /* Espacio a la derecha, opcional */
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f8f9fa;
   overflow: hidden;
 }
 
 .login-container {
-  height: 90vh;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 600px;
   padding: 20px;
   background-color: #fff;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
-
 
 .boton-login {
   display: flex;
@@ -28,36 +26,33 @@
   margin-top: 10px;
 }
 
-.login-container {
-  width: 100%;
-  margin-top: 20px;
-  max-width: 600px;
-  padding: 20px;
-  background-color: #fff;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-}
-
-.user-list-container {
-  max-height: 400px;
-  overflow-y: auto;
-  margin-top: 20px;
-}
-
-.user-list-container .list-group-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
 .credential {
   display: flex;
   justify-content: center;
   text-align: center;
+  margin-top: 20px;
 }
 
 .qr-code {
   max-width: 100px;
   height: auto;
+}
+
+.input-code {
+  margin-bottom: 15px;
+}
+
+.btn-submit {
+  display: block;
+  width: 100%;
+}
+
+.btn-reiniciar {
+  background-color: #007bff;
+  color: white;
+}
+
+.btn-print {
+  background-color: green;
+  color: white;
 }
