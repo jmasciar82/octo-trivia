@@ -1,3 +1,4 @@
+require('dotenv').config(); // Carga las variables de entorno
 const nodemailer = require('nodemailer');
 const User = require('../../model/acreditaciones/Users.js');
 const qrcode = require('qrcode');
@@ -6,15 +7,15 @@ const qrcode = require('qrcode');
 const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-        user: 'krakenacreditacion@gmail.com',
-        pass: 'qezkouzqoqokzmwz',
+        user: process.env.EMAIL_USER, // Usa la variable de entorno
+        pass: process.env.EMAIL_PASS, // Usa la variable de entorno
     },
 });
 
 // Función para enviar el correo
 const sendEmail = (email, qrCode, code) => {
     const mailOptions = {
-        from: 'krakenacreditacion@gmail.com',
+        from: process.env.EMAIL_USER, // Usa la variable de entorno
         to: email,
         subject: 'Bienvenido al Congreso',
         text: `Gracias por registrarte. Aquí está tu código para ingresar al congreso: ${code}.`,
@@ -31,7 +32,6 @@ const sendEmail = (email, qrCode, code) => {
         if (error) {
             console.error('Error al enviar el correo:', error);
             if (error.responseCode === 421) {
-                // Error relacionado con el límite de envío
                 console.error('Se ha alcanzado el límite de envío de correos.');
             }
         } else {
@@ -81,15 +81,13 @@ const obtener = async (req, res) => {
     try {
         const user = await User.findOne({ code: req.params.code });
         if (!user) return res.status(404).send('User not found');
-        
-        // Aquí no devolvemos un error, solo los datos del usuario
+
         res.json(user);
     } catch (error) {
         console.error('Error al obtener el usuario:', error);
         res.status(500).json({ error: 'Error interno del servidor' });
     }
 };
-
 
 // Obtener todos los usuarios
 const obtenerTodos = async (req, res) => {
