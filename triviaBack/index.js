@@ -116,7 +116,7 @@ const inicializar = async () => {
 
 inicializar();
 
-app.listen(config.PORT, () => console.log(`Server ready on port ${config.PORT}.`));
+app.listen(config.PORT,'0.0.0.0', () => console.log(`Server ready on port ${config.PORT}.`));
 
 app.on('error', error => console.log(`Error en servidor: ${error.message}`));
 
