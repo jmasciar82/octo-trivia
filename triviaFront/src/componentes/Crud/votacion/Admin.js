@@ -9,8 +9,7 @@ import './styles.css';
 const AdminPage = () => {
     return (
         <div className="home-page">
-            
-            <Card >
+            {{/* <Card >
                 <Card.Body>
                     <Card.Title>Administración de las salas</Card.Title>
                     <Card.Text>
@@ -21,7 +20,7 @@ const AdminPage = () => {
                     </Link>
                 </Card.Body>
             </Card>
-
+            
             <Card >
                 <Card.Body>
                     <Card.Title>Administración de las preguntas</Card.Title>
@@ -33,6 +32,23 @@ const AdminPage = () => {
                     </Link>
                 </Card.Body>
             </Card>
+
+             <Card >
+                <Card.Body >
+                    <Card.Title>File<br></br>Manager</Card.Title>
+                    <Card.Text>
+                        Presione Enter para ingresar
+                    </Card.Text>
+                    <Link to='/'><Button variant="primary">Enter</Button></Link>
+                </Card.Body>
+            </Card>
+
+
+
+            */}}
+
+
+
 
             <Card >
                 <Card.Body>
@@ -46,15 +62,7 @@ const AdminPage = () => {
                 </Card.Body>
             </Card>
 
-            <Card >
-                <Card.Body >
-                    <Card.Title>File<br></br>Manager</Card.Title>
-                    <Card.Text>
-                        Presione Enter para ingresar
-                    </Card.Text>
-                    <Link to='/'><Button variant="primary">Enter</Button></Link>
-                </Card.Body>
-            </Card>
+
         </div>
     );
 };
