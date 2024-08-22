@@ -1,5 +1,5 @@
 .App {
-  height: 100vh;
+  
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -15,9 +15,21 @@
   width: 50px;
 }
 
-.App hr {
+/* .App hr {
   background-color: #201111;
+} */
+
+/* App.css */
+#root {
+  background-image: url('../src/assets/iapg2024.jpg'); /* Ajusta la ruta según sea necesario */
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  min-height: 100vh;
+  aspect-ratio: 16/9;
 }
+
 
 .nombre_marca {
   font-size: 15px;

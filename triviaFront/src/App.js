@@ -35,7 +35,6 @@ import FileManager from './componentes/Manager/FileManager';
 import FileUpload from './componentes/Manager/FileUpload';
 import FilterFile from './componentes/Manager/FilterFile';
 
-import backgroundImage from '../src/assets/placa3.webp'; // Asegúrate de que la ruta sea correcta
 
 function App() {
   const [token, setToken] = useState(localStorage.getItem('token') || null);
@@ -58,10 +57,10 @@ function App() {
   }, []);
 
   return (
-    <div style={{ background: `url(${backgroundImage})`, backgroundSize: 'cover', backgroundRepeat: 'no-repeat', minHeight: '100vh', backgroundAttachment: ''}}>
+    <div className='container1' >
       <div className="container-fluid mt-3">
         <div>
-          <hr />
+          
           <BrowserRouter>
             <div>
               {token && (
