@@ -12,11 +12,11 @@
 .login-container {
   display: flex;
   flex-direction: column;
-  margin-top: 20rem;
+  margin-top: 10rem;
   width: 100%;
   max-width: 80%;
   padding: 20px;
-  background-color: #ffffff;
+  background-color: #ffffffde;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   justify-content: center;
