@@ -16,9 +16,10 @@
   width: 100%;
   max-width: 80%;
   padding: 20px;
-  background-color: #fff;
+  background-color: #ffffff;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  justify-content: center;
 }
 
 .boton-login {
@@ -56,4 +57,57 @@
 .btn-print {
   background-color: green;
   color: white;
+}
+
+
+/* Estilos generales para mejorar la apariencia en móviles */
+@media (max-width: 768px) {
+  .login-container-wrapper {
+    height: auto;
+    padding: 10px;
+  }
+
+  .login-container {
+    width: 100%;
+    max-width: 100%;
+    margin-top: 5rem;
+    padding: 15px;
+  }
+
+  .qr-code {
+    max-width: 80px;
+    height: auto;
+  }
+
+  .btn {
+    font-size: 1rem;
+    padding: 10px;
+  }
+
+  .user-list-container {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    background-color: #007bff;
+
+  }
+  
+
+  .list-group-item {
+    display: flex;
+    flex-direction: column;
+    margin: 3px 0 3px 0;
+    padding: 10px;
+    
+
+  }
+
+  h1, h2 {
+    font-size: 1.5rem;
+    text-align: center;
+  }
+
+  p {
+    font-size: 1rem;
+  }
 }
