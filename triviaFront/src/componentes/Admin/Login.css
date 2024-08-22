@@ -1,24 +1,45 @@
 .body-log {
-    height: 90vh;
+    height: 100vh;
     display: flex;
     flex-direction: column;
-    flex-wrap: wrap;
-    align-content: flex-end;
     justify-content: center;
-
+    align-items: center;
+    padding: 20px;
 }
 
 .card {
-    width: 25rem;
-    margin-right: 80px;    
-    background-color: rgba(255, 255, 255, 0.603);
+    width: 100%;
+    max-width: 25rem;
+    background-color: rgba(255, 255, 255, 0.9);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s;
+    transition: transform 0.2s, background-color 0.2s;
+    padding: 20px;
+    margin: 0 auto; /* Centra la tarjeta horizontalmente */
 }
 
 .card:hover {
     transform: scale(1.05);
-    background-color: rgb(10, 216, 103);
+    background-color: rgba(10, 216, 103, 0.8);
 }
 
+/* Ajustes para dispositivos móviles */
+@media (max-width: 768px) {
+    .body-log {
+        padding: 10px;
+    }
 
+    .card {
+        width: 100%;
+        padding: 15px;
+    }
+
+    .form-label,
+    .form-control,
+    .btn-primary {
+        font-size: 14px;
+    }
+
+    .Toastify__toast-container {
+        max-width: 280px;
+    }
+}

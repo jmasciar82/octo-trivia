@@ -6,7 +6,7 @@ import './loginHome.css'
 
 const HomePage = () => {
     return (
-        <div className="home-page " id='codigo-qr'>
+        <div className="home-page" id='codigo-qr'>
             
             <Card>
                 <Card.Body>

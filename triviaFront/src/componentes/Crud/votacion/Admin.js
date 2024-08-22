@@ -47,10 +47,6 @@ const AdminPage = () => {
     return (
         <div className="home-page">
 
-
-
-
-
             <Card >
                 <Card.Body>
                     <Card.Title>Registro de Acreditaciones </Card.Title>

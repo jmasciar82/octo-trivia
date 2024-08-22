@@ -5,3 +5,19 @@
     flex-direction: row !important;
     justify-content: space-between!important;
 }
+
+@media (max-width: 768px) {
+    #codigo-qr {
+        flex-direction: column !important;
+        justify-content: center !important;
+        align-items: stretch;
+        padding: 10px;
+    }
+
+    #codigo-qr .card {
+        width: 100%;
+        max-width: 100%;
+        margin: 10px 0;
+        min-width: fit-content;
+    }
+}
