@@ -4,17 +4,16 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  
+  min-height: 100vh; /* Se cambió de height a min-height */
+  padding: 10px; /* Añadir padding para evitar que se corte en pantallas pequeñas */
   overflow: hidden;
 }
 
 .login-container {
   display: flex;
   flex-direction: column;
-  margin-top: 10rem;
   width: 100%;
-  max-width: 80%;
+  max-width: 90%; /* Limitamos el ancho máximo */
   padding: 20px;
   background-color: #ffffffde;
   border-radius: 10px;
@@ -60,23 +59,19 @@
 }
 
 .list-group {
-
   background-color: #007bff;
   padding: 20px;
 }
 
-
-/* Estilos generales para mejorar la apariencia en móviles */
+/* Estilos para móviles */
 @media (max-width: 768px) {
   .login-container-wrapper {
-    height: auto;
+    min-height: auto;
     padding: 10px;
   }
 
   .login-container {
-    width: 100%;
-    max-width: 100%;
-    margin-top: 5rem;
+    margin-top: 2rem; /* Ajuste para evitar espacios grandes en móviles */
     padding: 15px;
   }
 
@@ -95,17 +90,13 @@
     display: flex;
     justify-content: center;
     background-color: #007bff;
-
   }
-  
 
   .list-group-item {
     display: flex;
     flex-direction: column;
-    margin: 3px 0 3px 0;
+    margin: 3px 0;
     padding: 10px;
-    
-
   }
 
   h1, h2 {
