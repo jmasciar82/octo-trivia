@@ -59,6 +59,12 @@
   color: white;
 }
 
+.list-group {
+
+  background-color: #007bff;
+  padding: 20px;
+}
+
 
 /* Estilos generales para mejorar la apariencia en móviles */
 @media (max-width: 768px) {
