@@ -41,10 +41,6 @@ const HomePage = () => {
     return (
         <div className="home-page" >
             <Link className='admin-link' to='/loginAdmin'><Button>Admin</Button></Link>
-
-
-           
-
             <Card>
                 <Card.Body>
                     <Card.Title>Acreditaciones</Card.Title>

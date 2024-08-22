@@ -53,12 +53,13 @@ body {
 }
 
 .admin-link {
-    margin-right: 20px;
+    margin: 20px;
 }
 
 @media (max-width: 768px) {
     .home-page {
-        flex-direction: column;
+        flex-direction: column !important;
+        justify-content: center !important;
         align-items: stretch;
         padding: 10px;
     }
@@ -67,5 +68,6 @@ body {
         width: 100%;
         max-width: 100%;
         margin: 10px 0;
+        min-width: fit-content;
     }
 }
