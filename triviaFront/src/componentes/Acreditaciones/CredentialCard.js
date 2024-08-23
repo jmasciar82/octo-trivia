@@ -33,7 +33,7 @@ const CredentialCard = forwardRef(({ user }, ref) => {
         
       }}
     >
-      <h2>Credencial de Usuario</h2>
+      <h2>IAPG 2024<hr></hr></h2>
       <p><strong>Nombre:</strong><br></br> {user.name}</p>
       <p><strong>Email:</strong><br></br> {user.email}</p>
       <p><strong>Código:</strong> {user.code}</p>
