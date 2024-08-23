@@ -21,7 +21,7 @@ body {
 }
 
 .home-page .card {
-    flex-basis: 25%;
+    flex-basis: 20%;
     margin: 10px;
     background-color: rgba(255, 255, 255, 0.7);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -68,6 +68,6 @@ body {
         width: 100%;
         max-width: 100%;
         margin: 10px 0;
-        min-width: fit-content;
+        /* min-width: fit-content; */
     }
 }

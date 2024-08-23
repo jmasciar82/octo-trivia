@@ -66,7 +66,7 @@
 /* Estilos para móviles */
 @media (max-width: 768px) {
   .login-container-wrapper {
-    min-height: auto;
+    /* min-height: auto; */
     padding: 10px;
   }
 
