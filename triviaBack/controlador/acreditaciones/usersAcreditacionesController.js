@@ -28,6 +28,7 @@ const sendEmail = async (email, qrCode, code) => {
                 <img src="cid:logo" alt="Logo del Congreso" style="width: 150px; margin-bottom: 20px;" />
                 <p>Gracias por registrarte. Aquí está tu código para ingresar al congreso:</p>
                 <p><strong>${code}</strong></p>
+                <p><strong>También puedes usar el código QR</strong></p>
                 <p>Escanea este código QR para acceder:</p>
                 <img src="cid:qrcode" alt="Código QR" style="width: 300px; height: 300px;" />
             </div>
