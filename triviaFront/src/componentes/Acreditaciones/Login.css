@@ -27,6 +27,10 @@
   margin-top: 10px;
 }
 
+.img-fluid {
+  width: 150px;
+}
+
 .credential {
   display: flex;
   justify-content: center;

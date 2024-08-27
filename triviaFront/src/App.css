@@ -1,8 +1,8 @@
 
 #root {
-  background-image: url('../src/assets/iapg2024.jpg'); /* Ajusta la ruta según sea necesario */
+  background-image: url('../src/assets/logo90_negativo.jpg'); /* Ajusta la ruta según sea necesario */
   background-position: center;
-  background-size: contain;
+  background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
   min-height: 100vh;

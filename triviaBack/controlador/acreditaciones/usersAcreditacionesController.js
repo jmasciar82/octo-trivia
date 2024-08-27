@@ -23,14 +23,28 @@ const sendEmail = async (email, qrCode, code) => {
         from: process.env.EMAIL_USER, // Usa la variable de entorno
         to: email,
         subject: 'Bienvenido al Congreso',
-        text: `Gracias por registrarte. Aquí está tu código para ingresar al congreso: ${code}.`,
-        html: `<p>Gracias por registrarte. Aquí está tu código para ingresar al congreso:</p>
-               <p><strong>${code}</strong></p>`,
-        attachments: [{
-            filename: 'qrcode.png',
-            content: qrCode.split("base64,")[1],
-            encoding: 'base64',
-        }],
+        html: `
+            <div style="text-align: center;">
+                <img src="cid:logo" alt="Logo del Congreso" style="width: 150px; margin-bottom: 20px;" />
+                <p>Gracias por registrarte. Aquí está tu código para ingresar al congreso:</p>
+                <p><strong>${code}</strong></p>
+                <p>Escanea este código QR para acceder:</p>
+                <img src="cid:qrcode" alt="Código QR" style="width: 300px; height: 300px;" />
+            </div>
+        `,
+        attachments: [
+            {
+                filename: 'logo.png',
+                path: 'https://bagomas.com.ar/img/logo.png', // Ruta al logo
+                cid: 'logo' // Content-ID para incrustar la imagen en el correo
+            },
+            {
+                filename: 'qrcode.png',
+                content: qrCode.split("base64,")[1], // Quitar el prefijo de data URI
+                encoding: 'base64',
+                cid: 'qrcode' // Content-ID para incrustar la imagen en el correo
+            }
+        ]
     };
 
     try {
@@ -49,10 +63,14 @@ const generateCode = () => {
     return Math.random().toString(36).substring(2, 14).toUpperCase();
 };
 
-// Generar código QR
+// Generar código QR en formato PNG
 const generateQRCode = async (text) => {
     try {
-        const qr = await qrcode.toDataURL(text);
+        const qr = await qrcode.toDataURL(text, {
+            type: 'image/png', // Cambiar a PNG
+            width: 500, // Ajustar tamaño
+            scale: 10, // Ajustar resolución
+        });
         return qr;
     } catch (err) {
         console.error(err);
