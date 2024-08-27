@@ -1,77 +1,109 @@
 /* client/src/componentes/Acreditaciones/QRScanner.css */
 
 .scanner-container-wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: #f8f9fa;
-    overflow: hidden;
-  }
-  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f8f9fa;
+  overflow: hidden;
+}
+
+.scanner-container {
+  display: flex;
+  flex-direction: row !important;
+  width: 100%;
+  max-width: 600px;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.video-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+video {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+}
+
+.credential {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.credential .credential-card {
+  border: 1px solid black;
+  padding: 20px;
+  width: 300px;
+  text-align: center;
+  background-color: #fff;
+  border-radius: 10px;
+  margin: 0 auto;
+}
+
+.credential-logo {
+  width: 100px;
+  height: auto;
+  margin-bottom: 1rem;
+}
+
+.credential-title {
+  margin-bottom: 1.5rem;
+}
+
+.credential-card p {
+  color: #343a40;
+  margin-bottom: 0.5rem;
+}
+
+.qr-code {
+  max-width: 100%;
+  height: auto;
+  margin-top: 1rem;
+}
+
+.boton-login {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 10px;
+}
+
+/* Media Query para dispositivos móviles */
+@media (max-width: 768px) {
+
   .scanner-container {
     display: flex;
-    flex-direction: row!important;
-    width: 100%;
-    max-width: 600px;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-  }
-  
-  .video-container {
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
+    flex-direction: column !important;
+    /* Cambia la dirección del flex para apilar los elementos verticalmente */
+    padding: 10px;
+    /* Reduce el padding en dispositivos móviles */
   }
 
-  
-  video {
-    border: 1px solid #ddd;
-    border-radius: 10px;
-  }
-  
-  .credential {
-    text-align: center;
-    margin-top: 20px;
-  }
-  
   .credential .credential-card {
-    border: 1px solid black;
-    padding: 20px;
-    width: 300px;
-    text-align: center;
-    background-color: #fff;
-    border-radius: 10px;
-    margin: 0 auto;
-  }
-  
-  .credential-logo {
-    width: 100px;
-    height: auto;
-    margin-bottom: 1rem;
-  }
-  
-  .credential-title {
-    margin-bottom: 1.5rem;
-  }
-  
-  .credential-card p {
-    color: #343a40;
-    margin-bottom: 0.5rem;
-  }
-  
-  .qr-code {
-    max-width: 100%;
-    height: auto;
-    margin-top: 1rem;
+    width: 100%;
+    /* Ajusta el ancho de la tarjeta a 100% en pantallas pequeñas */
+    padding: 10px;
+    /* Reduce el padding de la tarjeta */
   }
 
-  .boton-login{
-    display: flex;
-    justify-content: space-around;
-    margin-top: 10px;
+  .credential-logo {
+    width: 80px;
+    /* Ajusta el tamaño del logo para pantallas pequeñas */
   }
-  
+
+  .credential-title {
+    font-size: 1rem;
+    /* Ajusta el tamaño de la fuente del título para pantallas pequeñas */
+  }
+
+  .qr-code {
+    max-width: 150px;
+    /* Ajusta el tamaño máximo del código QR para pantallas pequeñas */
+  }
+}

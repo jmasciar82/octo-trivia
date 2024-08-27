@@ -33,12 +33,12 @@ const CredentialCard = forwardRef(({ user }, ref) => {
         
       }}
     >
-      <h2>IAPG 2024<hr></hr></h2>
+      <h2>BAGO 2024<hr></hr></h2>
       <p><strong>Nombre:</strong><br></br> {user.name}</p>
       <p><strong>Email:</strong><br></br> {user.email}</p>
       <p><strong>Código:</strong> {user.code}</p>
       <p><strong>Tipo:</strong> {user.tipo}</p>
-      <img src={user.qrCode} alt="Código QR" />
+      <img src={user.qrCode} alt="Código QR" style={{ width: '150px' }} />
     </div>
   );
 });
