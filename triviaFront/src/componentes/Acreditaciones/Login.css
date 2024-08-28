@@ -12,8 +12,8 @@
 .login-container {
   display: flex;
   flex-direction: column;
-  width: 100%;
-  max-width: 90%; /* Limitamos el ancho máximo */
+  
+  
   padding: 20px;
   background-color: #ffffffde;
   border-radius: 10px;
@@ -51,6 +51,7 @@
   display: block;
   width: 100%;
 }
+
 
 .btn-reiniciar {
   background-color: #007bff;
