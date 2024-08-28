@@ -97,6 +97,17 @@ input:valid, select:valid {
     border-radius: 5px;
 }
 
+.list-group-item p {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-bottom: 10px;
+    
+}
+.item-name {
+    text-transform: capitalize;
+}
+
 /* Imagen QR en la lista */
 .qr-code {
     width: 150px; /* Ancho fijo */

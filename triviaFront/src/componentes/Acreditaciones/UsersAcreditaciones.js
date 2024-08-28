@@ -110,7 +110,7 @@ const UsersAcreditaciones = () => {
           <ul className="list-group">
             {filteredUsers.map((u) => (
               <li key={u._id} className="list-group-item">
-                <p><strong>Nombre:</strong> {u.name}</p>
+                <p className='item-name'><strong>Nombre:</strong> {u.name}</p>
                 <p><strong>Email:</strong> {u.email}</p>
                 <p><strong>Código:</strong> {u.code}</p>
                 <p><strong>Tipo:</strong> {u.tipo}</p>
