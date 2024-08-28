@@ -50,7 +50,7 @@ body {
 }
 
 .home-page .btn {
-    width: 100%;
+    width: 100% !important;
 }
 
 .admin-link {

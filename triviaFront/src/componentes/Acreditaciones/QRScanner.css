@@ -9,7 +9,7 @@
 
 .scanner-container {
   display: flex;
-  flex-direction: row !important;
+  flex-direction: column !important;
   width: 100%;
   max-width: 600px;
   padding: 20px;
@@ -29,6 +29,7 @@
 }
 .restart-button {
   margin-top: 10px;
+  width: max-content;
 }
 
 

@@ -3,7 +3,7 @@
   import CredentialCard from './CredentialCard';
   import printJS from 'print-js';
   import 'bootstrap/dist/css/bootstrap.min.css';
-  import './LoginRegister.css';
+  import './LoginCodigo.css';
   import { Button } from 'react-bootstrap';
   import { ToastContainer, toast } from 'react-toastify';
   import 'react-toastify/dist/ReactToastify.css';
@@ -78,9 +78,9 @@
     return (
       <div className="login-container-wrapper">
         
-        <div className="register-login-container">
+        <div id='codigo-usuario' className="register-login-container">
           
-          <h1>Login de Usuario</h1>
+          <h1>Código</h1>
           <form onSubmit={handleSubmit}>
             <input
               type="text"
