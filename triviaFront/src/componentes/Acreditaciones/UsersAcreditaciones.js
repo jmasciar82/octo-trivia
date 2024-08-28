@@ -6,10 +6,11 @@ import './UsersAcreditaciones.css';
 const UsersAcreditaciones = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
-  const [tipo, setTipo] = useState(1); // Valor por defecto
+  const [tipo, setTipo] = useState(1);
   const [user, setUser] = useState(null);
   const [users, setUsers] = useState([]);
-  const [loading, setLoading] = useState(false); // Estado para manejar el loading
+  const [loading, setLoading] = useState(false);
+  const [searchTerm, setSearchTerm] = useState(''); // Estado para el filtro de búsqueda
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -29,25 +30,29 @@ const UsersAcreditaciones = () => {
     e.preventDefault();
     const backendURL = process.env.NODE_ENV === 'production' ? process.env.REACT_APP_PROD_BACKEND_URL : 'http://localhost:5000';
 
-    setLoading(true); // Inicia el loading
+    setLoading(true);
 
     try {
       const response = await axios.post(`${backendURL}/usersAcreditaciones`, { name, email, tipo });
       setUser(response.data);
-      setUsers(prevUsers => [...prevUsers, response.data]); // Añadir el nuevo usuario a la lista
+      setUsers(prevUsers => [...prevUsers, response.data]);
     } catch (error) {
       console.error('Error al registrar el usuario:', error);
     } finally {
-      setLoading(false); // Finaliza el loading
+      setLoading(false);
     }
   };
+
+  const filteredUsers = users.filter((u) => 
+    u.name.toLowerCase().includes(searchTerm.toLowerCase()) || 
+    u.email.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   return (
     <div className="login-container-wrapper">
       <div className="login-container">
         <h1>Registro de Usuario</h1>
         
-        {/* Muestra el loading si está en proceso */}
         {loading ? (
           <div className="loading">Generando usuario, por favor espere...</div>
         ) : (
@@ -71,7 +76,6 @@ const UsersAcreditaciones = () => {
               value={tipo}
               onChange={(e) => setTipo(parseInt(e.target.value))}
             >
-              {/* Opciones del select */}
               {[...Array(10).keys()].map(num => (
                 <option key={num + 1} value={num + 1}>{num + 1}</option>
               ))}
@@ -92,9 +96,19 @@ const UsersAcreditaciones = () => {
         )}
 
         <h2 className="mt-5">Usuarios Registrados</h2>
+
+        {/* Campo de búsqueda */}
+        <input
+          type="text"
+          className="form-control mb-3"
+          placeholder="Buscar por nombre o email"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
+
         <div className="user-list-container">
           <ul className="list-group">
-            {users.map((u) => (
+            {filteredUsers.map((u) => (
               <li key={u._id} className="list-group-item">
                 <p><strong>Nombre:</strong> {u.name}</p>
                 <p><strong>Email:</strong> {u.email}</p>
