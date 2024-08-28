@@ -1,5 +1,3 @@
-// client/src/componentes/Acreditaciones/QRScanner.js
-
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
@@ -14,6 +12,7 @@ import { Button } from 'react-bootstrap';
 
 const QRScanner = () => {
   const [user, setUser] = useState(null);
+  const [isVideoHidden, setIsVideoHidden] = useState(false);
 
   const videoRef = useRef(null);
   const credentialRef = useRef(null);
@@ -25,29 +24,24 @@ const QRScanner = () => {
     navigate('/loginHome');
   };
 
-
   const stopScanner = useCallback(() => {
     if (codeReaderRef.current) {
       codeReaderRef.current.reset();
     }
   }, []);
 
-
-
   const handleScanSuccess = useCallback(async (decodedText) => {
     const backendURL = process.env.NODE_ENV === 'production' ? process.env.REACT_APP_PROD_BACKEND_URL : 'http://localhost:5000';
     try {
       const response = await axios.get(`${backendURL}/usersAcreditaciones/${decodedText}`);
       setUser(response.data);
+      setIsVideoHidden(true);  // Ocultar video
       toast.success('Usuario encontrado');
       stopScanner();
     } catch (err) {
       console.error('Error al obtener el usuario:', err);
       if (err.response && err.response.status === 400) {
         toast.warn('Código ya utilizado');
-
-
-
         stopScanner();
       } else {
         toast.error('Usuario no encontrado');
@@ -120,41 +114,30 @@ const QRScanner = () => {
     }
   };
 
-
-
   return (
     <div className="scanner-container-wrapper">
       <div className="scanner-container">
-        <div>
+        <div className='btn-reinicio-contenedor'>
           <h1>Escáner de QR</h1>
-          <Button onClick={handleNavigateHome} >Reiniciar</Button>
+          
 
-          <div className="video-container">
+          <div className={`video-container ${isVideoHidden ? 'hidden' : ''}`}>
             <video ref={videoRef} style={{ width: "70%" }}></video>
           </div>
+          <Button onClick={handleNavigateHome} className="restart-button">Reiniciar</Button>
         </div>
         <div>
           {user && (
             <div>
-
-
               <div ref={credentialRef} className="credential mt-4">
                 <CredentialCard user={user} />
-
-
-
-
               </div>
               <div className='boton-login'>
-
-                <Button onClick={handlePrint} >Imprimir Credencial</Button>
-
+                <Button onClick={handlePrint}>Imprimir Credencial</Button>
               </div>
-
-
             </div>
-          )}</div>
-
+          )}
+        </div>
       </div>
       <ToastContainer />
     </div>

@@ -1,10 +1,6 @@
 
 
-#codigo-qr {
-    display: flex !important;
-    flex-direction: row !important;
-    justify-content: space-between!important;
-}
+
 
 @media (max-width: 768px) {
     #codigo-qr {

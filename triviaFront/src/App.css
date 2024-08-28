@@ -1,6 +1,6 @@
 
 #root {
-  background-image: url('../src/assets/logo90_negativo.jpg'); /* Ajusta la ruta según sea necesario */
+  background-color: #961d71;
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -8,5 +8,23 @@
   min-height: 100vh;
 }
 
+.logo-container {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  width: 150px; /* Ajusta el tamaño del logo */
+  height: 50px;  /* Ajusta el tamaño del logo */
+  background-image: url('./assets/90\ blanco\ sin\ fondo.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  z-index: 1000; /* Asegúrate de que el logo esté por encima de otros elementos */
+}
+
+
+.brand-logo {
+  width: 150px; /* Ajusta el tamaño del logo según tus necesidades */
+  height: auto;
+}
 
 

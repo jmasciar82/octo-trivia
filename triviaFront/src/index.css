@@ -7,22 +7,23 @@ body {
     
     min-height: 100vh; /* Permitir que el contenido crezca */
 }
-
 .home-page {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
+    margin: 0 auto;
+    justify-content: center; /* Centra las tarjetas horizontalmente */
+    align-items: center; /* Centra las tarjetas verticalmente */
+    height: 100vh; /* Asegura que el contenedor ocupe toda la altura de la pantalla */
     padding: 10px 20px;
     background-color: transparent;
     width: 100%;
     z-index: 1000;
-    overflow: auto; /* Permitir scroll */
+    overflow: auto; /* Permitir scroll si es necesario */
 }
 
 .home-page .card {
-    flex-basis: 20%;
-    margin: 10px;
+    flex-basis: auto; /* Permite que las tarjetas tomen solo el ancho necesario */
+    margin: 10px; /* Espaciado entre tarjetas */
     background-color: rgba(255, 255, 255, 0.7);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.2s;

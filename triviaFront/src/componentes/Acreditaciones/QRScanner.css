@@ -1,13 +1,10 @@
-/* client/src/componentes/Acreditaciones/QRScanner.css */
-
 .scanner-container-wrapper {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  background-color: #f8f9fa;
-  overflow: hidden;
+  justify-content: center; /* Centra horizontalmente */
+  align-items: center;     /* Centra verticalmente */
+  min-height: 100vh;       /* Asegura que el contenedor ocupe toda la altura de la pantalla */
 }
+
 
 .scanner-container {
   display: flex;
@@ -21,11 +18,30 @@
   overflow: hidden;
 }
 
+.btn-reinicio-contenedor {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  
+  color: black;
+
+}
+.restart-button {
+  margin-top: 10px;
+}
+
+
 .video-container {
   display: flex;
   justify-content: center;
   margin-top: 20px;
+  transition: opacity 0.5s ease-in-out; /* Transición de opacidad */
 }
+
+.hidden {
+  display: none !important; /* Oculta completamente el contenedor de video */
+}
+
 
 video {
   border: 1px solid #ddd;
@@ -70,40 +86,32 @@ video {
 
 .boton-login {
   display: flex;
-  justify-content: space-around;
+  justify-content: center; /* Centra el botón */
   margin-top: 10px;
 }
 
 /* Media Query para dispositivos móviles */
 @media (max-width: 768px) {
-
   .scanner-container {
     display: flex;
     flex-direction: column !important;
-    /* Cambia la dirección del flex para apilar los elementos verticalmente */
     padding: 10px;
-    /* Reduce el padding en dispositivos móviles */
   }
 
   .credential .credential-card {
     width: 100%;
-    /* Ajusta el ancho de la tarjeta a 100% en pantallas pequeñas */
     padding: 10px;
-    /* Reduce el padding de la tarjeta */
   }
 
   .credential-logo {
     width: 80px;
-    /* Ajusta el tamaño del logo para pantallas pequeñas */
   }
 
   .credential-title {
     font-size: 1rem;
-    /* Ajusta el tamaño de la fuente del título para pantallas pequeñas */
   }
 
   .qr-code {
     max-width: 150px;
-    /* Ajusta el tamaño máximo del código QR para pantallas pequeñas */
   }
 }

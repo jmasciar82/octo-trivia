@@ -59,8 +59,11 @@ function App() {
   return (
     <div className='container1' >
       <div className="container-fluid mt-3">
-        <div>
+        <div className="logo-container">
           
+        </div>
+        <div>
+
           <BrowserRouter>
             <div>
               {token && (
@@ -100,7 +103,7 @@ function App() {
               <Route path='*' element={<RutaNoValida />} />
             </Routes>
           </BrowserRouter>
-          
+
         </div>
       </div>
     </div>

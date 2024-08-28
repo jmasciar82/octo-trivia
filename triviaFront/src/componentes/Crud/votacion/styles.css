@@ -165,11 +165,7 @@
     margin-right: 0;
 }
 
-.home-page {
 
-    flex-direction: row;
-    justify-content: flex-end!important;
-}
 
 .home-page .card {
     width: 25rem;
