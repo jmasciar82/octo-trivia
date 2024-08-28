@@ -1,4 +1,25 @@
+.login-container-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: 0;
+    align-items: center;
+    min-height: 100vh;
+    /* Se cambió de height a min-height */
+    padding: 10px;
+    /* Añadir padding para evitar que se corte en pantallas pequeñas */
+    overflow: hidden;
+}
+.register-login-container {
+    display: flex;
+    flex-direction: column;
+    
 
+    padding: 20px;
+    background-color: #ffffffde;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    justify-content: center;
+}
 
 
 

@@ -1,0 +1,128 @@
+/* client/src/componentes/Acreditaciones/Login.css */
+
+.login-container-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+    align-items: center;
+    min-height: 100vh;
+    /* Se cambió de height a min-height */
+    padding: 10px;
+    /* Añadir padding para evitar que se corte en pantallas pequeñas */
+    overflow: hidden;
+}
+
+.login-container {
+    display: flex;
+    flex-direction: column;
+    min-width: 100%;
+
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    justify-content: center;
+}
+
+.boton-login {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 10px;
+}
+
+.img-fluid {
+    width: 150px;
+}
+
+.credential {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.qr-code {
+    max-width: 100px;
+    height: auto;
+}
+
+.input-code {
+    margin-bottom: 15px;
+}
+
+.btn-submit {
+    display: block;
+    width: 100%;
+}
+
+
+.btn-reiniciar {
+    background-color: #007bff;
+    color: white;
+}
+
+.btn-print {
+    background-color: green;
+    color: white;
+}
+
+.list-group {
+    background-color: #007bff;
+    padding: 20px;
+}
+.list-group-item {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin: 3px 0;
+    padding: 10px;
+}
+/* Estilos para móviles */
+@media (max-width: 768px) {
+    .login-container-wrapper {
+        /* min-height: auto; */
+        padding: 10px;
+    }
+
+    .login-container {
+        margin-top: 2rem;
+        /* Ajuste para evitar espacios grandes en móviles */
+        padding: 15px;
+    }
+
+    .qr-code {
+        max-width: 80px;
+        height: auto;
+    }
+
+    .btn {
+        font-size: 1rem;
+        padding: 10px;
+    }
+
+    .user-list-container {
+        margin-top: 20px;
+        display: flex;
+        justify-content: center;
+        background-color: #007bff;
+    }
+
+    .list-group-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 3px 0;
+        padding: 10px;
+    }
+
+    h1,
+    h2 {
+        font-size: 1.5rem;
+        text-align: center;
+    }
+
+    p {
+        font-size: 1rem;
+    }
+}

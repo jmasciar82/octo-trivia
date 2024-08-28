@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './Login.css';
+import './LoginRegister.css';
 
 const UsersAcreditaciones = () => {
   const [name, setName] = useState('');

@@ -1,5 +1,6 @@
 .scanner-container-wrapper {
   display: flex;
+  flex-direction: column;
   justify-content: center; /* Centra horizontalmente */
   align-items: center;     /* Centra verticalmente */
   min-height: 100vh;       /* Asegura que el contenedor ocupe toda la altura de la pantalla */

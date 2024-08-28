@@ -10,9 +10,8 @@
 
 .logo-container {
   position: absolute;
-  top: 10px; /* Espacio desde la parte superior de la pantalla */
-  left: 50%; /* Posiciona el logo en el centro horizontalmente */
-  transform: translateX(-50%); /* Ajusta el logo al centro exacto */
+  top: 50px; /* Espacio desde la parte superior de la pantalla */
+  right: 50px; /* Espacio desde la parte derecha de la pantalla */
   width: 250px; /* Ajusta el tamaño del logo */
   height: 150px;  /* Ajusta el tamaño del logo */
   background-image: url('./assets/90\ blanco\ sin\ fondo.png');
@@ -21,6 +20,7 @@
   background-position: center;
   z-index: 1000; /* Asegúrate de que el logo esté por encima de otros elementos */
 }
+
 
 .brand-logo {
   width: 150px; /* Ajusta el tamaño del logo según tus necesidades */

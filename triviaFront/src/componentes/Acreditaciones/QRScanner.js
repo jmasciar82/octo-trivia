@@ -124,7 +124,7 @@ const QRScanner = () => {
           <div className={`video-container ${isVideoHidden ? 'hidden' : ''}`}>
             <video ref={videoRef} style={{ width: "70%" }}></video>
           </div>
-          <Button onClick={handleNavigateHome} className="restart-button">Reiniciar</Button>
+          
         </div>
         <div>
           {user && (
@@ -138,7 +138,9 @@ const QRScanner = () => {
             </div>
           )}
         </div>
+        
       </div>
+      <Button onClick={handleNavigateHome} className="restart-button">Volver</Button>
       <ToastContainer />
     </div>
   );

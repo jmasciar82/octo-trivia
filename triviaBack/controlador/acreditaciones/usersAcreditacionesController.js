@@ -5,7 +5,7 @@ const qrcode = require('qrcode');
 
 // Configuración de Nodemailer con Hostinger
 const transporter = nodemailer.createTransport({
-    host: 'smtp.hostinger.com', // Servidor SMTP de Hostinger
+    host: 'mail.dataflow-services.com', // Servidor SMTP de Hostinger
     port: 587, // Puerto para TLS, usa 465 si prefieres SSL
     secure: false, // Usa true si estás utilizando el puerto 465 (SSL)
     auth: {

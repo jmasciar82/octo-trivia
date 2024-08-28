@@ -10,7 +10,7 @@
 .card {
     width: 100%;
     max-width: 25rem;
-    background-color: rgba(255, 255, 255, 0.9);
+    background-color: rgba(255, 255, 255, 0.603);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.2s, background-color 0.2s;
     padding: 20px;
@@ -19,7 +19,7 @@
 
 .card:hover {
     transform: scale(1.05);
-    background-color: rgba(10, 216, 103, 0.8);
+    background-color: rgb(247, 250, 249);
 }
 
 /* Ajustes para dispositivos móviles */
