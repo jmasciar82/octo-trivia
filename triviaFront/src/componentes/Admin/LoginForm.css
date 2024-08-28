@@ -8,14 +8,40 @@
 }
 
 .card {
-    width: 100%;
+    display: flex;
+    flex-direction: column; /* Asegura que los elementos dentro de la tarjeta estén dispuestos en columna */
+    align-items: center; /* Centra el contenido dentro de la tarjeta */
+    justify-content: center;
     max-width: 25rem;
-    background-color: rgba(255, 255, 255, 0.603);
+    background-color: rgba(255, 255, 255, 0.9);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.2s, background-color 0.2s;
     padding: 20px;
     margin: 0 auto; /* Centra la tarjeta horizontalmente */
 }
+.card form {
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+}
+.card button {
+    width: max-content !important;
+}
+
+.card h2 {
+    text-align: center; /* Centra el título dentro de la tarjeta */
+    width: 100%;
+}
+
+.card form {
+    width: 100%; /* Asegura que el formulario ocupe todo el ancho de la tarjeta */
+}
+.form-control-admin {
+    width: 100%;
+    border-radius: 5px;
+}
+
+
 
 .card:hover {
     transform: scale(1.05);

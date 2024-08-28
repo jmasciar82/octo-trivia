@@ -1,15 +1,13 @@
-/* client/src/componentes/Acreditaciones/Login.css */
+/* LoginRegister.css */
 
+/* Estilos generales */
 .login-container-wrapper {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    
     align-items: center;
     min-height: 100vh;
-    /* Se cambió de height a min-height */
     padding: 10px;
-    /* Añadir padding para evitar que se corte en pantallas pequeñas */
     overflow: hidden;
 }
 
@@ -17,7 +15,6 @@
     display: flex;
     flex-direction: column;
     min-width: 100%;
-
     padding: 20px;
     background-color: #ffffff;
     border-radius: 10px;
@@ -25,10 +22,41 @@
     justify-content: center;
 }
 
+.form-control {
+    width: 50%;
+}
+
+/* Estilos para inputs requeridos */
+input[required], select[required] {
+    border: 2px solid #ccc;
+}
+
+/* Estilos para inputs inválidos */
+input:invalid, select:invalid {
+    border: 2px solid red;
+}
+
+/* Estilos para inputs válidos */
+input:valid, select:valid {
+    border: 2px solid green;
+}
+
+.form-control select {
+    width: 50%;
+}
+
+.btn-block {
+    width: 50%;
+    margin: 0 auto;
+}
+
 .boton-login {
     display: flex;
     justify-content: space-around;
     margin-top: 10px;
+}
+#btn-register-user {
+    width: max-content;
 }
 
 .img-fluid {
@@ -56,7 +84,6 @@
     width: 100%;
 }
 
-
 .btn-reiniciar {
     background-color: #007bff;
     color: white;
@@ -71,6 +98,7 @@
     background-color: #007bff;
     padding: 20px;
 }
+
 .list-group-item {
     display: flex;
     flex-direction: row;
@@ -78,16 +106,15 @@
     margin: 3px 0;
     padding: 10px;
 }
+
 /* Estilos para móviles */
 @media (max-width: 768px) {
     .login-container-wrapper {
-        /* min-height: auto; */
         padding: 10px;
     }
 
     .login-container {
         margin-top: 2rem;
-        /* Ajuste para evitar espacios grandes en móviles */
         padding: 15px;
     }
 

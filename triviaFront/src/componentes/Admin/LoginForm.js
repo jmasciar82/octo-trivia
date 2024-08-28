@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './Login.css'
+import './LoginForm.css'
 
 const LoginForm = ({ onLogin }) => {
     const [username, setUsername] = useState('');
@@ -50,7 +50,7 @@ const LoginForm = ({ onLogin }) => {
                         <label className="form-label">Username:</label>
                         <input
                             type="text"
-                            className="form-control"
+                            className="form-control-admin"
                             value={username}
                             onChange={(e) => setUsername(e.target.value)}
                         />
@@ -59,12 +59,12 @@ const LoginForm = ({ onLogin }) => {
                         <label className="form-label">Password:</label>
                         <input
                             type="password"
-                            className="form-control"
+                            className="form-control-admin"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                         />
                     </div>
-                    <button type="submit" className="btn btn-primary w-100">Login</button>
+                    <button id='btn-admin-login' type="submit" className="btn btn-primary w-100">Login</button>
                     {error && <p className="text-danger mt-3">{error}</p>}
                 </form>
                 <ToastContainer />
