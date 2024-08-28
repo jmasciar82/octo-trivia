@@ -1,0 +1,143 @@
+/* Estilos generales */
+.login-container-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 10px;
+    overflow: hidden;
+    
+}
+
+.login-container {
+    display: flex;
+    flex-direction: column;
+     /* Ajusta el ancho máximo del contenedor */
+    
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Títulos */
+.login-container h1, .login-container h2 {
+    margin-bottom: 20px;
+    color: #343a40;
+}
+
+/* Estilos para inputs */
+.form-control {
+    margin-bottom: 15px;
+    max-width: 100%; /* Asegura que no exceda el contenedor */
+    width: 50% !important; /* Ajusta el ancho del input */
+}
+
+input[required], select[required] {
+    border: 2px solid #ccc;
+    border-radius: 5px; /* Añade bordes redondeados */
+    padding: 10px;
+}
+
+input:invalid, select:invalid {
+    border: 2px solid red;
+}
+
+input:valid, select:valid {
+    border: 2px solid green;
+}
+
+.form-control select {
+    width: 90%; /* Asegura que el select también tenga el ancho ajustado */
+}
+
+/* Botón de submit */
+#btn-register-user {
+    width: 30%; /* Ajusta el ancho del botón */
+    padding: 10px;
+    border-radius: 5px;
+}
+
+/* Estilos de carga */
+.loading {
+    text-align: center;
+    margin: 20px 0;
+    color: #007bff;
+}
+
+/* Estilos de credencial */
+.user-credential {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.user-credential img {
+    width: 150px;
+    height: 150px; /* Asegura que la altura sea igual al ancho para mantener el aspecto cuadrado */
+}
+
+/* Estilos para la lista de usuarios */
+.user-list-container {
+    margin-top: 20px;
+}
+
+.list-group {
+    background-color: #ffffff;
+    padding: 0;
+}
+
+.list-group-item {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+/* Imagen QR en la lista */
+.qr-code {
+    width: 150px; /* Ancho fijo */
+    height: 150px; /* Altura fija para mantener el aspecto cuadrado */
+}
+
+/* Estilos para móviles */
+@media (max-width: 768px) {
+    .login-container {
+        padding: 15px;
+    }
+
+    .qr-code {
+        width: 120px; /* Ajusta el ancho del QR en móviles */
+        height: 120px; /* Ajusta la altura del QR en móviles */
+    }
+
+    .btn {
+        font-size: 1rem;
+        padding: 8px;
+    }
+
+    .user-list-container {
+        margin-top: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: #ffffff;
+    }
+
+    .list-group-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    h1, h2 {
+        font-size: 1.5rem;
+        text-align: center;
+    }
+
+    p {
+        font-size: 1rem;
+    }
+}

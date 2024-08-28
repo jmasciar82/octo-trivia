@@ -4,26 +4,52 @@ body {
     padding: 0;
     font-family: Arial, sans-serif;
     line-height: 1.6;
-    
-    min-height: 100vh; /* Permitir que el contenido crezca */
+
+    min-height: 100vh;
+    /* Permitir que el contenido crezca */
 }
+
 .home-page {
     display: flex;
     flex-direction: row;
     margin: 0 auto;
-    justify-content: center; /* Centra las tarjetas horizontalmente */
-    align-items: center; /* Centra las tarjetas verticalmente */
-    height: 100vh; /* Asegura que el contenedor ocupe toda la altura de la pantalla */
+    justify-content: center;
+    /* Centra las tarjetas horizontalmente */
+    align-items: center;
+    /* Centra las tarjetas verticalmente */
+    height: 100vh;
+    /* Asegura que el contenedor ocupe toda la altura de la pantalla */
     padding: 10px 20px;
     background-color: transparent;
     width: 100%;
     z-index: 1000;
-    overflow: auto; /* Permitir scroll si es necesario */
+    overflow: auto;
+    /* Permitir scroll si es necesario */
+}
+
+.logo-container {
+    position: absolute;
+    top: 50px;
+    /* Espacio desde la parte superior de la pantalla */
+    right: 50px;
+    /* Espacio desde la parte derecha de la pantalla */
+    width: 250px;
+    /* Ajusta el tamaño del logo */
+    height: 150px;
+    /* Ajusta el tamaño del logo */
+    background-image: url('./assets/90\ blanco\ sin\ fondo.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    z-index: 1000;
+    /* Asegúrate de que el logo esté por encima de otros elementos */
 }
 
 .home-page .card {
-    flex-basis: auto; /* Permite que las tarjetas tomen solo el ancho necesario */
-    margin: 10px; /* Espaciado entre tarjetas */
+    flex-basis: auto;
+    /* Permite que las tarjetas tomen solo el ancho necesario */
+    margin: 10px;
+    /* Espaciado entre tarjetas */
     background-color: rgba(255, 255, 255, 0.7);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.2s;

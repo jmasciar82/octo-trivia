@@ -8,18 +8,7 @@
   position: relative; /* Asegura que el contenedor #root sea el padre para la posición del logo */
 }
 
-.logo-container {
-  position: absolute;
-  top: 50px; /* Espacio desde la parte superior de la pantalla */
-  right: 50px; /* Espacio desde la parte derecha de la pantalla */
-  width: 250px; /* Ajusta el tamaño del logo */
-  height: 150px;  /* Ajusta el tamaño del logo */
-  background-image: url('./assets/90\ blanco\ sin\ fondo.png');
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  z-index: 1000; /* Asegúrate de que el logo esté por encima de otros elementos */
-}
+
 
 
 .brand-logo {

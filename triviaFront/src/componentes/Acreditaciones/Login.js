@@ -78,7 +78,7 @@
     return (
       <div className="login-container-wrapper">
         
-        <div id='codigo-usuario' className="register-login-container">
+        <div className="register-login-container">
           
           <h1>Código</h1>
           <form onSubmit={handleSubmit}>
@@ -94,7 +94,7 @@
           </form>
 
           {user && (
-            <div>
+            <div className='credential-container'>
               <div ref={credentialRef} className="credential mt-4">
                 <CredentialCard user={user} />
               </div>

@@ -3,7 +3,7 @@
     justify-content: center;
     margin-top: 0;
     align-items: center;
-    min-height: 100vh;
+    
     /* Se cambió de height a min-height */
     padding: 10px;
     /* Añadir padding para evitar que se corte en pantallas pequeñas */

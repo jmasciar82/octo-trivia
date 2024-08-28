@@ -4,15 +4,7 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    
-    
     padding: 20px;
-}
-
-form {
-    display: flex;
-    flex-direction: column;
-    
 }
 
 /* Contenedor del formulario de registro/login */
@@ -20,18 +12,12 @@ form {
     display: flex;
     flex-direction: column;
     
-    min-width: 50%;
+    max-width: 600px; /* Limita el ancho máximo para que no sea demasiado ancho en pantallas grandes */
     padding: 20px;
     background-color: #ffffff;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     justify-content: center;
-}
-
-.register-login-container button {
-    
-    width: 50%;
-
 }
 
 /* Estilo para el título */
@@ -41,9 +27,11 @@ form {
     color: #343a40;
 }
 
+/* Estilo para los inputs */
 .form-control {
-    width: 100%;
-
+    width: 100% !important; /* No usa el ancho completo del contenedor */
+    max-width: 500px; /* Limita el ancho máximo del input */
+    margin-bottom: 15px; /* Espaciado inferior */
 }
 
 /* Botón principal */
@@ -56,10 +44,14 @@ form {
     border-radius: 5px;
 }
 
-/* Espaciado entre el formulario y la credencial */
 .credential {
-    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center !important;
 }
+
+/* Espaciado entre el formulario y la credencial */
+
 
 /* Botón verde para imprimir */
 .boton-login {
@@ -85,8 +77,6 @@ form {
     margin: 0 auto;
 }
 
-
-
 .credential-title {
     font-size: 20px;
     margin-bottom: 1.5rem;
@@ -97,7 +87,12 @@ form {
     margin-bottom: 0.5rem;
 }
 
-
+/* Imagen QR en la tarjeta de credencial */
+.qr-code {
+    width: 150px; /* Ajusta el ancho */
+    height: 150px; /* Ajusta la altura */
+    object-fit: cover; /* Asegura que la imagen se ajuste sin distorsionarse */
+}
 
 /* Responsividad para pantallas más pequeñas */
 @media (max-width: 768px) {
