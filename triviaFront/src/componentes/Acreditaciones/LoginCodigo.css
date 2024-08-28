@@ -1,115 +1,71 @@
-/* Contenedor principal de la página de login */
-.login-container-wrapper {
+.scanner-container-wrapper {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
-    padding: 20px;
+    min-height: 100vh;
 }
 
-/* Contenedor del formulario de registro/login */
-.register-login-container {
+.scanner-container {
     display: flex;
     flex-direction: column;
-    
-    max-width: 600px; /* Limita el ancho máximo para que no sea demasiado ancho en pantallas grandes */
-    padding: 20px;
-    background-color: #ffffff;
+    align-items: center;
+    justify-content: center;
+    max-width: 600px;
+    padding: 40px;
+    background-color: #fff;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    justify-content: center;
-}
-
-/* Estilo para el título */
-.register-login-container h1 {
-    margin-bottom: 20px;
-    font-size: 24px;
-    color: #343a40;
-}
-
-/* Estilo para los inputs */
-.form-control {
-    width: 100% !important; /* No usa el ancho completo del contenedor */
-    max-width: 500px; /* Limita el ancho máximo del input */
-    margin-bottom: 15px; /* Espaciado inferior */
-}
-
-/* Botón principal */
-.btn-primary {
-    background-color: #007bff;
-    border: none;
+    overflow: hidden;
     width: 100%;
-    padding: 10px;
-    font-size: 16px;
-    border-radius: 5px;
 }
 
-.credential {
-    display: flex;
-    flex-direction: column;
-    justify-content: center !important;
-}
-
-/* Espaciado entre el formulario y la credencial */
-
-
-/* Botón verde para imprimir */
 .boton-login {
     display: flex;
     justify-content: center;
     margin-top: 20px;
 }
 
-.boton-login button {
-    padding: 10px 20px;
-    font-size: 16px;
-    border-radius: 5px;
+.credential-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    width: 100%;
 }
 
-/* Estilo de la tarjeta de credencial */
-.credential-card {
-    border: 1px solid #343a40;
-    padding: 20px;
-    width: 300px;
-    text-align: center;
-    background-color: #fff;
-    border-radius: 10px;
-    margin: 0 auto;
+input.form-control {
+    width: 100% !important;
+     /* Ajusta el ancho máximo del input */
+    padding: 15px; /* Aumenta el padding para que el input sea más grande */
+    font-size: 1.5rem; /* Aumenta el tamaño de la fuente */
+    border-radius: 5px; /* Añade un borde redondeado para mejorar la estética */
 }
 
-.credential-title {
-    font-size: 20px;
-    margin-bottom: 1.5rem;
+input:invalid {
+    border-color: red;
 }
 
-.credential-card p {
-    color: #343a40;
-    margin-bottom: 0.5rem;
+input:focus:invalid {
+    outline: none;
+    box-shadow: 0 0 5px 1px red;
 }
 
-/* Imagen QR en la tarjeta de credencial */
-.qr-code {
-    width: 150px; /* Ajusta el ancho */
-    height: 150px; /* Ajusta la altura */
-    object-fit: cover; /* Asegura que la imagen se ajuste sin distorsionarse */
-}
-
-/* Responsividad para pantallas más pequeñas */
+/* Media Query para dispositivos móviles */
 @media (max-width: 768px) {
-    .register-login-container {
-        width: 90%;
+    .scanner-container {
         padding: 20px;
     }
 
-    .btn-primary {
-        font-size: 14px;
-    }
-
-    .boton-login button {
-        font-size: 14px;
-    }
-
-    .credential-card {
+    .credential .credential-card {
         width: 100%;
+        padding: 10px;
+    }
+
+    input.form-control {
+        font-size: 1.2rem; /* Ajusta el tamaño de la fuente para pantallas pequeñas */
+        padding: 12px; /* Reduce un poco el padding para pantallas pequeñas */
+        max-width: 100%; /* Asegura que el input ocupe todo el ancho disponible */
     }
 }
