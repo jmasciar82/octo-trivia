@@ -15,3 +15,7 @@
   width: 150px; /* Ajusta el tamaño del logo según tus necesidades */
   height: auto;
 }
+
+button {
+  width: auto !important;
+}

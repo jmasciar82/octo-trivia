@@ -168,7 +168,9 @@
 
 
 .home-page .card {
-    width: 25rem;
+    width: 45rem;
+    height: 15rem;
+    
     
     background-color: rgba(255, 255, 255, 0.603);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -179,6 +181,8 @@
     transform: scale(1.05);
     background-color: rgb(247, 250, 249);
 }
+
+
 
 
 

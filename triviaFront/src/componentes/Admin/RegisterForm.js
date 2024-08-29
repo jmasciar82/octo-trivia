@@ -34,7 +34,7 @@ const RegisterForm = ({ onRegister }) => {
     return (
         <div className="body-register">
             <div className="card card-register">
-                <h2>Register</h2>
+                <h2>Register Admin Users</h2>
                 <form onSubmit={handleSubmit}>
                     <div className="mb-3">
                         <label className="form-label">Username:</label>

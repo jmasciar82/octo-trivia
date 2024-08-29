@@ -41,17 +41,19 @@ const HomePage = () => {
     return (
         <div className="home-page" >
             <Link className='admin-link' to='/loginAdmin'><Button>Admin</Button></Link>
-            <Card>
-                <Card.Body>
-                    <Card.Title>Acreditaciones</Card.Title>
-                    <Card.Text>
-                        Presione Enter para ingresar
-                    </Card.Text>
-                    <Link to='/loginHome'><Button variant="primary">Enter</Button></Link>
-                </Card.Body>
-            </Card>
+            <Link to='/loginHome' className="card-link">
+                <Card className="clickable-card">
+                    <Card.Body>
+                        <Card.Title>Acreditaciones</Card.Title>
+                        <Card.Text>
+                            Presione para ingresar
+                        </Card.Text>
+                        <Button variant="primary">Enter</Button>
+                    </Card.Body>
+                </Card>
+            </Link>
 
-            
+
         </div>
     );
 };

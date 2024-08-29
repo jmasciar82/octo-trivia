@@ -7,28 +7,32 @@ import './loginHome.css'
 const HomePage = () => {
     return (
         <div className="home-page" id='codigo-qr'>
-            
-            <Card>
-                <Card.Body>
-                    <Card.Title>Ingreso por Codigo</Card.Title>
-                    <Card.Text>
-                        Presione Enter para ingresar
-                    </Card.Text>
-                    <Link to='/login'><Button variant="primary">Enter</Button></Link>
-                </Card.Body>
-            </Card>
 
-            <Card>
-                <Card.Body >
-                    <Card.Title>Ingreso por QR</Card.Title>
-                    <Card.Text>
-                        Presione Enter para ingresar
-                    </Card.Text>
-                    <Link to='/qrscanner'><Button variant="primary">Enter</Button></Link>
-                </Card.Body>
-            </Card>
+            <Link to='/login' className="card-link">
+                <Card className="clickable-card">
+                    <Card.Body>
+                        <Card.Title>Ingreso por Código</Card.Title>
+                        <Card.Text>
+                            Presione para ingresar
+                        </Card.Text>
+                        <Button variant="primary">Enter</Button>
+                    </Card.Body>
+                </Card>
+            </Link>
 
-           
+            <Link to='/qrscanner' className="card-link">
+                <Card className="clickable-card">
+                    <Card.Body>
+                        <Card.Title>Ingreso por <br /> QR</Card.Title>
+                        <Card.Text>
+                            Presione para ingresar
+                        </Card.Text>
+                        <Button variant="primary">Enter</Button>
+                    </Card.Body>
+                </Card>
+            </Link>
+
+
         </div>
     );
 };
