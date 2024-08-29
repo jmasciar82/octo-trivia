@@ -6,17 +6,22 @@ const CheckedOutUser = require('../../model/equipos/CheckedOutUser');
 const router = express.Router();
 
 // Obtener la lista de usuarios que han retirado equipos
-router.get('/', async (req, res) => {  // Cambiado de '/checkout' a '/'
+// routes/checkout.js
+
+router.get('/', async (req, res) => {
     try {
-        const users = await CheckedOutUser.find();
+        const users = await CheckedOutUser.find(); // Asegúrate de que esta línea devuelva los datos correctos
         res.json(users);
     } catch (error) {
         res.status(500).json({ message: 'Error al obtener la lista de usuarios.', error });
     }
 });
 
+
+
 // Endpoint para agregar un nuevo usuario que retira equipo
-router.post('/', async (req, res) => {  // Cambiado de '/checkout' a '/'
+// router/equipos/checkout.js
+router.post('/', async (req, res) => {
     const { name, email, checkedOutAt } = req.body;
 
     try {
@@ -33,5 +38,9 @@ router.post('/', async (req, res) => {  // Cambiado de '/checkout' a '/'
         res.status(500).json({ message: 'Error al registrar al usuario.', error });
     }
 });
+
+
+
+
 
 module.exports = router;

@@ -71,7 +71,7 @@ const authAdminRoutes = require('./router/admin/authAdmin.js');
 const fileRoutes = require('./router/file/fileRoutes.js');
 
 const checkout = require('./router/equipos/checkout.js')
-
+const returnCheck = require('./router/equipos/return.js')
 
 
 
@@ -86,11 +86,14 @@ app.use('/verNube', verNubeRouter);
 app.use('/admin', preguntaRoutes);
 app.use('/admin', salaRoutes);
 app.use('/usersAcreditaciones', usersAcreditaciones);
-
+app.use('/checkout', checkout);
+app.use('/return', returnCheck);
 
 
 // Rutas
 app.use('/api/files', fileRoutes);
+
+
 
 
 const inicializar = async () => {

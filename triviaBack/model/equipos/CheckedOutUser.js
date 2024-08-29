@@ -9,13 +9,13 @@ const CheckedOutUserSchema = new mongoose.Schema({
     email: {
         type: String,
         required: true,
-        unique: true, // Asegura que un email no sea duplicado
+        unique: true,
     },
     checkedOutAt: {
         type: Date,
         required: true,
     }
-});
+}, { timestamps: true });
 
 const CheckedOutUser = mongoose.model('CheckedOutUser', CheckedOutUserSchema);
 module.exports = CheckedOutUser;

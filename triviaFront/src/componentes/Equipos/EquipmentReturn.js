@@ -4,11 +4,10 @@ import { useNavigate } from 'react-router-dom';
 import { BrowserQRCodeReader } from '@zxing/library';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './EquipmentCheckout.css';
-
 import { ToastContainer, toast } from 'react-toastify';
 import { Button } from 'react-bootstrap';
 
-const EquipmentCheckout = () => {
+const EquipmentReturn = () => {
     const [checkedOutUsers, setCheckedOutUsers] = useState([]);
     const videoRef = useRef(null);
     const codeReaderRef = useRef(null);
@@ -23,26 +22,22 @@ const EquipmentCheckout = () => {
     const handleScanSuccess = useCallback(async (decodedText) => {
         const backendURL = process.env.NODE_ENV === 'production' ? process.env.REACT_APP_PROD_BACKEND_URL : 'http://localhost:5000';
         try {
-            const response = await axios.get(`${backendURL}/usersAcreditaciones/${decodedText}`);
-            const user = response.data;
+            // Supongamos que el decodedText es un JSON con el email
+            const data = JSON.parse(decodedText);
+            const email = data.email;
 
-            // Crear el objeto que será enviado al backend
-            const checkedOutUser = {
-                name: user.name,
-                email: user.email,
-                checkedOutAt: new Date()
-            };
-
-            // Enviar el objeto al backend para ser almacenado en la base de datos
-            await axios.post(`${backendURL}/checkout`, checkedOutUser);
+            // Enviar la solicitud DELETE al backend
+            await axios.delete(`${backendURL}/checkout`, {
+                data: { email: email }
+            });
 
             // Actualizar la lista en el frontend
-            setCheckedOutUsers((prev) => [...prev, checkedOutUser]);
-            toast.success('Usuario agregado a la lista de equipos.');
+            setCheckedOutUsers((prev) => prev.filter(user => user.email !== email));
+            toast.success('Usuario eliminado de la lista de equipos.');
             stopScanner();
         } catch (err) {
-            console.error('Error al registrar el usuario:', err);
-            toast.error('Error al registrar el usuario.');
+            console.error('Error al procesar la devolución:', err);
+            toast.error('Error al procesar la devolución.');
         }
     }, [stopScanner]);
 
@@ -71,31 +66,20 @@ const EquipmentCheckout = () => {
         };
     }, [startScanner, stopScanner]);
 
-    // Fetch the list of checked out users when the component mounts
-    const [loading, setLoading] = useState(false);
-
     useEffect(() => {
         const fetchCheckedOutUsers = async () => {
-            if (!loading) {
-                setLoading(true);
-                const backendURL = process.env.NODE_ENV === 'production' ? process.env.REACT_APP_PROD_BACKEND_URL : 'http://localhost:5000';
-                try {
-                    const response = await axios.get(`${backendURL}/checkout`);
-                    setCheckedOutUsers(response.data);
-                } catch (err) {
-                    console.error('Error al obtener la lista de usuarios:', err);
-                    toast.error('Error al obtener la lista de usuarios.');
-                }
-                setLoading(false);
+            const backendURL = process.env.NODE_ENV === 'production' ? process.env.REACT_APP_PROD_BACKEND_URL : 'http://localhost:5000';
+            try {
+                const response = await axios.get(`${backendURL}/checkout`);
+                setCheckedOutUsers(response.data);
+            } catch (err) {
+                console.error('Error al obtener la lista de usuarios:', err);
+                toast.error('Error al obtener la lista de usuarios.');
             }
         };
 
         fetchCheckedOutUsers();
-        const intervalId = setInterval(fetchCheckedOutUsers, 5000);
-
-        return () => clearInterval(intervalId);
-    }, [loading]);
-
+    }, []);
 
     const handleNavigateHome = () => {
         stopScanner();
@@ -103,9 +87,9 @@ const EquipmentCheckout = () => {
     };
 
     return (
-        <div className="checkout-container-wrapper">
-            <div className="checkout-container">
-                <h1>Registro de Equipos</h1>
+        <div className="return-container-wrapper">
+            <div className="return-container">
+                <h1>Devolución de Equipos</h1>
                 <Button onClick={handleNavigateHome}>Reiniciar</Button>
                 <div className="video-container">
                     <video ref={videoRef} style={{ width: "50%" }}></video>
@@ -117,7 +101,7 @@ const EquipmentCheckout = () => {
                             <li key={index} className="list-group-item">
                                 <p><strong>Nombre:</strong> {user.name}</p>
                                 <p><strong>Email:</strong> {user.email}</p>
-                                <p><strong>Fecha de Retiro:</strong> {user.checkedOutAt.toLocaleString()}</p>
+                                <p><strong>Fecha de Retiro:</strong> {new Date(user.checkedOutAt).toLocaleString()}</p>
                             </li>
                         ))}
                     </ul>
@@ -128,4 +112,4 @@ const EquipmentCheckout = () => {
     );
 };
 
-export default EquipmentCheckout;
+export default EquipmentReturn;

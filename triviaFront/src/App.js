@@ -27,6 +27,8 @@ import { NavBarPreguntas } from './componentes/COMUN/NavBarPreguntas';
 import { RutaNoValida } from './componentes/RutaNoValida';
 import QRScanner from './componentes/Acreditaciones/QRScanner';
 import EquipmentCheckout from './componentes/Equipos/EquipmentCheckout'; // Importa el nuevo componente
+import EquipmentReturn from './componentes/Equipos/EquipmentReturn';
+
 import LoginAdminForm from './componentes/Admin/LoginForm';
 import RegisterAdminForm from './componentes/Admin/RegisterForm';
 import LogoutButton from './componentes/COMUN/LogoutButton';
@@ -101,7 +103,9 @@ function App() {
               <Route path="/loginHome" element={<LoginHome titulo="LoginHome" />} />
               <Route path="/login" element={<Login titulo="Login" />} />
               <Route path="/qrscanner" element={<QRScanner titulo="QRScanner" />} />
-              <Route path="/equipment-checkout" element={<ProtectedRoute token={token} element={<EquipmentCheckout titulo="EquipmentCheckout" />} />} /> {/* Nueva ruta */}
+              <Route path="/equipment-checkout" element={<EquipmentCheckout titulo="EquipmentCheckout" />} /> 
+              <Route path="/return" element={<EquipmentReturn />} />
+              
               <Route path='*' element={<RutaNoValida />} />
             </Routes>
           </BrowserRouter>
