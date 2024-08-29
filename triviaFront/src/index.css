@@ -81,6 +81,10 @@ body {
     margin: 20px;
 }
 
+#codigo-qr {
+    gap: 15rem;
+}
+
 @media (max-width: 768px) {
     .home-page {
         flex-direction: column !important;
