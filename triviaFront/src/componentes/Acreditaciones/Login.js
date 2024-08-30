@@ -66,13 +66,16 @@ const Login = () => {
             margin-top: 1rem;
           }
         `,
-        onPrintDialogClose: () => navigate('/loginHome')
+        onPrintDialogClose: () => {
+          setTimeout(() => {
+            navigate('/loginHome', { replace: true }); // Navegar y reemplazar la entrada en el historial
+            window.location.reload(); // Forzar recarga de la página
+          }, 300); // Retrasar un poco para asegurar que la navegación haya tenido lugar
+        }
       });
-      setTimeout(() => {
-        window.location.reload(); // Forzar un refresh de la página
-      }, 1000); // Retrasar el reload para asegurarse de que la redirección tenga lugar
     }
   };
+  
 
   const handleNavigateHome = () => {
     navigate('/loginHome');
