@@ -22,20 +22,16 @@ router.get('/', async (req, res) => {
 // Endpoint para agregar un nuevo usuario que retira equipo
 // router/equipos/checkout.js
 router.post('/', async (req, res) => {
-    const { name, email, checkedOutAt } = req.body;
-
     try {
-        const existingUser = await CheckedOutUser.findOne({ email });
-        if (existingUser) {
-            return res.status(400).json({ message: 'Este usuario ya ha retirado un equipo.' });
-        }
+        const { name, email, code, checkedOutAt } = req.body;
 
-        const newUser = new CheckedOutUser({ name, email, checkedOutAt });
-        await newUser.save();
+        // Crear un nuevo usuario en la colección de CheckedOutUser
+        const newCheckedOutUser = new CheckedOutUser({ name, email, code, checkedOutAt });
 
-        res.status(201).json({ message: 'Usuario registrado exitosamente.', user: newUser });
+        await newCheckedOutUser.save();
+        res.status(201).json(newCheckedOutUser);
     } catch (error) {
-        res.status(500).json({ message: 'Error al registrar al usuario.', error });
+        res.status(500).json({ message: 'Error al registrar el usuario.', error });
     }
 });
 

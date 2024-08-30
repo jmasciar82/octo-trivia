@@ -13,22 +13,23 @@ import { Button } from 'react-bootstrap';
 const QRScanner = () => {
   const [user, setUser] = useState(null);
   const [isVideoHidden, setIsVideoHidden] = useState(false);
-
   const videoRef = useRef(null);
   const credentialRef = useRef(null);
   const codeReaderRef = useRef(null);
   const navigate = useNavigate();
-
-  const handleNavigateHome = () => {
-    stopScanner();
-    navigate('/loginHome');
-  };
+  const timeoutRef = useRef(null); // Usar useRef para almacenar el timeoutId
 
   const stopScanner = useCallback(() => {
     if (codeReaderRef.current) {
       codeReaderRef.current.reset();
     }
   }, []);
+
+  const handleNavigateHome = useCallback(() => {
+    stopScanner();
+    navigate('/loginHome');
+    window.location.reload(); // Forzar un refresh de la página
+  }, [navigate, stopScanner]);
 
   const handleScanSuccess = useCallback(async (decodedText) => {
     const backendURL = process.env.NODE_ENV === 'production' ? process.env.REACT_APP_PROD_BACKEND_URL : 'http://localhost:5000';
@@ -38,6 +39,9 @@ const QRScanner = () => {
       setIsVideoHidden(true);  // Ocultar video
       toast.success('Usuario encontrado');
       stopScanner();
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current); // Cancelar el temporizador
+      }
     } catch (err) {
       console.error('Error al obtener el usuario:', err);
       if (err.response && err.response.status === 400) {
@@ -69,10 +73,18 @@ const QRScanner = () => {
 
   useEffect(() => {
     startScanner();
+
+    timeoutRef.current = setTimeout(() => {
+      handleNavigateHome();
+    }, 60000); // 60 segundos
+
     return () => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current); // Limpiar el temporizador en la limpieza del efecto
+      }
       stopScanner();
     };
-  }, [startScanner, stopScanner]);
+  }, [startScanner, stopScanner, handleNavigateHome]);
 
   const handlePrint = () => {
     if (user) {
@@ -109,6 +121,7 @@ const QRScanner = () => {
         `,
         onPrintDialogClose: () => {
           navigate('/loginHome'); // Redirigir después de imprimir
+          window.location.reload(); // Forzar un refresh de la página
         }
       });
     }
@@ -119,12 +132,9 @@ const QRScanner = () => {
       <div className="scanner-container">
         <div className='btn-reinicio-contenedor'>
           <h1>Escáner de QR</h1>
-          
-
           <div className={`video-container ${isVideoHidden ? 'hidden' : ''}`}>
             <video ref={videoRef} style={{ width: "70%" }}></video>
           </div>
-          
         </div>
         <div>
           {user && (
@@ -138,7 +148,6 @@ const QRScanner = () => {
             </div>
           )}
         </div>
-        
       </div>
       <Button onClick={handleNavigateHome} className="restart-button">Volver</Button>
       <ToastContainer />

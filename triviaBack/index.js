@@ -71,7 +71,8 @@ const authAdminRoutes = require('./router/admin/authAdmin.js');
 const fileRoutes = require('./router/file/fileRoutes.js');
 
 const checkout = require('./router/equipos/checkout.js')
-const returnCheck = require('./router/equipos/return.js')
+const checkoutReturn = require('./router/equipos/return.js');
+
 
 
 
@@ -87,7 +88,9 @@ app.use('/admin', preguntaRoutes);
 app.use('/admin', salaRoutes);
 app.use('/usersAcreditaciones', usersAcreditaciones);
 app.use('/checkout', checkout);
-app.use('/return', returnCheck);
+app.use('/checkoutReturn', checkoutReturn);
+
+
 
 
 // Rutas

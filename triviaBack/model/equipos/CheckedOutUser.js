@@ -1,4 +1,3 @@
-// models/CheckedOutUser.js
 const mongoose = require('mongoose');
 
 const CheckedOutUserSchema = new mongoose.Schema({
@@ -10,6 +9,10 @@ const CheckedOutUserSchema = new mongoose.Schema({
         type: String,
         required: true,
         unique: true,
+    },
+    code: {
+        type: String,
+        required: true,
     },
     checkedOutAt: {
         type: Date,
