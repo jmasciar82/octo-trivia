@@ -6,7 +6,7 @@ import './UsersAcreditaciones.css';
 const UsersAcreditaciones = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
-  const [tipo, setTipo] = useState(1);
+  const [tipo, setTipo] = useState(''); // Estado inicial como cadena vacía
   const [user, setUser] = useState(null);
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -48,6 +48,20 @@ const UsersAcreditaciones = () => {
     u.email.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
+  // Lista de opciones de "tipo"
+  const tipoOptions = [
+    'Química Montpellier',
+    'Nutricia',
+    'Bioprofarma-Bagó',
+    'Synthon Bagó',
+    'Sinergium Biotech',
+    'Biogénesis-Bagó',
+    'Intercom',
+    'Novofarma',
+    'Disprofarma',
+    'Laboratorios Bagó Brasil'
+  ];
+
   return (
     <div className="login-container-wrapper">
       <div className="login-container">
@@ -74,10 +88,11 @@ const UsersAcreditaciones = () => {
             <select
               className="form-control mb-3"
               value={tipo}
-              onChange={(e) => setTipo(parseInt(e.target.value))}
+              onChange={(e) => setTipo(e.target.value)} // Cambia el valor de tipo
             >
-              {[...Array(10).keys()].map(num => (
-                <option key={num + 1} value={num + 1}>{num + 1}</option>
+              <option value="" disabled>Seleccionar Empresa</option>
+              {tipoOptions.map((tipo, index) => (
+                <option key={index} value={tipo}>{tipo}</option>
               ))}
             </select>
             <button id='btn-register-user' type="submit" className="btn btn-primary btn-block">Registrar</button>

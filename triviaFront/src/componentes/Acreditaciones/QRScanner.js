@@ -121,11 +121,15 @@ const QRScanner = () => {
         `,
         onPrintDialogClose: () => {
           navigate('/loginHome'); // Redirigir después de imprimir
-          window.location.reload(); // Forzar un refresh de la página
         }
       });
+  
+      setTimeout(() => {
+        window.location.reload(); // Forzar un refresh de la página
+      }, 1000); // Retrasar el reload para asegurarse de que la redirección tenga lugar
     }
   };
+  
 
   return (
     <div className="scanner-container-wrapper">

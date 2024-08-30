@@ -48,7 +48,18 @@ const HomePage = () => {
                         <Card.Text>
                             Presione para ingresar
                         </Card.Text>
-                        <Button variant="primary">Enter</Button>
+
+                    </Card.Body>
+                </Card>
+            </Link>
+            <Link to='/receptoresHome' className="card-link">
+                <Card className="clickable-card">
+                    <Card.Body>
+                        <Card.Title>Receptores</Card.Title>
+                        <Card.Text>
+                            Presione para ingresar
+                        </Card.Text>
+
                     </Card.Body>
                 </Card>
             </Link>

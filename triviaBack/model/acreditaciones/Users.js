@@ -5,8 +5,8 @@ const userSchema = new mongoose.Schema({
     email: { type: String, required: true },
     code: { type: String, required: true },
     qrCode: { type: String, required: true },
-    tipo: { type: Number, required: true, min: 1, max: 10 },
-    codeUsed: { type: Boolean, default: false }  // Asegurando que tipo sea un número entre 1 y 10
+    tipo: {  type: String, required: true },  // Asegurando que tipo sea una cadena de texto
+    codeUsed: { type: Boolean, default: false }
 });
 
 module.exports = mongoose.models.User || mongoose.model('User', userSchema);

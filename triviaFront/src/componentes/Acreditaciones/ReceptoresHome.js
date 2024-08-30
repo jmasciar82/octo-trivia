@@ -4,28 +4,28 @@ import { Link } from 'react-router-dom';
 import './loginHome.css'
 
 
-const HomePage = () => {
+const ReceptoresHome = () => {
     return (
         <div className="home-page" id='codigo-qr'>
 
-            <Link to='/login' className="card-link">
+            <Link to='/equipment-checkout' className="card-link">
                 <Card className="clickable-card">
                     <Card.Body>
-                        <Card.Title>Ingresar<hr></hr>Código</Card.Title>
+                        <Card.Title>Retiro<hr></hr>Receptor</Card.Title>
                         <Card.Text>
-                            Presione para ingresar
+                            Presione retirar un receptor
                         </Card.Text>
                         
                     </Card.Body>
                 </Card>
             </Link>
 
-            <Link to='/qrscanner' className="card-link">
+            <Link to='/return' className="card-link">
                 <Card className="clickable-card">
                     <Card.Body>
-                        <Card.Title>Ingresar<hr></hr>QR</Card.Title>
+                        <Card.Title>Entrega<hr></hr>Receptor</Card.Title>
                         <Card.Text>
-                            Presione para ingresar
+                            Presione devolver un receptor
                         </Card.Text>
                         
                     </Card.Body>
@@ -37,4 +37,4 @@ const HomePage = () => {
     );
 };
 
-export default HomePage;
+export default ReceptoresHome;

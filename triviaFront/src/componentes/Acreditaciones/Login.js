@@ -54,7 +54,7 @@ const Login = () => {
             margin-bottom: 1rem;
           }
           .credential-title {
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.5rem;  
           }
           .credential-card p {
             color: #343a40;
@@ -68,6 +68,9 @@ const Login = () => {
         `,
         onPrintDialogClose: () => navigate('/loginHome')
       });
+      setTimeout(() => {
+        window.location.reload(); // Forzar un refresh de la página
+      }, 1000); // Retrasar el reload para asegurarse de que la redirección tenga lugar
     }
   };
 
@@ -78,7 +81,7 @@ const Login = () => {
   return (
     <div className="scanner-container-wrapper">
       <div className="scanner-container">
-        <form onSubmit={handleSubmit}>
+        <form className='btn-codigo' onSubmit={handleSubmit}>
           <input
             type="text"
             className="form-control mb-3"
@@ -87,8 +90,7 @@ const Login = () => {
             onChange={(e) => setCode(e.target.value)}
             required
           />
-
-          <Button type="submit" className="btn btn-primary btn-block">Ingresar</Button>
+          <button type="submit" className="btn btn-primary">Enviar</button>
         </form>
 
         {user && (

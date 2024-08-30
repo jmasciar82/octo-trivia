@@ -23,6 +23,7 @@ import SalaList from './componentes/Crud/votacion/SalaList';
 import UsersAcreditaciones from './componentes/Acreditaciones/UsersAcreditaciones';
 import Login from './componentes/Acreditaciones/Login';
 import LoginHome from './componentes/Acreditaciones/LoginHome';
+import ReceptoresHome from './componentes/Acreditaciones/ReceptoresHome';
 import { NavBarPreguntas } from './componentes/COMUN/NavBarPreguntas';
 import { RutaNoValida } from './componentes/RutaNoValida';
 import QRScanner from './componentes/Acreditaciones/QRScanner';
@@ -101,6 +102,7 @@ function App() {
               <Route path="/filterFile" element={<FilterFile titulo="FilterFile" />} />
 
               <Route path="/loginHome" element={<LoginHome titulo="LoginHome" />} />
+              <Route path="/receptoresHome" element={<ReceptoresHome titulo="ReceptoresHome" />} />
               <Route path="/login" element={<Login titulo="Login" />} />
               <Route path="/qrscanner" element={<QRScanner titulo="QRScanner" />} />
               <Route path="/equipment-checkout" element={<EquipmentCheckout titulo="EquipmentCheckout" />} /> 

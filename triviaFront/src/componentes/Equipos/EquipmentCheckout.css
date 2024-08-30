@@ -1,0 +1,82 @@
+.checkout-container-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    
+   
+}
+
+.checkout-container {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    
+    margin-top: 10%;
+    text-align: center;
+}
+
+.checkout-container h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #343a40;
+}
+
+.video-container.hidden {
+    display: none;
+}
+
+.video-container video {
+    border: 2px solid #343a40;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.checked-out-list {
+    margin-top: 20px;
+    text-align: left;
+}
+
+.checked-out-list h2 {
+    font-size: 20px;
+    margin-bottom: 15px;
+    color: #343a40;
+}
+
+.list-group-item {
+    display: flex;
+    flex-direction: row;
+    padding: 15px;
+    margin-bottom: 10px;
+    border: 1px solid #dee2e6;
+    border-radius: 5px;
+    background-color: #ffffff;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.05);
+}
+
+.list-group-item p {
+    margin: 5px 0;
+    font-size: 16px;
+    color: #495057;
+}
+
+.list-group-item strong {
+    color: #212529;
+}
+
+button {
+    margin-bottom: 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0056b3;
+}

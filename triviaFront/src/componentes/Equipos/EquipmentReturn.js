@@ -5,6 +5,7 @@ import { BrowserQRCodeReader } from '@zxing/library';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { ToastContainer, toast } from 'react-toastify';
 import { Button } from 'react-bootstrap';
+import './EquipmentCheckout.css';
 
 const EquipmentReturn = () => {
     const [checkedOutUsers, setCheckedOutUsers] = useState([]);
@@ -64,7 +65,7 @@ const EquipmentReturn = () => {
 
             timerRef.current = setTimeout(() => {
                 stopScanner();
-                navigate('/loginHome');
+                navigate('/ReceptoresHome');
                 window.location.reload(); // Forzar un refresh de la página
             }, 60000); // 60 segundos
 
@@ -99,17 +100,17 @@ const EquipmentReturn = () => {
     const handleNavigateHome = useCallback(() => {
         setIsScanning(false);
         stopScanner();
-        navigate('/loginHome');
+        navigate('/ReceptoresHome');
         window.location.reload(); // Forzar un refresh de la página
     }, [navigate, stopScanner]);
 
     return (
-        <div className="checkin-container-wrapper">
-            <div className="checkin-container">
+        <div className="checkout-container-wrapper">
+            <div className="checkout-container">
                 <h1>Equipos Entregados</h1>
                 <Button onClick={handleNavigateHome}>Reiniciar</Button>
                 <div className={`video-container ${isVideoHidden ? 'hidden' : ''}`}>
-                    <video ref={videoRef} style={{ width: "30%" }}></video>
+                    <video ref={videoRef} style={{ width: "50%" }}></video>
                 </div>
                 <div className="checked-out-list">
                     <h2>Lista de Equipos Entregados</h2>

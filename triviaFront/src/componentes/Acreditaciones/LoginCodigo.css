@@ -20,6 +20,17 @@
     width: 100%;
 }
 
+.btn-codigo {
+    display: flex;
+    flex-direction: row; /* Mantiene los elementos en fila */
+    gap: 20px; /* Espacio entre el input y el botón */
+    align-items: center; /* Centra los elementos verticalmente dentro de la fila */
+    
+   
+}
+
+
+
 .boton-login {
     display: flex;
     justify-content: center;

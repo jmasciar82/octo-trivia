@@ -72,7 +72,7 @@ const EquipmentCheckout = () => {
 
             timerRef.current = setTimeout(() => {
                 stopScanner();
-                navigate('/loginHome');
+                navigate('/ReceptoresHome');
                 window.location.reload(); // Forzar un refresh de la página
             }, 60000); // 60 segundos
 
@@ -107,17 +107,17 @@ const EquipmentCheckout = () => {
     const handleNavigateHome = useCallback(() => {
         setIsScanning(false);
         stopScanner();
-        navigate('/loginHome');
+        navigate('/ReceptoresHome');
         window.location.reload(); // Forzar un refresh de la página
     }, [navigate, stopScanner]);
 
     return (
         <div className="checkout-container-wrapper">
             <div className="checkout-container">
-                <h1>Registro de Equipos</h1>
+                <h1>Sistema de entrega de Receptores</h1>
                 <Button onClick={handleNavigateHome}>Reiniciar</Button>
                 <div className={`video-container ${isVideoHidden ? 'hidden' : ''}`}>
-                    <video ref={videoRef} style={{ width: "30%" }}></video>
+                    <video ref={videoRef} style={{ width: "50%" }}></video>
                 </div>
                 <div className="checked-out-list">
                     <h2>Usuarios con Equipos Registrados</h2>
