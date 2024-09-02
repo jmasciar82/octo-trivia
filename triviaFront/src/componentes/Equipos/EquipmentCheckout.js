@@ -28,17 +28,24 @@ const EquipmentCheckout = () => {
         try {
             // Obtener el usuario basado en el 'code'
             const { data: user } = await axios.get(`${backendURL}/usersAcreditaciones/${decodedText}`);
-            const checkedOutUser = { name: user.name, email: user.email, code: decodedText, checkedOutAt: new Date() };
             
+            // Actualizar el registro correspondiente
+            const checkedOutUser = { name: user.name, email: user.email, code: decodedText, checkedOutAt: new Date() };
+    
             // Enviar el usuario al backend para registrar el equipo
             await axios.post(`${backendURL}/checkout`, checkedOutUser);
+    
+            // Enviar al usuario a la lista de receptores
+            await axios.post(`${backendURL}/checkout/ListaReceptores`, checkedOutUser);
+    
             
+    
             setCheckedOutUsers((prev) => [...prev, checkedOutUser]);
             toast.success('Usuario agregado a la lista de equipos.');
-            
+    
             setIsVideoHidden(true);  // Ocultar video después de escanear exitosamente
             setIsScanning(false);   // Detener el escáner después de escanear exitosamente
-            
+    
             if (timerRef.current) {
                 clearTimeout(timerRef.current); // Cancelar el temporizador
             }
@@ -92,7 +99,9 @@ const EquipmentCheckout = () => {
                 const backendURL = process.env.NODE_ENV === 'production' ? process.env.REACT_APP_PROD_BACKEND_URL : 'http://localhost:5000';
                 try {
                     const response = await axios.get(`${backendURL}/checkout`);
-                    setCheckedOutUsers(response.data);
+                    // Ordenar los usuarios por fecha de retiro (más reciente primero)
+                    const sortedUsers = response.data.sort((a, b) => new Date(b.checkedOutAt) - new Date(a.checkedOutAt));
+                    setCheckedOutUsers(sortedUsers);
                 } catch (err) {
                     console.error('Error al obtener la lista de usuarios:', err);
                     toast.error('Error al obtener la lista de usuarios.');
@@ -100,9 +109,10 @@ const EquipmentCheckout = () => {
                 setLoading(false);
             }
         };
-
+    
         fetchCheckedOutUsers();
     }, [loading]);
+    
 
     const handleNavigateHome = useCallback(() => {
         setIsScanning(false);
@@ -132,7 +142,7 @@ const EquipmentCheckout = () => {
                     </ul>
                 </div>
             </div>
-            <ToastContainer />
+            
         </div>
     );
 };

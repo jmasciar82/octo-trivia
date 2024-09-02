@@ -37,6 +37,8 @@ import LogoutButton from './componentes/COMUN/LogoutButton';
 import FileManager from './componentes/Manager/FileManager';
 import FileUpload from './componentes/Manager/FileUpload';
 import FilterFile from './componentes/Manager/FilterFile';
+import ListaReceptores from './componentes/Equipos/ListaReceptores';
+
 
 
 function App() {
@@ -107,6 +109,8 @@ function App() {
               <Route path="/qrscanner" element={<QRScanner titulo="QRScanner" />} />
               <Route path="/equipment-checkout" element={<EquipmentCheckout titulo="EquipmentCheckout" />} /> 
               <Route path="/return" element={<EquipmentReturn />} />
+              <Route path="/lista-receptores" element={<ListaReceptores />} />
+             
               
               <Route path='*' element={<RutaNoValida />} />
             </Routes>

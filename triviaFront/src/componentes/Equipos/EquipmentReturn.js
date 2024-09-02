@@ -24,20 +24,24 @@ const EquipmentReturn = () => {
 
     const handleScanSuccess = useCallback(async (decodedText) => {
         const backendURL = process.env.NODE_ENV === 'production' ? process.env.REACT_APP_PROD_BACKEND_URL : 'http://localhost:5000';
-    
+
         try {
-            // Enviar una solicitud para eliminar el registro correspondiente
+            // Actualizar el registro correspondiente
+            await axios.put(`${backendURL}/checkoutReturn/${decodedText}`, { check: true });
+
+            // Luego de actualizar, eliminar el registro correspondiente
             await axios.delete(`${backendURL}/checkoutReturn/${decodedText}`);
+            
             setCheckedOutUsers((prev) => prev.filter(user => user.code !== decodedText));
-            toast.success('Registro eliminado exitosamente.');
+            toast.success('Registro actualizado y eliminado exitosamente.');
             setIsVideoHidden(true);  // Ocultar video después de escanear exitosamente
             setIsScanning(false);   // Detener el escáner después de escanear exitosamente
             if (timerRef.current) {
                 clearTimeout(timerRef.current); // Cancelar el temporizador
             }
         } catch (err) {
-            console.error('Error al eliminar el registro:', err);
-            toast.error('Error al eliminar el registro.');
+            console.error('Error al actualizar o eliminar el registro:', err);
+            toast.error('Error al actualizar o eliminar el registro.');
         }
     }, []); // No incluir stopScanner en las dependencias
 

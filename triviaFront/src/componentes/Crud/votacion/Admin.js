@@ -51,13 +51,15 @@ const AdminPage = () => {
                 <Card.Body>
                     <Card.Title>Registro de Acreditaciones </Card.Title>
                     <Card.Text>
-                        Presione Enter para ingresar
+                        
                     </Card.Text>
                     <Link to='users/acreditaciones'>
                         <Button variant="primary">Enter</Button>
                     </Link>
                 </Card.Body>
             </Card>
+
+            
 
 
         </div>
