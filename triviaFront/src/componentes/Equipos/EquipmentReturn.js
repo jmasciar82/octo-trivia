@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { BrowserQRCodeReader } from '@zxing/library';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { ToastContainer, toast } from 'react-toastify';
+import {  toast } from 'react-toastify';
 import { Button } from 'react-bootstrap';
 import './EquipmentCheckout.css';
 
@@ -129,7 +129,7 @@ const EquipmentReturn = () => {
                     </ul>
                 </div>
             </div>
-            <ToastContainer />
+            
         </div>
     );
 };
