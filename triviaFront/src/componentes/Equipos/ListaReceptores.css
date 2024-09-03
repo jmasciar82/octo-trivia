@@ -1,7 +1,7 @@
 /* Asegura que el contenedor raíz ocupe toda la altura de la ventana */
 html, body, #root {
     height: auto;
-    margin: 0;
+    
 }
 
 /* Contenedor principal centrado */
