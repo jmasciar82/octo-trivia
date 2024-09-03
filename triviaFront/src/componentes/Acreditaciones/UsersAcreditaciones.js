@@ -50,7 +50,7 @@ const UsersAcreditaciones = () => {
         <p><strong>Nombre:</strong> ${user.name}</p>
         <p><strong>Email:</strong> ${user.email}</p>
         <p><strong>Código:</strong> ${user.code}</p>
-        <p><strong>Tipo:</strong> ${user.tipo}</p>
+        <p><strong>Empresa:</strong> ${user.tipo}</p>
         <img src="${user.qrCode}" alt="Código QR" class="img-fluid qr-code" />
       </div>
     `;
@@ -143,7 +143,7 @@ const UsersAcreditaciones = () => {
               <p><strong>Nombre:</strong> {user.name}</p>
               <p><strong>Email:</strong> {user.email}</p>
               <p><strong>Código:</strong> {user.code}</p>
-              <p><strong>Tipo:</strong> {user.tipo}</p>
+              <p><strong>Empresa:</strong> {user.tipo}</p>
               <img src={user.qrCode} alt="Código QR" className="img-fluid qr-code" />
             </div>
             <button onClick={() => handlePrint(user)} className="btn btn-success mt-3">Imprimir Credencial</button>
@@ -167,7 +167,7 @@ const UsersAcreditaciones = () => {
                 <p className='item-name'><strong>Nombre:</strong> {u.name}</p>
                 <p><strong>Email:</strong> {u.email}</p>
                 <p><strong>Código:</strong> {u.code}</p>
-                <p><strong>Tipo:</strong> {u.tipo}</p>
+                <p><strong>Empresa:</strong> {u.tipo}</p>
                 <img src={u.qrCode} alt="Código QR" className="img-fluid qr-code" />
                 <button onClick={() => handlePrint(u)} className="btn btn-success mt-3">Imprimir</button>
               </li>
