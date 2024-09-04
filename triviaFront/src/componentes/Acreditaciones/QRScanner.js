@@ -123,6 +123,10 @@ const QRScanner = () => {
         }
       });
 
+      setTimeout(() => {
+        navigate('/loginHome');
+    }, 3000); // Ajusta el tiempo según sea necesario
+
 
     }
   };

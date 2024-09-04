@@ -72,6 +72,10 @@ const Login = () => {
           navigate('/loginHome'); // Redirigir después de imprimir
         }
       });
+
+      setTimeout(() => {
+        navigate('/loginHome');
+    }, 3000); // Ajusta el tiempo según sea necesario
     }
   };
 
