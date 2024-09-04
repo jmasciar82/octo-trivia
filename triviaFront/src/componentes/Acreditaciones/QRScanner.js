@@ -75,7 +75,7 @@ const QRScanner = () => {
 
     timeoutRef.current = setTimeout(() => {
       handleNavigateHome();
-    }, 60000); // 60 segundos
+    }, 30000); // 60 segundos
 
     return () => {
       if (timeoutRef.current) {

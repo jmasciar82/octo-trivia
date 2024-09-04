@@ -75,7 +75,7 @@ const Login = () => {
 
       setTimeout(() => {
         navigate('/loginHome');
-    }, 3000); // Ajusta el tiempo según sea necesario
+      }, 3000); // Ajusta el tiempo según sea necesario
     }
   };
 
@@ -84,9 +84,9 @@ const Login = () => {
   };
 
   return (
-    <div className="scanner-container-wrapper">
-      <div className="scanner-container">
-        {isFormVisible && ( // Mostrar el formulario solo si isFormVisible es true
+    <div className="scanner-container-wrapper-login">
+      <div className="scanner-container-login">
+        {isFormVisible && ( // Mostrar el formulario y los botones solo si isFormVisible es true
           <form className='btn-codigo' onSubmit={handleSubmit}>
             <input
               type="text"
@@ -96,7 +96,10 @@ const Login = () => {
               onChange={(e) => setCode(e.target.value)}
               required
             />
-            <Button type="submit" className="btn btn-primary">Enviar</Button>
+            <div className="button-container mt-3">
+              <Button type="submit" className="btn-primary me-2">Enviar</Button>
+              <Button onClick={handleNavigateHome} className="btn-primary">Volver</Button>
+            </div>
           </form>
         )}
 
@@ -107,15 +110,9 @@ const Login = () => {
             </div>
             <div className="boton-login">
               <Button style={{ backgroundColor: 'green', color: 'white' }} onClick={handlePrint}>
-                Imprimir Credencial
+                Imprimir
               </Button>
             </div>
-          </div>
-        )}
-
-        {isFormVisible && ( // Mostrar el botón "Volver" solo si isFormVisible es true
-          <div className="boton-login">
-            <Button onClick={handleNavigateHome}>Volver</Button>
           </div>
         )}
       </div>

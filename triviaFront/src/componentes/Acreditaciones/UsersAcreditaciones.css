@@ -18,6 +18,10 @@
     border-radius: 10px;
   }
   
+  #login-container-1 input, #login-container-1 select {
+    width: 50% !important;
+  }
+  
   .boton-out {
     display: inline-flex;
     

@@ -1,4 +1,4 @@
-.scanner-container-wrapper {
+.scanner-container-wrapper-login {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -63,6 +63,8 @@ input:focus:invalid {
     outline: none;
     box-shadow: 0 0 5px 1px red;
 }
+
+  
 
 /* Media Query para dispositivos móviles */
 @media (max-width: 768px) {
