@@ -23,7 +23,7 @@ const LoginForm = ({ onLogin }) => {
             onLogin(res.data.token);
             setError('');
             notifySuccess('Login successful!');
-            navigate('/admin');  // Redirige a la ruta /admin
+            navigate('/admin/users/acreditaciones');  // Redirige a la ruta /admin
         } catch (err) {
             let errorMessage = 'An error occurred. Please try again.';
             if (err.response) {

@@ -52,7 +52,7 @@ const HomePage = () => {
                     </Card.Body>
                 </Card>
             </Link>
-            <Link to='/receptoresHome' className="card-link">
+            {/* <Link to='/receptoresHome' className="card-link">
                 <Card className="clickable-card">
                     <Card.Body>
                         <Card.Title>Receptores</Card.Title>
@@ -62,7 +62,7 @@ const HomePage = () => {
 
                     </Card.Body>
                 </Card>
-            </Link>
+            </Link> */}
 
 
         </div>

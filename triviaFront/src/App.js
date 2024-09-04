@@ -6,6 +6,7 @@ import './App.css';
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 
+import Autoservicio from './componentes/Acreditaciones/AcreditacionAutoServicio';
 import HomePage from './HomePage';
 import { Index } from './componentes/COMUN/Index';
 import { Index as Sala1 } from './componentes/Sala1/pregunta1';
@@ -32,7 +33,6 @@ import EquipmentReturn from './componentes/Equipos/EquipmentReturn';
 
 import LoginAdminForm from './componentes/Admin/LoginForm';
 import RegisterAdminForm from './componentes/Admin/RegisterForm';
-import LogoutButton from './componentes/COMUN/LogoutButton';
 
 import FileManager from './componentes/Manager/FileManager';
 import FileUpload from './componentes/Manager/FileUpload';
@@ -49,10 +49,7 @@ function App() {
     setToken(newToken);
   };
 
-  const handleLogout = () => {
-    localStorage.removeItem('token');
-    setToken(null);
-  };
+
 
   useEffect(() => {
     const storedToken = localStorage.getItem('token');
@@ -64,20 +61,17 @@ function App() {
   return (
     <div className='container1' >
       <div className="container-fluid mt-3">
-      
+
         <div className="logo-container">
-          
+
         </div>
-        
+
         <div>
 
           <BrowserRouter>
-            <div>
-              {token && (
-                <LogoutButton onLogout={handleLogout} />
-              )}
-            </div>
+
             <Routes>
+              <Route path="/" element={<Navigate to="/registro" />} />
               <Route path="/loginAdmin" element={<LoginAdminForm onLogin={handleLogin} titulo="LoginAdminForm" />} />
               <Route path="/registerAdmin" element={<ProtectedRoute token={token} element={<RegisterAdminForm onRegister={handleLogin} />} />} />
 
@@ -85,7 +79,8 @@ function App() {
               <Route path='/index/sala/:salaId/pregunta/:preguntaId' element={<Sala1 titulo="Sala1" />} />
               <Route path="/index/sala/:salaId" element={<NavBarPreguntas />} />
               <Route path='/resultado/sala/:salaId/pregunta/:preguntaId' element={<R11 titulo="R11" />} />
-              <Route path='/' element={<HomePage />} />
+              <Route path='/registro' element={<Autoservicio />} />
+              <Route path='/sistema' element={<HomePage />} />
               <Route path='/index' element={<Index titulo="Index" />} />
               <Route path='/indexNube' element={<IndexNube titulo="IndexNube" />} />
               <Route path='/palabraEnviada' element={<PadreComponente titulo="PadreComponente" />} />
@@ -107,11 +102,11 @@ function App() {
               <Route path="/receptoresHome" element={<ReceptoresHome titulo="ReceptoresHome" />} />
               <Route path="/login" element={<Login titulo="Login" />} />
               <Route path="/qrscanner" element={<QRScanner titulo="QRScanner" />} />
-              <Route path="/equipment-checkout" element={<EquipmentCheckout titulo="EquipmentCheckout" />} /> 
+              <Route path="/equipment-checkout" element={<EquipmentCheckout titulo="EquipmentCheckout" />} />
               <Route path="/return" element={<EquipmentReturn />} />
               <Route path="/lista-receptores" element={<ListaReceptores />} />
-             
-              
+
+
               <Route path='*' element={<RutaNoValida />} />
             </Routes>
           </BrowserRouter>

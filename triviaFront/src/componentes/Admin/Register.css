@@ -5,7 +5,7 @@
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background-color: #f8f9fa;
+    
 }
 
 .card-register {
@@ -30,4 +30,13 @@
 
 .card-register .text-danger {
     margin-top: 1rem;
+}
+
+.restart-button-container{
+    display: block;
+}
+.button-container {
+    display: flex;
+    justify-content: space-between; /* Separa los botones */
+    margin-top: 20px; /* Espacio arriba de los botones */
 }

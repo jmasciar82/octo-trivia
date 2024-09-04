@@ -1,5 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import './LogoutButton.css';
+
 
 const LogoutButton = ({ onLogout }) => {
     const navigate = useNavigate();
@@ -7,7 +9,7 @@ const LogoutButton = ({ onLogout }) => {
 
     const handleLogout = () => {
         onLogout();
-        navigate('/');  // Redirige a la ruta /
+        navigate('/sistema');  // Redirige a la ruta /
     };
     const handleRegister = () => {
         
@@ -15,7 +17,7 @@ const LogoutButton = ({ onLogout }) => {
     };
 
     return (
-        <div>
+        <div className='botonout-original'>
             <button onClick={handleLogout} className="btn btn-danger">
                 Logout
             </button>

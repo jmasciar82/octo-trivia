@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
+import { Button } from 'react-bootstrap';
+import React, { useState, useCallback } from 'react';
+
 import 'react-toastify/dist/ReactToastify.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Register.css'; // Asegúrate de importar el CSS
@@ -23,13 +25,17 @@ const RegisterForm = ({ onRegister }) => {
             onRegister(res.data.token);
             setError('');
             notifySuccess('Registration successful!');
-            navigate('/'); 
+            navigate('/sistema');
         } catch (err) {
             const errorMessage = err.response?.data?.error || 'Error registering';
             setError(errorMessage);
             notifyError(errorMessage);
         }
     };
+
+    const handleNavigateHome = useCallback(() => {
+        navigate('/admin/users/acreditaciones');
+    }, [navigate]);
 
     return (
         <div className="body-register">
@@ -54,7 +60,12 @@ const RegisterForm = ({ onRegister }) => {
                             onChange={(e) => setPassword(e.target.value)}
                         />
                     </div>
-                    <button type="submit" className="btn btn-primary">Register</button>
+                    <div className="button-container">
+                        <Button onClick={handleNavigateHome} className="btn btn-primary register-button">Volver</Button>
+                        <Button type="submit" className="btn btn-primary register-button">Register</Button>
+
+                    </div>
+
                     {error && <p className="text-danger">{error}</p>}
                 </form>
                 <ToastContainer />

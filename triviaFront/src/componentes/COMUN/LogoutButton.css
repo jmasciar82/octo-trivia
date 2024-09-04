@@ -1,0 +1,36 @@
+/* LogoutButton.css */
+
+.logout-button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px; /* Espacio entre los botones */
+    margin-top: 20px;
+}
+
+.logout-button-container button {
+    font-size: 16px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.logout-button-container .btn-danger {
+    background-color: #dc3545;
+    color: white;
+}
+
+.logout-button-container .btn-danger:hover {
+    background-color: #c82333;
+}
+
+.logout-button-container .btn-register {
+    background-color: #007bff;
+    color: white;
+}
+
+.logout-button-container .btn-register:hover {
+    background-color: #0056b3;
+}

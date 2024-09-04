@@ -13,6 +13,7 @@ const Login = () => {
   const navigate = useNavigate();
   const [code, setCode] = useState('');
   const [user, setUser] = useState(null);
+  const [isFormVisible, setIsFormVisible] = useState(true); // Estado para controlar la visibilidad del formulario
   const credentialRef = useRef();
 
   const handleSubmit = async (e) => {
@@ -23,6 +24,7 @@ const Login = () => {
       const response = await axios.get(`${backendURL}/usersAcreditaciones/${code}`);
       setUser(response.data);
       toast.success('Usuario encontrado');
+      setIsFormVisible(false); // Ocultar el formulario al encontrar un usuario
     } catch (error) {
       console.error('Error al obtener el usuario:', error);
       if (error.response && error.response.status === 400) {
@@ -72,7 +74,6 @@ const Login = () => {
       });
     }
   };
-  
 
   const handleNavigateHome = () => {
     navigate('/loginHome');
@@ -81,17 +82,19 @@ const Login = () => {
   return (
     <div className="scanner-container-wrapper">
       <div className="scanner-container">
-        <form className='btn-codigo' onSubmit={handleSubmit}>
-          <input
-            type="text"
-            className="form-control mb-3"
-            placeholder="Ingrese el código"
-            value={code}
-            onChange={(e) => setCode(e.target.value)}
-            required
-          />
-          <button type="submit" className="btn btn-primary">Enviar</button>
-        </form>
+        {isFormVisible && ( // Mostrar el formulario solo si isFormVisible es true
+          <form className='btn-codigo' onSubmit={handleSubmit}>
+            <input
+              type="text"
+              className="form-control mb-3"
+              placeholder="Ingrese el código"
+              value={code}
+              onChange={(e) => setCode(e.target.value)}
+              required
+            />
+            <Button type="submit" className="btn btn-primary">Enviar</Button>
+          </form>
+        )}
 
         {user && (
           <div className="credential-container">
@@ -105,9 +108,12 @@ const Login = () => {
             </div>
           </div>
         )}
-      </div>
-      <div className="boton-login">
-        <Button onClick={handleNavigateHome}>Volver</Button>
+
+        {isFormVisible && ( // Mostrar el botón "Volver" solo si isFormVisible es true
+          <div className="boton-login">
+            <Button onClick={handleNavigateHome}>Volver</Button>
+          </div>
+        )}
       </div>
       <ToastContainer />
     </div>

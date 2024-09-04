@@ -1,155 +1,146 @@
-/* Estilos generales */
+/* UsersAcreditaciones.css */
 .login-container-wrapper {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    min-height: 100vh;
-    padding: 10px;
-    overflow: hidden;
-    
-}
-
-.login-container {
-    display: flex;
-    flex-direction: column;
-     /* Ajusta el ancho máximo del contenedor */
-     margin-top: 10%;
     width: 100%;
+    
     padding: 20px;
-    background-color: #ffffff;
+    
+
+  }
+  
+  #login-container-1{
+    width: 90vw;
+    margin-top: 10%;
+    background-color: #f8f9fa;
+    padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
+  }
+  
+  .boton-out {
+    display: inline-flex;
+    
+    justify-content: flex-start;
+    width: 100%;
+  }
+  .boton-out .btn {
+    margin: 20px;
+    padding: 5px;
+  }
+  
 
-/* Títulos */
-.login-container h1, .login-container h2 {
-    margin-bottom: 20px;
+h1, h2 {
+    text-align: center;
     color: #343a40;
+    margin-bottom: 20px;
 }
 
-/* Estilos para inputs */
 .form-control {
-    margin-bottom: 15px;
-    max-width: 100%; /* Asegura que no exceda el contenedor */
-    width: 50% !important; /* Ajusta el ancho del input */
-}
-
-input[required], select[required] {
-    border: 2px solid #ccc;
-    border-radius: 5px; /* Añade bordes redondeados */
+    font-size: 16px;
     padding: 10px;
 }
 
-input:invalid, select:invalid {
-    border: 2px solid red;
-}
-
-input:valid, select:valid {
-    border: 2px solid green;
-}
-
-.form-control select {
-    width: 90%; /* Asegura que el select también tenga el ancho ajustado */
-}
-
-/* Botón de submit */
 #btn-register-user {
-    width: 30%; /* Ajusta el ancho del botón */
-    padding: 10px;
+    font-size: 18px;
+    padding: 10px 20px;
+    width: 100%;
+    background-color: #007bff;
+    border: none;
     border-radius: 5px;
+    color: #fff;
+    transition: background-color 0.3s ease;
 }
 
-/* Estilos de carga */
+#btn-register-user:hover {
+    background-color: #0056b3;
+}
+
 .loading {
     text-align: center;
-    margin: 20px 0;
+    font-size: 18px;
     color: #007bff;
 }
 
-/* Estilos de credencial */
 .user-credential {
+    margin-top: 20px;
     text-align: center;
-    margin-top: 20px;
 }
 
-.user-credential img {
-    width: 150px;
-    height: 150px; /* Asegura que la altura sea igual al ancho para mantener el aspecto cuadrado */
-}
-
-/* Estilos para la lista de usuarios */
-.user-list-container {
-    margin-top: 20px;
-}
-
-.list-group {
+.credential-card {
+    border: 1px solid #dee2e6;
+    padding: 20px;
+    border-radius: 10px;
     background-color: #ffffff;
-    padding: 0;
+    max-width: 300px;
+    margin: 0 auto;
+    text-align: left;
 }
 
-.list-group-item {
+.credential-card p {
+    margin-bottom: 10px;
+    color: #495057;
+}
+
+.qr-code-admin {
+    max-width: 7%;
+    height: auto;
+    margin-top: 15px;
+}
+
+.user-list-container {
+    margin-top: 30px;
+    width: 1=90vw;
+    padding: 20px;
+}
+
+.list-group-item-admin {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: flex-start;
+    background-color: #ffffff;
     margin-bottom: 10px;
-    padding: 15px;
-    border: 1px solid #ddd;
     border-radius: 5px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.list-group-item p {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    margin-bottom: 10px;
+.list-group-item-admin p {
     
-}
-.item-name {
-    text-transform: capitalize;
-}
-
-/* Imagen QR en la lista */
-.qr-code {
-    width: 150px; /* Ancho fijo */
-    height: 150px; /* Altura fija para mantener el aspecto cuadrado */
+    
+    color: #343a40;
 }
 
-/* Estilos para móviles */
-@media (max-width: 768px) {
+.btn-success {
+    font-size: 14px;
+    padding: 10px 15px;
+    background-color: #28a745;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    transition: background-color 0.3s ease;
+}
+
+.btn-success:hover {
+    background-color: #218838;
+}
+
+@media (max-width: 576px) {
     .login-container {
+        padding: 20px;
+    }
+
+    #btn-register-user, .btn-success {
+        font-size: 16px;
+        padding: 10px 15px;
+    }
+
+    .credential-card {
         padding: 15px;
     }
 
-    .qr-code {
-        width: 120px; /* Ajusta el ancho del QR en móviles */
-        height: 120px; /* Ajusta la altura del QR en móviles */
-    }
-
-    .btn {
-        font-size: 1rem;
-        padding: 8px;
-    }
-
-    .user-list-container {
-        margin-top: 20px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        background-color: #ffffff;
-    }
-
     .list-group-item {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    h1, h2 {
-        font-size: 1.5rem;
-        text-align: center;
-    }
-
-    p {
-        font-size: 1rem;
+        padding: 15px;
     }
 }

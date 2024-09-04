@@ -28,7 +28,7 @@ const QRScanner = () => {
   const handleNavigateHome = useCallback(() => {
     stopScanner();
     navigate('/loginHome');
-     // Forzar un refresh de la página
+    // Forzar un refresh de la página
   }, [navigate, stopScanner]);
 
   const handleScanSuccess = useCallback(async (decodedText) => {
@@ -54,8 +54,7 @@ const QRScanner = () => {
   }, [stopScanner]);
 
   const handleScanFailure = useCallback((err) => {
-    console.warn(`Error scanning QR code: ${err}`);
-    toast.error('Error scanning QR code: ' + err.message);
+
   }, []);
 
   const startScanner = useCallback(() => {
@@ -123,11 +122,11 @@ const QRScanner = () => {
           navigate('/loginHome'); // Redirigir después de imprimir
         }
       });
-  
-      
+
+
     }
   };
-  
+
 
   return (
     <div className="scanner-container-wrapper">
@@ -145,13 +144,14 @@ const QRScanner = () => {
                 <CredentialCard user={user} />
               </div>
               <div className='boton-login'>
-                <Button onClick={handlePrint}>Imprimir Credencial</Button>
+                <Button onClick={handleNavigateHome} className="restart-button">Volver</Button>
+                <Button onClick={handlePrint}>Imprimir</Button>
               </div>
             </div>
           )}
         </div>
+
       </div>
-      <Button onClick={handleNavigateHome} className="restart-button">Volver</Button>
       <ToastContainer />
     </div>
   );

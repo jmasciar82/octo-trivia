@@ -3,6 +3,8 @@ import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './UsersAcreditaciones.css';
 import printJS from 'print-js';
+import LogoutButton from '../COMUN/LogoutButton';
+
 
 const UsersAcreditaciones = () => {
   const [name, setName] = useState('');
@@ -12,6 +14,9 @@ const UsersAcreditaciones = () => {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
+
+  const [token, setToken] = useState(localStorage.getItem('token') || null);
+
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -24,8 +29,21 @@ const UsersAcreditaciones = () => {
       }
     };
 
+    // Fetch users initially
     fetchUsers();
+
+    // Set up interval to fetch users every 5 seconds
+    const intervalId = setInterval(fetchUsers, 5000);
+
+    // Clear interval on component unmount
+    return () => clearInterval(intervalId);
   }, []);
+
+
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    setToken(null);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -100,82 +118,102 @@ const UsersAcreditaciones = () => {
   ];
 
   return (
-    <div className="login-container-wrapper">
-      <div className="login-container">
-        <h1>Registro de Usuario</h1>
 
-        {loading ? (
-          <div className="loading">Generando usuario, por favor espere...</div>
-        ) : (
-          <form onSubmit={handleSubmit}>
-            <input
-              type="text"
-              className="form-control mb-3"
-              placeholder="Nombre"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-            />
-            <input
-              type="email"
-              className="form-control mb-3"
-              placeholder="Email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-            <select
-              className="form-control mb-3"
-              value={tipo}
-              onChange={(e) => setTipo(e.target.value)}
-            >
-              <option value="" disabled>Seleccionar Empresa</option>
-              {tipoOptions.map((tipo, index) => (
-                <option key={index} value={tipo}>{tipo}</option>
-              ))}
-            </select>
-            <button id='btn-register-user' type="submit" className="btn btn-primary btn-block">Registrar</button>
-          </form>
-        )}
+    <div>
 
-        {user && (
-          <div className="user-credential mt-4">
-            <h2>Credencial de Usuario</h2>
-            <div className="credential-card">
-              <p><strong>Nombre:</strong> {user.name}</p>
-              <p><strong>Email:</strong> {user.email}</p>
-              <p><strong>Código:</strong> {user.code}</p>
-              <p><strong>Empresa:</strong> {user.tipo}</p>
-              <img src={user.qrCode} alt="Código QR" className="img-fluid qr-code" />
-            </div>
-            <button onClick={() => handlePrint(user)} className="btn btn-success mt-3">Imprimir Credencial</button>
+      <div className="d-flex justify-content-between align-items-center">
+        {token && (
+          <div className="boton-out">
+            <LogoutButton onLogout={handleLogout} />
           </div>
         )}
+      </div>
+      <div className="login-container-wrapper">
 
-        <h2 className="mt-5">Usuarios Registrados</h2>
 
-        <input
-          type="text"
-          className="form-control mb-3"
-          placeholder="Buscar por nombre o email"
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-        />
+        <div id="login-container-1">
+          <h1>Registro de Usuario</h1>
 
-        <div className="user-list-container">
-          <ul className="list-group">
-            {filteredUsers.map((u) => (
-              <li key={u._id} className="list-group-item">
-                <p className='item-name'><strong>Nombre:</strong> {u.name}</p>
-                <p><strong>Email:</strong> {u.email}</p>
-                <p><strong>Código:</strong> {u.code}</p>
-                <p><strong>Empresa:</strong> {u.tipo}</p>
-                <img src={u.qrCode} alt="Código QR" className="img-fluid qr-code" />
-                <button onClick={() => handlePrint(u)} className="btn btn-success mt-3">Imprimir</button>
-              </li>
-            ))}
-          </ul>
+          {loading ? (
+            <div className="loading">Generando usuario, por favor espere...</div>
+          ) : (
+            <form onSubmit={handleSubmit}>
+              <input
+                type="text"
+                className="form-control mb-3"
+                placeholder="Nombre"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                required
+
+              />
+              <input
+                type="email"
+                className="form-control mb-3"
+                placeholder="Email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+
+              />
+              <select
+                className="form-control mb-3"
+                value={tipo}
+                onChange={(e) => setTipo(e.target.value)}
+                required
+
+              >
+                <option value="" disabled>Seleccionar Empresa</option>
+                {tipoOptions.map((tipo, index) => (
+                  <option key={index} value={tipo}>{tipo}</option>
+                ))}
+              </select>
+              <button id='btn-register-user' type="submit" className="btn btn-primary btn-block">Registrar</button>
+            </form>
+          )}
+
+          {user && (
+            <div className="user-credential mt-4">
+              <h2>Credencial de Usuario</h2>
+              <div className="credential-card">
+                <p><strong>Nombre:</strong> {user.name}</p>
+                <p><strong>Email:</strong> {user.email}</p>
+                <p><strong>Código:</strong> {user.code}</p>
+                <p><strong>Empresa:</strong> {user.tipo}</p>
+                <img src={user.qrCode} alt="Código QR" className="img-fluid qr-code" />
+              </div>
+              <button onClick={() => handlePrint(user)} className="btn btn-success mt-3">Imprimir Credencial</button>
+            </div>
+          )}
+
+          <h2 className="mt-5">Usuarios Registrados</h2>
+
+          <input
+            type="text"
+            className="form-control mb-3"
+            placeholder="Buscar por nombre o email"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+
+          <div className="user-list-container">
+            <ul className="list-group">
+              {filteredUsers.map((u) => (
+                <li key={u._id} className="list-group-item-admin">
+                  <p className='item-name'><strong>Nombre:</strong> {u.name}</p>
+                  <p><strong>Email:</strong> {u.email}</p>
+                  <p><strong>Código:</strong> {u.code}</p>
+                  <p><strong>Empresa:</strong> {u.tipo}</p>
+                  <img src={u.qrCode} alt="Código QR" className="img-fluid qr-code-admin" />
+                  <button onClick={() => handlePrint(u)} className="btn-success mt-3">Imprimir</button>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </div>
     </div>
+
   );
 };
 

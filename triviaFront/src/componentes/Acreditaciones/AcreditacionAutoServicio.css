@@ -1,0 +1,86 @@
+/* AcreditacionAutoServicio.css */
+
+.login-container-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: transparent;
+    padding: 20px;
+  }
+  
+  .login-container {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+  }
+  
+  h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 24px;
+    color: #343a40;
+  }
+  
+  .form-control {
+    font-size: 16px;
+    padding: 10px;
+  }
+  
+  button.btn {
+    font-size: 18px;
+    padding: 10px 20px;
+    display: block;
+    margin: 0 auto; /* Esto centrará el botón */
+  }
+  
+  
+  .loading {
+    text-align: center;
+    font-size: 18px;
+    color: #007bff;
+  }
+  
+  .user-credential {
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  .credential-card {
+    border: 1px solid #dee2e6;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #fff;
+    max-width: 300px;
+    margin: 0 auto;
+  }
+  
+  .credential-card p {
+    margin-bottom: 10px;
+    color: #495057;
+  }
+  
+  .qr-code {
+    max-width: 100%;
+    height: auto;
+    margin-top: 15px;
+  }
+  
+  @media (max-width: 576px) {
+    .login-container {
+      padding: 20px;
+    }
+  
+    h1 {
+      font-size: 20px;
+    }
+  
+    button.btn {
+      font-size: 16px;
+      padding: 10px 15px;
+    }
+  }
+  
