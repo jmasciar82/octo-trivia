@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom'; // Importa useNavigate correctamente
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './AcreditacionAutoServicio.css';
 
@@ -11,6 +12,7 @@ const AcreditacionesAutoServicio = () => {
   const [users, setUsers] = useState([]); // Añadido para almacenar los usuarios
   const [errorMessage, setErrorMessage] = useState(''); // Añadido para manejar mensajes de error
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate(); // Usar useNavigate para la navegación
 
   // Cargar usuarios existentes desde el backend cuando el componente se monta
   useEffect(() => {
@@ -55,6 +57,10 @@ const AcreditacionesAutoServicio = () => {
     }
   };
 
+  const handleNavigateHome = useCallback(() => {
+    navigate('/');
+  }, [navigate]);
+
   const tipoOptions = [
     'Química Montpellier',
     'Nutricia',
@@ -87,6 +93,8 @@ const AcreditacionesAutoServicio = () => {
               <p><strong>Empresa:</strong> {user.tipo}</p>
               <img src={user.qrCode} alt="Código QR" className="img-fluid qr-code" />
             </div>
+            <button onClick={handleNavigateHome} id="restart-button-login" className="btn btn-primary mt-4">Volver</button>
+
           </div>
         ) : (
           <form onSubmit={handleSubmit}>
@@ -96,7 +104,7 @@ const AcreditacionesAutoServicio = () => {
               placeholder="Nombre"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              required  
+              required
             />
             <input
               type="email"
@@ -104,13 +112,13 @@ const AcreditacionesAutoServicio = () => {
               placeholder="Email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              required  
+              required
             />
             <select
               className="form-control mb-3"
               value={tipo}
               onChange={(e) => setTipo(e.target.value)}
-              required  
+              required
             >
               <option value="" disabled>Seleccionar Empresa</option>
               {tipoOptions.map((tipo, index) => (

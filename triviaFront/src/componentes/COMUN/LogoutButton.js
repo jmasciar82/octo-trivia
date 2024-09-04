@@ -19,11 +19,11 @@ const LogoutButton = ({ onLogout }) => {
     return (
         <div className='botonout-original'>
             <button onClick={handleLogout} className="btn btn-danger">
-                Logout
+                X
             </button>
-            <button onClick={handleRegister} className="btn btn-danger">
+            {/* <button onClick={handleRegister} className="btn btn-danger">
                 Register
-            </button>
+            </button> */}
         </div>
 
     );

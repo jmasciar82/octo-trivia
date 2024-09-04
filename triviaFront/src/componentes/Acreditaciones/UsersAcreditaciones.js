@@ -127,15 +127,16 @@ const UsersAcreditaciones = () => {
 
   return (
     <div>
-      <div className="d-flex justify-content-between align-items-center">
+      
+      <div className="login-container-wrapper">
+        <div id="login-container-1">
+        <div className="d-flex justify-content-between align-items-center">
         {token && (
           <div className="boton-out">
             <LogoutButton onLogout={handleLogout} />
           </div>
         )}
-      </div>
-      <div className="login-container-wrapper">
-        <div id="login-container-1">
+      </div> 
           <h1>Registro de Usuario</h1>
 
           {loading ? (
@@ -177,6 +178,7 @@ const UsersAcreditaciones = () => {
               <button id='btn-register-user' type="submit" className="btn btn-primary btn-block">Registrar</button>
             </form>
           )}
+          
 
           {user && (
             <div className="user-credential mt-4">
@@ -192,6 +194,8 @@ const UsersAcreditaciones = () => {
             </div>
           )}
 
+          
+
           <h2 className="mt-5">Usuarios Registrados</h2>
 
           <input
@@ -201,6 +205,7 @@ const UsersAcreditaciones = () => {
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
+          
 
           <div className="user-list-container">
             <ul className="list-group">

@@ -12,7 +12,7 @@
   
   #login-container-1{
     width: 90vw;
-    margin-top: 10%;
+    margin-top: 12%;
     background-color: #f8f9fa;
     padding: 20px;
     border-radius: 10px;
@@ -25,7 +25,7 @@
   .boton-out {
     display: inline-flex;
     
-    justify-content: flex-start;
+    justify-content: flex-end;
     width: 100%;
   }
   .boton-out .btn {
