@@ -117,5 +117,16 @@ const obtenerTodos = async (req, res) => {
     const users = await User.find({});
     res.json(users);
 };
-
-module.exports = { obtener, crear, obtenerTodos };
+const checkEmailExists = async (req, res) => {
+    const { email } = req.query;
+    try {
+      const user = await User.findOne({ email });
+      if (user) {
+        return res.status(200).json({ exists: true });
+      }
+      res.status(200).json({ exists: false });
+    } catch (error) {
+      res.status(500).json({ message: 'Error al verificar el correo' });
+    }
+  };
+module.exports = { obtener, crear, obtenerTodos, checkEmailExists};

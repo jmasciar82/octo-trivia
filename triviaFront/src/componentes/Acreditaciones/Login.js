@@ -109,9 +109,11 @@ const Login = () => {
               <CredentialCard user={user} />
             </div>
             <div className="boton-login">
-              <Button style={{ backgroundColor: 'green', color: 'white' }} onClick={handlePrint}>
+              <Button  onClick={handlePrint}>
                 Imprimir
               </Button>
+              <Button onClick={handleNavigateHome} className="btn-primary">Volver</Button>
+
             </div>
           </div>
         )}

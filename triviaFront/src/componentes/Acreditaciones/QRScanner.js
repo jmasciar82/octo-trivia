@@ -148,13 +148,13 @@ const QRScanner = () => {
                 <CredentialCard user={user} />
               </div>
               <div className='boton-login'>
-                <Button onClick={handleNavigateHome} className="restart-button">Volver</Button>
+                
                 <Button onClick={handlePrint}>Imprimir</Button>
               </div>
             </div>
           )}
         </div>
-
+        <Button onClick={handleNavigateHome} id="restart-button-login">Volver</Button>
       </div>
       <ToastContainer />
     </div>

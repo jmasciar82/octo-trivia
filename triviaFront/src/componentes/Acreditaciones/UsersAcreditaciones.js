@@ -5,7 +5,6 @@ import './UsersAcreditaciones.css';
 import printJS from 'print-js';
 import LogoutButton from '../COMUN/LogoutButton';
 
-
 const UsersAcreditaciones = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -13,10 +12,10 @@ const UsersAcreditaciones = () => {
   const [user, setUser] = useState(null);
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
   const [searchTerm, setSearchTerm] = useState('');
 
   const [token, setToken] = useState(localStorage.getItem('token') || null);
-
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -39,7 +38,6 @@ const UsersAcreditaciones = () => {
     return () => clearInterval(intervalId);
   }, []);
 
-
   const handleLogout = () => {
     localStorage.removeItem('token');
     setToken(null);
@@ -50,11 +48,21 @@ const UsersAcreditaciones = () => {
     const backendURL = process.env.NODE_ENV === 'production' ? process.env.REACT_APP_PROD_BACKEND_URL : 'http://localhost:5000';
 
     setLoading(true);
+    setErrorMessage(''); // Clear previous error message
 
     try {
+      // Verifica si el email ya está registrado
+      const existingUser = users.find((user) => user.email === email);
+      if (existingUser) {
+        setErrorMessage('El correo electrónico ya está registrado.');
+        setLoading(false);
+        return;
+      }
+
+      // Registra el nuevo usuario
       const response = await axios.post(`${backendURL}/usersAcreditaciones`, { name, email, tipo });
       setUser(response.data);
-      setUsers(prevUsers => [...prevUsers, response.data]);
+      setUsers((prevUsers) => [...prevUsers, response.data]);
     } catch (error) {
       console.error('Error al registrar el usuario:', error);
     } finally {
@@ -118,9 +126,7 @@ const UsersAcreditaciones = () => {
   ];
 
   return (
-
     <div>
-
       <div className="d-flex justify-content-between align-items-center">
         {token && (
           <div className="boton-out">
@@ -129,8 +135,6 @@ const UsersAcreditaciones = () => {
         )}
       </div>
       <div className="login-container-wrapper">
-
-
         <div id="login-container-1">
           <h1>Registro de Usuario</h1>
 
@@ -138,6 +142,11 @@ const UsersAcreditaciones = () => {
             <div className="loading">Generando usuario, por favor espere...</div>
           ) : (
             <form onSubmit={handleSubmit}>
+              {errorMessage && (
+                <div className="alert alert-danger" role="alert">
+                  {errorMessage}
+                </div>
+              )}
               <input
                 type="text"
                 className="form-control mb-3"
@@ -145,7 +154,6 @@ const UsersAcreditaciones = () => {
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 required
-
               />
               <input
                 type="email"
@@ -154,14 +162,12 @@ const UsersAcreditaciones = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
-
               />
               <select
                 className="form-control mb-3"
                 value={tipo}
                 onChange={(e) => setTipo(e.target.value)}
                 required
-
               >
                 <option value="" disabled>Seleccionar Empresa</option>
                 {tipoOptions.map((tipo, index) => (
@@ -213,7 +219,6 @@ const UsersAcreditaciones = () => {
         </div>
       </div>
     </div>
-
   );
 };
 

@@ -1,86 +1,96 @@
 /* AcreditacionAutoServicio.css */
 
-.login-container-wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    background-color: transparent;
-    padding: 20px;
+/* Estilos para el contenedor principal */
+.login-container-wrapper-auto {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: transparent;
+}
+
+.login-container-auto {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 500px;
+}
+
+/* Título */
+h1 {
+  text-align: center;
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  color: #343a40;
+}
+
+/* Input fields */
+.form-control {
+  border: 1px solid #ced4da;
+  border-radius: 5px;
+  padding: 0.75rem;
+  font-size: 1rem;
+}
+
+.form-control:focus {
+  border-color: #80bdff;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+/* Botón */
+#btn-register-user {
+  background-color: #007bff;
+  border-color: #007bff;
+  font-size: 1.1rem;
+  padding: 0.75rem;
+  width: 100%;
+  border-radius: 5px;
+}
+
+#btn-register-user:hover {
+  background-color: #0056b3;
+}
+
+/* Estilo para los mensajes de error */
+.error-message {
+  color: #dc3545;
+  margin-top: -10px;
+  margin-bottom: 15px;
+  font-size: 0.9rem;
+}
+
+/* Estilo de carga */
+.loading {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #007bff;
+}
+
+/* Estilos para la tarjeta de credenciales del usuario registrado */
+.credential-card {
+  background-color: #e9ecef;
+  border-radius: 10px;
+  padding: 1rem;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.credential-card p {
+  margin: 0.5rem 0;
+}
+
+.qr-code {
+  width: 150px;
+  height: auto;
+  margin-top: 1rem;
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+  .login-container-auto {
+    padding: 1.5rem;
+    width: 90%;
   }
-  
-  .login-container {
-    background-color: #fff;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 400px;
-  }
-  
-  h1 {
-    text-align: center;
-    margin-bottom: 30px;
-    font-size: 24px;
-    color: #343a40;
-  }
-  
-  .form-control {
-    font-size: 16px;
-    padding: 10px;
-  }
-  
-  button.btn {
-    font-size: 18px;
-    padding: 10px 20px;
-    display: block;
-    margin: 0 auto; /* Esto centrará el botón */
-  }
-  
-  
-  .loading {
-    text-align: center;
-    font-size: 18px;
-    color: #007bff;
-  }
-  
-  .user-credential {
-    margin-top: 20px;
-    text-align: center;
-  }
-  
-  .credential-card {
-    border: 1px solid #dee2e6;
-    padding: 20px;
-    border-radius: 10px;
-    background-color: #fff;
-    max-width: 300px;
-    margin: 0 auto;
-  }
-  
-  .credential-card p {
-    margin-bottom: 10px;
-    color: #495057;
-  }
-  
-  .qr-code {
-    max-width: 100%;
-    height: auto;
-    margin-top: 15px;
-  }
-  
-  @media (max-width: 576px) {
-    .login-container {
-      padding: 20px;
-    }
-  
-    h1 {
-      font-size: 20px;
-    }
-  
-    button.btn {
-      font-size: 16px;
-      padding: 10px 15px;
-    }
-  }
-  
+}
