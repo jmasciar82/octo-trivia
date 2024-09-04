@@ -28,7 +28,7 @@ const QRScanner = () => {
   const handleNavigateHome = useCallback(() => {
     stopScanner();
     navigate('/loginHome');
-    window.location.reload(); // Forzar un refresh de la página
+     // Forzar un refresh de la página
   }, [navigate, stopScanner]);
 
   const handleScanSuccess = useCallback(async (decodedText) => {
@@ -124,9 +124,7 @@ const QRScanner = () => {
         }
       });
   
-      setTimeout(() => {
-        window.location.reload(); // Forzar un refresh de la página
-      }, 1000); // Retrasar el reload para asegurarse de que la redirección tenga lugar
+      
     }
   };
   

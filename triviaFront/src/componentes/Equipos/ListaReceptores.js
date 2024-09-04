@@ -13,7 +13,7 @@ const ListaReceptores = () => {
             setLoading(true);
             const backendURL = process.env.NODE_ENV === 'production' ? process.env.REACT_APP_PROD_BACKEND_URL : 'http://localhost:5000';
             try {
-                const response = await axios.get(`${backendURL}/checkout/ListaReceptores`);
+                const response = await axios.get(`${backendURL}/checkout`);
                 setReceptores(response.data);
             } catch (err) {
                 console.error('Error al obtener la lista de receptores:', err);
@@ -38,8 +38,8 @@ const ListaReceptores = () => {
                             <p><strong>Nombre:</strong> {receptor.name}</p>
                             <p><strong>Email:</strong> {receptor.email}</p>
                             <p><strong>Código:</strong> {receptor.code}</p>
-                            <p><strong>Fecha de Retiro:</strong> {new Date(receptor.checkedOutAt).toLocaleString()}</p>
-                            <p><strong>Entregado:</strong> {receptor.check ? 'Sí' : 'No'}</p>
+                            
+                            
                         </li>
                     ))}
                 </ul>

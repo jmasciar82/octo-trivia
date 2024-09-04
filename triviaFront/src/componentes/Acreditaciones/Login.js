@@ -67,10 +67,7 @@ const Login = () => {
           }
         `,
         onPrintDialogClose: () => {
-          setTimeout(() => {
-            navigate('/loginHome', { replace: true }); // Navegar y reemplazar la entrada en el historial
-            window.location.reload(); // Forzar recarga de la página
-          }, 300); // Retrasar un poco para asegurar que la navegación haya tenido lugar
+          navigate('/loginHome'); // Redirigir después de imprimir
         }
       });
     }
