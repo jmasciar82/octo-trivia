@@ -93,4 +93,12 @@ h1 {
     padding: 1.5rem;
     width: 90%;
   }
+
+  .login-container-wrapper-auto {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50vh;
+    background-color: transparent;
+  }
 }

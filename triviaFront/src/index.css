@@ -89,6 +89,7 @@ body {
     .home-page {
         flex-direction: column !important;
         justify-content: center !important;
+        height: 50%;
         align-items: stretch;
         padding: 10px;
     }
@@ -97,6 +98,9 @@ body {
         width: 100%;
         max-width: 100%;
         margin: 10px 0;
-        /* min-width: fit-content; */
+        
+    }
+    #codigo-qr {
+        gap: 3rem;
     }
 }

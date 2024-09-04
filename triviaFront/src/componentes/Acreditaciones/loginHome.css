@@ -27,11 +27,15 @@
 
 
 @media (max-width: 768px) {
+    .container1 {
+        margin-top: 15%;
+    }
     #codigo-qr {
         flex-direction: column !important;
         justify-content: center !important;
         align-items: stretch;
         padding: 10px;
+        
     }
 
     #codigo-qr .card {

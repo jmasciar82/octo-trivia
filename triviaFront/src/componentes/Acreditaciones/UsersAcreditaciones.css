@@ -135,6 +135,21 @@ h1, h2 {
         padding: 20px;
     }
 
+    #login-container-1 input, #login-container-1 select {
+        width: 90% !important;
+      }
+    .list-group-item-admin {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .qr-code-admin {
+        max-width: 50%;
+        height: auto;
+        margin-top: 15px;
+    }
+
     #btn-register-user, .btn-success {
         font-size: 16px;
         padding: 10px 15px;

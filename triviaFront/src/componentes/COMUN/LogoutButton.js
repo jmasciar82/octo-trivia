@@ -5,16 +5,16 @@ import './LogoutButton.css';
 
 const LogoutButton = ({ onLogout }) => {
     const navigate = useNavigate();
-    const navigate2 = useNavigate();
+    
 
     const handleLogout = () => {
         onLogout();
         navigate('/sistema');  // Redirige a la ruta /
     };
-    const handleRegister = () => {
+    /* const handleRegister = () => {
         
         navigate2('/registerAdmin');  // Redirige a la ruta /
-    };
+    }; */
 
     return (
         <div className='botonout-original'>

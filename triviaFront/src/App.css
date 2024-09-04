@@ -5,18 +5,47 @@
   background-repeat: no-repeat;
   background-attachment: fixed;
   min-height: 100vh;
-  position: relative; /* Asegura que el contenedor #root sea el padre para la posición del logo */
+  position: relative; /* Para controlar el posicionamiento del logo */
+  padding-top: 100px; /* Deja espacio para el logo en pantallas pequeñas */
 }
 
-
-
-
 .brand-logo {
-  width: 150px; /* Ajusta el tamaño del logo según tus necesidades */
+  width: 150px; /* Ajuste inicial para pantallas más grandes */
   height: auto;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 10; /* Asegura que el logo esté sobre las cards */
 }
 
 button {
   width: auto !important;
 }
 
+/* Media Query para pantallas pequeñas (móviles) */
+@media (max-width: 768px) {
+  .brand-logo {
+    width: 120px; /* Reducir el tamaño del logo en móviles */
+    top: 10px; /* Ajustar la posición superior */
+    left: 10px; /* Ajustar la posición lateral */
+  }
+
+  #root {
+    padding-top: 120px; /* Deja más espacio para el logo en pantallas pequeñas */
+  }
+
+  .login-container-wrapper-auto {
+    margin-top: 20px; /* Ajustar el espaciado entre cards y el logo */
+  }
+
+  .credential-card {
+    width: 100%;
+    padding: 10px;
+    text-align: center; /* Centrar las cards en pantallas pequeñas */
+  }
+
+  .form-control {
+    font-size: 14px; /* Ajustar el tamaño de fuente para pantallas pequeñas */
+  }
+  
+}
