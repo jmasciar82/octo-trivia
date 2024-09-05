@@ -5,7 +5,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 90vh;
+  height: 70vh;
   background-color: transparent;
 }
 
@@ -15,7 +15,7 @@
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   width: 100%;
-  max-width: 500px;
+  max-width: 400px;
 }
 
 /* Título */
@@ -123,16 +123,25 @@ h1 {
 
 /* Estilos responsivos */
 @media (max-width: 768px) {
-  .login-container-auto {
-    padding: 1.5rem;
-    width: 90%;
-  }
+
+ 
 
   .login-container-wrapper-auto {
     display: flex;
     justify-content: center;
-    align-items: center;
-    height: 50vh;
+    align-items: flex-start;
+
+    
     background-color: transparent;
   }
+  
+  .login-container-auto {
+    padding: 1.5rem;
+    width: 90%;
+    margin-top: 0;
+    
+  }
+
+
+  
 }

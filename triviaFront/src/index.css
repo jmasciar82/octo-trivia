@@ -17,7 +17,7 @@ body {
     /* Centra las tarjetas horizontalmente */
     align-items: center;
     /* Centra las tarjetas verticalmente */
-    height: 100vh;
+    height: 70vh;
     /* Asegura que el contenedor ocupe toda la altura de la pantalla */
     padding: 10px 20px;
     background-color: transparent;

@@ -73,14 +73,14 @@
     const handlePrint = (user) => {
       const credentialHTML = `
         <div class="credential-card">
-          <p><strong>Nombre:</strong> ${user.name}</p>
+          <p class="item-name"><strong>Nombre:</strong> ${user.name}</p>
           <p><strong>Email:</strong> ${user.email}</p>
           <p><strong>Código:</strong> ${user.code}</p>
           <p><strong>Empresa:</strong> ${user.tipo}</p>
           <img src="${user.qrCode}" alt="Código QR" class="img-fluid qr-code" />
         </div>
       `;
-
+    
       printJS({
         printable: credentialHTML,
         type: 'raw-html',
@@ -88,11 +88,19 @@
           .credential-card {
             border: 1px solid black;
             padding: 20px;
-            width: 300px;
+            width: 200px;
             text-align: center;
             background-color: #fff;
             border-radius: 10px;
             margin: 0 auto;
+          }
+          .credential-logo {
+            width: 100px;
+            height: auto;
+            margin-bottom: 1rem;
+          }
+          .credential-title {
+            margin-bottom: 1.5rem;
           }
           .credential-card p {
             color: #343a40;
@@ -106,6 +114,7 @@
         `,
       });
     };
+    
 
     const filteredUsers = users.filter((u) =>
       u.name.toLowerCase().includes(searchTerm.toLowerCase()) ||

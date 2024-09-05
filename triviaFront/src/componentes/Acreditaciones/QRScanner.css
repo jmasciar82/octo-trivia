@@ -3,7 +3,7 @@
   flex-direction: column;
   justify-content: center; /* Centra horizontalmente */
   align-items: center;     /* Centra verticalmente */
-  min-height: 100vh;       /* Asegura que el contenedor ocupe toda la altura de la pantalla */
+  height: 70vh;       /* Asegura que el contenedor ocupe toda la altura de la pantalla */
 }
 
 
@@ -11,7 +11,7 @@
   display: flex;
   flex-direction: column !important;
   
-  max-width: 600px;
+  max-width: 500px;
   padding: 20px;
   background-color: #fff;
   border-radius: 10px;
