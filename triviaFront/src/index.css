@@ -31,7 +31,7 @@ body {
     position: absolute;
     top: 50px;
     /* Espacio desde la parte superior de la pantalla */
-    right: 50px;
+    left: 50px;
     /* Espacio desde la parte derecha de la pantalla */
     width: 250px;
     /* Ajusta el tamaño del logo */
@@ -93,6 +93,11 @@ body {
         align-items: stretch;
         padding: 10px;
     }
+    .logo-container {
+        width: 100px; /* Reducir el tamaño del logo en móviles */
+        top: 10px; /* Ajustar la posición superior */
+        left: 10px; /* Ajustar la posición lateral */
+      }
 
     .home-page .card {
         width: 100%;

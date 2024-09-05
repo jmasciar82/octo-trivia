@@ -25,7 +25,7 @@ button {
 /* Media Query para pantallas pequeñas (móviles) */
 @media (max-width: 768px) {
   .brand-logo {
-    width: 120px; /* Reducir el tamaño del logo en móviles */
+    width: 800px; /* Reducir el tamaño del logo en móviles */
     top: 10px; /* Ajustar la posición superior */
     left: 10px; /* Ajustar la posición lateral */
   }
