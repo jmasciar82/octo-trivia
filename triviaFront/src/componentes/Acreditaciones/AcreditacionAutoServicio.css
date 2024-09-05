@@ -5,7 +5,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: 90vh;
   background-color: transparent;
 }
 
@@ -32,11 +32,14 @@ h1 {
   border-radius: 5px;
   padding: 0.75rem;
   font-size: 1rem;
+  background-color: #fff;
+  color: #000;
+  box-shadow: 0 0 5px rgba(255, 255, 255, 0.8); /* Resplandor blanco suave */
 }
 
 .form-control:focus {
-  border-color: #80bdff;
-  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+  border-color: #00ffcc;
+  box-shadow: 0 0 5px #00ffcc, 0 0 10px #00ffcc, 0 0 15px #00ffcc; /* Efecto neón cuando el input está enfocado */
 }
 
 /* Botón */
@@ -54,18 +57,49 @@ h1 {
 }
 
 /* Estilo para los mensajes de error */
+/* Efecto de neón para el mensaje de error */
 .error-message {
   color: #dc3545;
   margin-top: -10px;
   margin-bottom: 15px;
   font-size: 0.9rem;
+  text-shadow: 0 0 5px rgba(220, 53, 69, 0.7); /* Efecto de neón rojo */
+  animation: flicker 1.5s infinite; /* Animación de parpadeo */
 }
 
-/* Estilo de carga */
+/* Efecto de neón y animación de parpadeo para loading */
 .loading {
   text-align: center;
   font-size: 1.2rem;
   color: #007bff;
+  text-shadow: 0 0 10px #007bff, 0 0 20px #007bff, 0 0 30px #007bff; /* Efecto neón azul */
+  animation: pulse 1.2s infinite ease-in-out; /* Animación de latido */
+}
+@keyframes flicker {
+  0%, 100% {
+    opacity: 1;
+    text-shadow: 0 0 5px rgba(220, 53, 69, 0.7), 0 0 10px rgba(220, 53, 69, 0.7);
+  }
+  50% {
+    opacity: 0.5;
+    text-shadow: none;
+  }
+}
+
+/* Animación de latido para el mensaje de carga */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    text-shadow: 0 0 10px #007bff, 0 0 20px #007bff;
+  }
+  50% {
+    transform: scale(1.05);
+    text-shadow: 0 0 20px #007bff, 0 0 40px #007bff;
+  }
+  100% {
+    transform: scale(1);
+    text-shadow: 0 0 10px #007bff, 0 0 20px #007bff;
+  }
 }
 
 /* Estilos para la tarjeta de credenciales del usuario registrado */
