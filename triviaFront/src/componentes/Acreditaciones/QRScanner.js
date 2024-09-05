@@ -133,7 +133,7 @@ const QRScanner = () => {
 
 
   return (
-    <div className="scanner-container-wrapper">
+    <div className="scanner-container-wrapper-qr">
       <div className="scanner-container">
         <div className='btn-reinicio-contenedor'>
           <h1>Escáner de QR</h1>

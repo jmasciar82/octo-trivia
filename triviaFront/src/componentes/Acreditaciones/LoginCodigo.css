@@ -68,8 +68,25 @@ input:focus:invalid {
 
 /* Media Query para dispositivos móviles */
 @media (max-width: 768px) {
+
+    .scanner-container-wrapper-login {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        min-height: 100vh;
+    }
     .scanner-container {
+        
         padding: 20px;
+    }
+
+    .btn-codigo {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        
     }
 
     .credential .credential-card {

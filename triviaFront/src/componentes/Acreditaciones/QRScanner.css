@@ -1,4 +1,4 @@
-.scanner-container-wrapper {
+.scanner-container-wrapper-qr {
   display: flex;
   flex-direction: column;
   justify-content: center; /* Centra horizontalmente */
@@ -90,10 +90,17 @@ video {
 
 /* Media Query para dispositivos móviles */
 @media (max-width: 768px) {
+
+  .scanner-container-wrapper-qr{
+    justify-content: start;
+    height: 100vh;
+  }
   .scanner-container {
     display: flex;
     flex-direction: column !important;
+    
     padding: 10px;
+    
   }
 
   .credential .credential-card {

@@ -1,40 +1,68 @@
-/* UsersAcreditaciones.css */
 .login-container-wrapper {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+    /* Centramos el contenedor verticalmente */
     width: 100%;
-    
+    min-height: 100vh;
+    /* Para que ocupe toda la altura de la pantalla */
     padding: 20px;
-    
+}
 
-  }
-  
-  #login-container-1{
-    width: 90vw;
-    margin-top: 12%;
+#login-container-users {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* Centramos el contenido del formulario horizontalmente */
+    width: 100%;
+    /* Ajusta el ancho al 50% del viewport */
     background-color: #f8f9fa;
+    margin-top: 10%;
     padding: 20px;
     border-radius: 10px;
-  }
-  
-  #login-container-1 input, #login-container-1 select {
-    width: 50% !important;
-  }
-  
-  .boton-out {
-    display: inline-flex;
-    
-    justify-content: flex-end;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    /* Añadimos sombra para mejor visibilidad */
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* Centramos los campos de entrada */
     width: 100%;
-  }
-  .boton-out .btn {
+    /* Asegura que los inputs ocupen todo el ancho disponible */
+}
+
+#login-container-users input {
+    width: 80%;
+    /* Ajusta los inputs a un 80% del contenedor */
+    margin-bottom: 15px;
+    /* Espacio entre los inputs */
+}
+
+#login-container-users select {
+    width: 20%;
+    /* Ajusta los inputs a un 80% del contenedor */
+    margin-bottom: 15px;
+    /* Espacio entre los inputs */
+}
+
+.boton-out {
+    display: inline-flex;
+    justify-content: flex-end; /* Cambiado a flex-start para alinear a la izquierda */
+    width: 100%;
+}
+
+.boton-out .btn {
     margin: 20px;
     padding: 5px;
-  }
-  
+}
 
-h1, h2 {
+
+
+h1,
+h2 {
     text-align: center;
     color: #343a40;
     margin-bottom: 20px;
@@ -111,8 +139,8 @@ h1, h2 {
 }
 
 .list-group-item-admin p {
-    
-    
+
+
     color: #343a40;
 }
 
@@ -135,22 +163,27 @@ h1, h2 {
         padding: 20px;
     }
 
-    #login-container-1 input, #login-container-1 select {
+    #login-container-users input,
+    #login-container-users select {
         width: 90% !important;
-      }
+    }
+    
+
     .list-group-item-admin {
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
     }
+
     .qr-code-admin {
         max-width: 50%;
         height: auto;
         margin-top: 15px;
     }
 
-    #btn-register-user, .btn-success {
+    #btn-register-user,
+    .btn-success {
         font-size: 16px;
         padding: 10px 15px;
     }
