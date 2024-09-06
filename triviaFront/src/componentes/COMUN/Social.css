@@ -1,0 +1,23 @@
+.social-links ul {
+    list-style-type: none; /* Elimina las viñetas */
+    padding: 0; /* Remueve el padding por defecto */
+  }
+  
+  .social-links ul li {
+    display: inline-block; /* Alinea los elementos en línea */
+    margin-left: 25px; /* Espaciado entre los iconos */
+  }
+  
+  .social-links ul li a {
+    text-decoration: none; /* Remueve la decoración (subrayado) de los enlaces */
+  }
+  
+  .social-links ul li img {
+    width: 30px; /* Ajusta el tamaño del icono según sea necesario */
+    height: auto;
+  }
+
+  #bago-link img {
+    width: 60px;
+  }
+  

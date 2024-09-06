@@ -27,6 +27,8 @@ h1 {
 }
 
 /* Input fields */
+
+
 .form-control {
   border: 1px solid #ced4da;
   border-radius: 5px;
@@ -41,6 +43,8 @@ h1 {
   border-color: #00ffcc;
   box-shadow: 0 0 5px #00ffcc, 0 0 10px #00ffcc, 0 0 15px #00ffcc; /* Efecto neón cuando el input está enfocado */
 }
+
+
 
 /* Botón */
 #btn-register-user {
@@ -59,6 +63,7 @@ h1 {
 /* Estilo para los mensajes de error */
 /* Efecto de neón para el mensaje de error */
 .error-message {
+  text-align: center;
   color: #dc3545;
   margin-top: -10px;
   margin-bottom: 15px;
@@ -121,6 +126,11 @@ h1 {
   margin-top: 1rem;
 }
 
+.social-auto {
+  margin-top: 20px;
+  text-align: center;
+}
+
 /* Estilos responsivos */
 @media (max-width: 768px) {
 
@@ -141,6 +151,7 @@ h1 {
     margin-top: 0;
     
   }
+  
 
 
   
