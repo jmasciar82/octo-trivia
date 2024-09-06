@@ -76,6 +76,10 @@ video {
   margin-bottom: 0.5rem;
 }
 
+#h1-qr{
+  color: black;
+}
+
 .qr-code {
   max-width: 100%;
   height: auto;

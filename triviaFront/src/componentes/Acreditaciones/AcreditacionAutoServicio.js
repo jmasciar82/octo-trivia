@@ -81,7 +81,7 @@ const AcreditacionesAutoServicio = () => {
   return (
     <div className="login-container-wrapper-auto">
       <div className="login-container-auto">
-        <h1>Registro</h1>
+        <h1 id='h1-registro'>Registro</h1>
 
         {loading ? (
           <div className="loading">Generando usuario, por favor espere...</div>

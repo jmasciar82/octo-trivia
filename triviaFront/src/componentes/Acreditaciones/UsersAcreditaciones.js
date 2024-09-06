@@ -77,6 +77,8 @@ const UsersAcreditaciones = () => {
   const handlePrint = (user) => {
     const credentialHTML = `
       <div class="credential-card">
+        <h2>BAGO 2024<hr></hr></h2>
+
         <p class="item-name"><strong>Nombre:</strong> ${user.name}</p>
         <p><strong>Email:</strong> ${user.email}</p>
         <p><strong>Código:</strong> ${user.code}</p>
@@ -84,7 +86,7 @@ const UsersAcreditaciones = () => {
         <img src="${user.qrCode}" alt="Código QR" class="img-fluid qr-code" />
       </div>
     `;
-  
+
     printJS({
       printable: credentialHTML,
       type: 'raw-html',
@@ -141,14 +143,14 @@ const UsersAcreditaciones = () => {
     <div>
       <div className="login-container-wrapper">
         <div id="login-container-users">
-        {token && (
-          <div className="boton-out">
-            <LogoutButton onLogout={handleLogout} />
+          {token && (
+            <div className="boton-out">
+              <LogoutButton onLogout={handleLogout} />
+            </div>
+          )}
+          <div className="d-flex justify-content-between align-items-center">
+
           </div>
-        )}
-        <div className="d-flex justify-content-between align-items-center">
-        
-      </div> 
           <h1>Registro de Usuario</h1>
 
           {loading ? (
@@ -203,7 +205,7 @@ const UsersAcreditaciones = () => {
               <button id='btn-register-user' type="submit" className="btn btn-primary btn-block">Registrar</button>
             </form>
           )}
-
+            
           {user && (
             <div className="user-credential mt-4">
               <h2>Credencial de Usuario</h2>
@@ -218,6 +220,8 @@ const UsersAcreditaciones = () => {
             </div>
           )}
 
+<hr></hr>
+
           <h2 className="mt-5">Usuarios Registrados</h2>
 
           <input
@@ -229,7 +233,7 @@ const UsersAcreditaciones = () => {
           />
 
           <div className="user-list-container">
-            <ul className="list-group">
+            <ul className="list-group-admin">
               {filteredUsers.map((u) => (
                 <li key={u._id} className="list-group-item-admin">
                   <p className='item-name'><strong>Nombre:</strong> {u.name}</p>

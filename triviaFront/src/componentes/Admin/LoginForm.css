@@ -55,6 +55,9 @@
     transform: scale(1.05);
     background-color: rgb(247, 250, 249);
 }
+#h1-login{
+    color: black;
+}
 
 /* Ajustes para dispositivos móviles */
 @media (max-width: 768px) {

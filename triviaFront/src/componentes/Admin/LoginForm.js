@@ -44,7 +44,7 @@ const LoginForm = ({ onLogin }) => {
     return (
         <div className="body-log  d-flex justify-content-center align-items-center  ">
             <div className="card p-4" style={{ width: '20rem' }}>
-                <h2 className="mb-4">Login</h2>
+                <h1 id='h1-login' className="mb-4">Login</h1>
                 <form onSubmit={handleSubmit}>
                     <div className="mb-3">
                         <label className="form-label">Username:</label>

@@ -136,7 +136,7 @@ const QRScanner = () => {
     <div className="scanner-container-wrapper-qr">
       <div className="scanner-container">
         <div className='btn-reinicio-contenedor'>
-          <h1>Escáner de QR</h1>
+          <h1 id='h1-qr'>Escáner de QR</h1>
           <div className={`video-container ${isVideoHidden ? 'hidden' : ''}`}>
             <video ref={videoRef} style={{ width: "70%" }}></video>
           </div>

@@ -30,11 +30,11 @@ body {
 
 .logo-container {
     position: absolute;
-    top: 50px;
+    top: 40px;
     /* Espacio desde la parte superior de la pantalla */
-    left: 50px;
+    left: 40px;
     /* Espacio desde la parte derecha de la pantalla */
-    width: 250px;
+    width: 200px;
     /* Ajusta el tamaño del logo */
     height: 150px;
     /* Ajusta el tamaño del logo */
