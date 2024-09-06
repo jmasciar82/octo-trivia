@@ -9,6 +9,7 @@ const AcreditacionesAutoServicio = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [tipo, setTipo] = useState('');
+  const [empresaOtro, setEmpresaOtro] = useState(''); // Estado para la empresa personalizada
   const [user, setUser] = useState(null);
   const [users, setUsers] = useState([]);
   const [errorMessage, setErrorMessage] = useState('');
@@ -41,6 +42,9 @@ const AcreditacionesAutoServicio = () => {
     setErrorMessage('');
 
     try {
+      // Usar el valor de empresaOtro si el tipo seleccionado es "Otro"
+      const finalTipo = tipo === 'Otro' ? empresaOtro : tipo;
+
       const existingUser = users.find((user) => user.email === email);
       if (existingUser) {
         setErrorMessage(
@@ -52,7 +56,7 @@ const AcreditacionesAutoServicio = () => {
         return;
       }
 
-      const response = await axios.post(`${backendURL}/usersAcreditaciones`, { name, email, tipo });
+      const response = await axios.post(`${backendURL}/usersAcreditaciones`, { name, email, tipo: finalTipo });
       setUser(response.data);
       setUsers((prevUsers) => [...prevUsers, response.data]);
     } catch (error) {
@@ -71,7 +75,7 @@ const AcreditacionesAutoServicio = () => {
   const tipoOptions = [
     'Química Montpellier', 'Nutricia', 'Bioprofarma-Bagó',
     'Synthon Bagó', 'Sinergium Biotech', 'Biogénesis-Bagó',
-    'Intercom', 'Novofarma', 'Disprofarma', 'Laboratorios Bagó Brasil'
+    'Intercom', 'Novofarma', 'Disprofarma', 'Otro'
   ];
 
   return (
@@ -109,6 +113,16 @@ const AcreditacionesAutoServicio = () => {
               ))}
             </select>
 
+            {tipo === 'Otro' && (
+              <input
+                type="text"
+                className="form-control mb-3"
+                placeholder="Nombre de la Empresa"
+                value={empresaOtro}
+                onChange={(e) => setEmpresaOtro(e.target.value)}
+              />
+            )}
+
             <input
               type="text"
               className="form-control mb-3"
@@ -138,11 +152,9 @@ const AcreditacionesAutoServicio = () => {
             </button>
 
           </form>
-
         )}
         <div className="social-auto"><Social /></div>
       </div>
-
     </div>
   );
 };
