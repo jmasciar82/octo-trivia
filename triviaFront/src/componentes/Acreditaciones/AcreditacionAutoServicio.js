@@ -49,7 +49,7 @@ const AcreditacionesAutoServicio = () => {
       if (existingUser) {
         setErrorMessage(
           <span>
-            El correo electrónico ya está registrado. <br /> Consultas a: <a href={`mailto:${mail}`}>{mail}</a>
+            El correo ya está registrado. <br /> Consultas:  <br /> <a href={`mailto:${mail}`}>{mail}</a>
           </span>
         );
         setLoading(false);
