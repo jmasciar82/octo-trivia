@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import axios from 'axios';
 import CredentialCard from './CredentialCard';
 import printJS from 'print-js';
@@ -13,8 +13,13 @@ const Login = () => {
   const navigate = useNavigate();
   const [code, setCode] = useState('');
   const [user, setUser] = useState(null);
-  const [isFormVisible, setIsFormVisible] = useState(true); // Estado para controlar la visibilidad del formulario
+  const [isFormVisible, setIsFormVisible] = useState(true);
   const credentialRef = useRef();
+  const timeoutRef = useRef(null); // Usar useRef para almacenar el timeoutId
+
+  const handleNavigateHome = () => {
+    navigate('/loginHome');
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -24,6 +29,9 @@ const Login = () => {
       const response = await axios.get(`${backendURL}/usersAcreditaciones/${code}`);
       setUser(response.data);
       toast.success('Usuario encontrado');
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current); // Cancelar el temporizador
+      }
       setIsFormVisible(false); // Ocultar el formulario al encontrar un usuario
     } catch (error) {
       console.error('Error al obtener el usuario:', error);
@@ -33,6 +41,35 @@ const Login = () => {
         toast.error('Usuario no encontrado');
       }
     }
+  };
+
+  useEffect(() => {
+    // Iniciar el temporizador al montar el componente
+    resetTimer();
+
+    return () => {
+      // Limpiar el temporizador al desmontar el componente
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+    };
+  }, []);
+
+  const resetTimer = () => {
+    // Si hay un temporizador en ejecución, lo limpiamos
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+    }
+
+    // Iniciar un nuevo temporizador de 30 segundos
+    timeoutRef.current = setTimeout(() => {
+      handleNavigateHome();
+    }, 30000);
+  };
+
+  const handleInputChange = (e) => {
+    setCode(e.target.value);
+    resetTimer(); // Reiniciar el temporizador cada vez que el usuario escribe
   };
 
   const handlePrint = () => {
@@ -79,10 +116,6 @@ const Login = () => {
     }
   };
 
-  const handleNavigateHome = () => {
-    navigate('/loginHome');
-  };
-
   return (
     <div className="scanner-container-wrapper-login">
       <div className="scanner-container-login">
@@ -93,7 +126,7 @@ const Login = () => {
               className="form-control mb-3"
               placeholder="Ingrese el código"
               value={code}
-              onChange={(e) => setCode(e.target.value)}
+              onChange={handleInputChange} // Usar la nueva función handleInputChange
               required
             />
             <div className="button-container mt-3">
@@ -109,11 +142,10 @@ const Login = () => {
               <CredentialCard user={user} />
             </div>
             <div className="boton-login">
-              <Button  onClick={handlePrint}>
+              <Button onClick={handlePrint}>
                 Imprimir
               </Button>
               <Button onClick={handleNavigateHome} className="btn-primary">Volver</Button>
-
             </div>
           </div>
         )}
