@@ -193,6 +193,13 @@ h1, h2 {
         max-width: 100%; /* La card también se ajusta al 100% */
         padding: 10px;
     }
+    .list-group-admin {
+        
+        flex-direction: column; /* Elementos en columnas para pantallas pequeñas */
+        align-items: center;
+        text-align: center;
+        padding: 0;
+    }
 
     
 
