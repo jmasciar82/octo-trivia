@@ -19,7 +19,9 @@
     overflow: hidden;
     width: 100%;
 }
-
+h2 {
+    color: black;
+}
 .btn-codigo {
     display: flex;
     flex-direction: row; /* Mantiene los elementos en fila */

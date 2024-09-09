@@ -39,6 +39,10 @@ const QRScanner = () => {
       setIsVideoHidden(true);  // Ocultar video
       toast.success('Usuario encontrado');
       stopScanner();
+      // Actualizar el estado codeUsed a true
+      await axios.put(`${backendURL}/usersAcreditaciones/codeUsed/${decodedText}`, {
+        codeUsed: true
+      });
       if (timeoutRef.current) {
         clearTimeout(timeoutRef.current); // Cancelar el temporizador
       }
@@ -51,6 +55,7 @@ const QRScanner = () => {
         toast.error('Usuario no encontrado');
       }
     }
+
   }, [stopScanner]);
 
   const handleScanFailure = useCallback((err) => {
@@ -125,7 +130,7 @@ const QRScanner = () => {
 
       setTimeout(() => {
         navigate('/loginHome');
-    }, 3000); // Ajusta el tiempo según sea necesario
+      }, 3000); // Ajusta el tiempo según sea necesario
 
 
     }
@@ -148,7 +153,7 @@ const QRScanner = () => {
                 <CredentialCard user={user} />
               </div>
               <div className='boton-login'>
-                
+
                 <Button onClick={handlePrint}>Imprimir</Button>
               </div>
             </div>

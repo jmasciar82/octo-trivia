@@ -205,7 +205,7 @@ const UsersAcreditaciones = () => {
               <button id='btn-register-user' type="submit" className="btn btn-primary btn-block">Registrar</button>
             </form>
           )}
-            
+
           {user && (
             <div className="user-credential mt-4">
               <h2>Credencial de Usuario</h2>
@@ -220,7 +220,7 @@ const UsersAcreditaciones = () => {
             </div>
           )}
 
-<hr></hr>
+          <hr></hr>
 
           <h2 className="mt-5">Usuarios Registrados</h2>
 
@@ -240,6 +240,8 @@ const UsersAcreditaciones = () => {
                   <p><strong>Email:</strong> {u.email}</p>
                   <p><strong>Código:</strong> {u.code}</p>
                   <p><strong>Empresa:</strong> {u.tipo}</p>
+                  <p><strong>Asistencia:</strong> {u.codeUsed ? 'Si' : 'No'}</p>
+                  {/* Estado de escaneo */}
                   <img src={u.qrCode} alt="Código QR" className="img-fluid qr-code-admin" />
                   <button onClick={() => handlePrint(u)} className="btn-success mt-3">Imprimir</button>
                 </li>

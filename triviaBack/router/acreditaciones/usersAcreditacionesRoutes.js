@@ -9,5 +9,7 @@ router.post('/', usersAcreditacionesController.crear);
 router.get('/:code', usersAcreditacionesController.obtener);
 router.get('/', usersAcreditacionesController.obtenerTodos);  // Nueva ruta para obtener todos los usuarios
 router.get('/usersAcreditaciones/check-email', checkEmailExists);
+router.put('/codeUsed/:code', usersAcreditacionesController.actualizarCodeUsed);
+
 
 module.exports = router;

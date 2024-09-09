@@ -14,7 +14,7 @@ const CredentialCard = forwardRef(({ user }, ref) => {
       case 'Novofarma': return 'brown';
       case 'Disprofarma': return 'grey';
       case 'Laboratorios Bagó Brasil': return 'black';
-      default: return 'white';
+      default: return 'black';
     }
   };
 

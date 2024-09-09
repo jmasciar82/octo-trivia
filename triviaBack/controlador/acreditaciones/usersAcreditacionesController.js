@@ -129,4 +129,23 @@ const checkEmailExists = async (req, res) => {
       res.status(500).json({ message: 'Error al verificar el correo' });
     }
   };
-module.exports = { obtener, crear, obtenerTodos, checkEmailExists};
+
+  const actualizarCodeUsed = async (req, res) => {
+    const { code } = req.params; // Obtener el código del QR
+    try {
+        // Buscar el usuario por el código y actualizar el campo `codeUsed`
+        const user = await User.findOneAndUpdate(
+            { code },
+            { codeUsed: true },
+            { new: true }
+        );
+        if (!user) return res.status(404).send('User not found');
+
+        res.json(user);
+    } catch (error) {
+        console.error('Error al actualizar el código:', error);
+        res.status(500).json({ error: 'Error al actualizar el código' });
+    }
+};
+
+module.exports = { obtener, crear, obtenerTodos, checkEmailExists, actualizarCodeUsed};

@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
 import axios from 'axios';
 import CredentialCard from './CredentialCard';
 import printJS from 'print-js';
@@ -17,13 +17,14 @@ const Login = () => {
   const credentialRef = useRef();
   const timeoutRef = useRef(null); // Usar useRef para almacenar el timeoutId
 
-  const handleNavigateHome = () => {
+  const handleNavigateHome = useCallback(() => {
     navigate('/loginHome');
-  };
+  }, [navigate]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const backendURL = process.env.NODE_ENV === 'production' ? process.env.REACT_APP_PROD_BACKEND_URL : 'http://localhost:5000';
+    // Actualizar el estado codeUsed a true
 
     try {
       const response = await axios.get(`${backendURL}/usersAcreditaciones/${code}`);
@@ -32,6 +33,7 @@ const Login = () => {
       if (timeoutRef.current) {
         clearTimeout(timeoutRef.current); // Cancelar el temporizador
       }
+
       setIsFormVisible(false); // Ocultar el formulario al encontrar un usuario
     } catch (error) {
       console.error('Error al obtener el usuario:', error);
@@ -41,7 +43,22 @@ const Login = () => {
         toast.error('Usuario no encontrado');
       }
     }
+    await axios.put(`${backendURL}/usersAcreditaciones/codeUsed/${code}`, {
+      codeUsed: true
+    });
   };
+
+  // Usar useCallback para memorizar la función y evitar que se recree en cada render
+  const resetTimer = useCallback(() => {
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+    }
+
+    // Iniciar un nuevo temporizador de 30 segundos
+    timeoutRef.current = setTimeout(() => {
+      handleNavigateHome();
+    }, 30000);
+  }, [handleNavigateHome]);
 
   useEffect(() => {
     // Iniciar el temporizador al montar el componente
@@ -53,19 +70,7 @@ const Login = () => {
         clearTimeout(timeoutRef.current);
       }
     };
-  }, []);
-
-  const resetTimer = () => {
-    // Si hay un temporizador en ejecución, lo limpiamos
-    if (timeoutRef.current) {
-      clearTimeout(timeoutRef.current);
-    }
-
-    // Iniciar un nuevo temporizador de 30 segundos
-    timeoutRef.current = setTimeout(() => {
-      handleNavigateHome();
-    }, 30000);
-  };
+  }, [resetTimer]);
 
   const handleInputChange = (e) => {
     setCode(e.target.value);
