@@ -120,26 +120,32 @@ const obtenerTodos = async (req, res) => {
 const checkEmailExists = async (req, res) => {
     const { email } = req.query;
     try {
-      const user = await User.findOne({ email });
-      if (user) {
-        return res.status(200).json({ exists: true });
-      }
-      res.status(200).json({ exists: false });
+        const user = await User.findOne({ email });
+        if (user) {
+            return res.status(200).json({ exists: true });
+        }
+        res.status(200).json({ exists: false });
     } catch (error) {
-      res.status(500).json({ message: 'Error al verificar el correo' });
+        res.status(500).json({ message: 'Error al verificar el correo' });
     }
-  };
-
-  const actualizarCodeUsed = async (req, res) => {
+};
+const actualizarCodeUsed = async (req, res) => {
     const { code } = req.params; // Obtener el código del QR
+    if (!code) {
+        return res.status(400).json({ error: 'Código de QR es requerido' });
+    }
+
     try {
         // Buscar el usuario por el código y actualizar el campo `codeUsed`
         const user = await User.findOneAndUpdate(
-            { code },
-            { codeUsed: true },
-            { new: true }
+            { code }, // Criterio de búsqueda
+            { codeUsed: true }, // Actualización
+            { new: true, useFindAndModify: false } // Opciones: nuevo documento y evitar deprecación
         );
-        if (!user) return res.status(404).send('User not found');
+
+        if (!user) {
+            return res.status(404).json({ error: 'Usuario no encontrado' });
+        }
 
         res.json(user);
     } catch (error) {
@@ -148,4 +154,5 @@ const checkEmailExists = async (req, res) => {
     }
 };
 
-module.exports = { obtener, crear, obtenerTodos, checkEmailExists, actualizarCodeUsed};
+
+module.exports = { obtener, crear, obtenerTodos, checkEmailExists, actualizarCodeUsed };

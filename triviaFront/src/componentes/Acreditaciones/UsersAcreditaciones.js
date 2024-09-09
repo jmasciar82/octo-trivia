@@ -47,10 +47,10 @@ const UsersAcreditaciones = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const backendURL = process.env.NODE_ENV === 'production' ? process.env.REACT_APP_PROD_BACKEND_URL : 'http://localhost:5000';
-
+  
     setLoading(true);
     setErrorMessage(''); // Clear previous error message
-
+  
     try {
       // Verifica si el email ya está registrado
       const existingUser = users.find((user) => user.email === email);
@@ -59,26 +59,46 @@ const UsersAcreditaciones = () => {
         setLoading(false);
         return;
       }
-
+  
       // Si selecciona "Otro", usar el valor personalizado
       const tipoEmpresa = tipo === 'Otro' ? empresaOtro : tipo;
-
+  
       // Registra el nuevo usuario
       const response = await axios.post(`${backendURL}/usersAcreditaciones`, { name, email, tipo: tipoEmpresa });
-      setUser(response.data);
-      setUsers((prevUsers) => [...prevUsers, response.data]);
+      const newUser = response.data;
+  
+      // Verifica que newUser tenga un campo 'code'
+      if (newUser && newUser.code) {
+        setUser(newUser);
+        setUsers((prevUsers) => [...prevUsers, newUser]);
+  
+        
+      } else {
+        console.error('Usuario registrado no contiene código.');
+        setErrorMessage('Error al registrar el usuario.');
+      }
     } catch (error) {
       console.error('Error al registrar el usuario:', error);
+      setErrorMessage('Error al registrar el usuario.');
     } finally {
       setLoading(false);
     }
   };
+  
 
-  const handlePrint = (user) => {
+  const handlePrint = async (user) => {
+
+    const backendURL = process.env.NODE_ENV === 'production' ? process.env.REACT_APP_PROD_BACKEND_URL : 'http://localhost:5000';
+
+
+    // Actualiza el campo codeUsed
+    await axios.put(`${backendURL}/usersAcreditaciones/codeUsed/${user.code}`, {
+      codeUsed: true
+    });
+
     const credentialHTML = `
       <div class="credential-card">
         <h2>BAGO 2024<hr></hr></h2>
-
         <p class="item-name"><strong>Nombre:</strong> ${user.name}</p>
         <p><strong>Email:</strong> ${user.email}</p>
         <p><strong>Código:</strong> ${user.code}</p>
@@ -86,40 +106,56 @@ const UsersAcreditaciones = () => {
         <img src="${user.qrCode}" alt="Código QR" class="img-fluid qr-code" />
       </div>
     `;
-
-    printJS({
-      printable: credentialHTML,
-      type: 'raw-html',
-      style: `
-        .credential-card {
-          border: 1px solid black;
-          padding: 20px;
-          width: 200px;
-          text-align: center;
-          background-color: #fff;
-          border-radius: 10px;
-          margin: 0 auto;
+  
+    try {
+      printJS({
+        printable: credentialHTML,
+        type: 'raw-html',
+        style: `
+          .credential-card {
+            border: 1px solid black;
+            padding: 20px;
+            width: 200px;
+            text-align: center;
+            background-color: #fff;
+            border-radius: 10px;
+            margin: 0 auto;
+          }
+          .credential-logo {
+            width: 100px;
+            height: auto;
+            margin-bottom: 1rem;
+          }
+          .credential-title {
+            margin-bottom: 1.5rem;
+          }
+          .credential-card p {
+            color: #343a40;
+            margin-bottom: 0.5rem;
+          }
+          .qr-code {
+            max-width: 50%;
+            height: auto;
+            margin-top: 1rem;
+          }
+        `,
+        onPrintDialogClose: async () => {
+          try {
+            const backendURL = process.env.NODE_ENV === 'production' ? process.env.REACT_APP_PROD_BACKEND_URL : 'http://localhost:5000';
+            await axios.put(`${backendURL}/usersAcreditaciones/codeUsed/${user.code}`, {
+              codeUsed: true
+            });
+            console.log(`Código ${user.code} marcado como usado correctamente.`);
+          } catch (error) {
+            console.error('Error al actualizar el estado de codeUsed:', error);
+          }
         }
-        .credential-logo {
-          width: 100px;
-          height: auto;
-          margin-bottom: 1rem;
-        }
-        .credential-title {
-          margin-bottom: 1.5rem;
-        }
-        .credential-card p {
-          color: #343a40;
-          margin-bottom: 0.5rem;
-        }
-        .qr-code {
-          max-width: 50%;
-          height: auto;
-          margin-top: 1rem;
-        }
-      `,
-    });
+      });
+    } catch (error) {
+      console.error('Error en la impresión:', error);
+    }
   };
+  
 
   const filteredUsers = users.filter((u) =>
     u.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
