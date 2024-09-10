@@ -4,6 +4,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './UsersAcreditaciones.css';
 import printJS from 'print-js';
 import LogoutButton from '../COMUN/LogoutButton';
+import * as XLSX from 'xlsx'; // Importa la biblioteca xlsx
+import { saveAs } from 'file-saver'; // Importa file-saver para descargar el archivo
 
 const UsersAcreditaciones = () => {
   const [name, setName] = useState('');
@@ -43,6 +45,20 @@ const UsersAcreditaciones = () => {
     localStorage.removeItem('token');
     setToken(null);
   };
+  //Función para exportar los usuarios a Excel
+  const exportToExcel = () => {
+    // Crea una hoja de trabajo (worksheet)
+    const worksheet = XLSX.utils.json_to_sheet(users);
+    // Crea un libro de trabajo (workbook)
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, 'Usuarios');
+    // Genera el archivo Excel
+    const excelBuffer = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
+    // Crea un Blob y descarga el archivo
+    const blob = new Blob([excelBuffer], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+    saveAs(blob, 'UsuariosAcreditaciones.xlsx');
+  };
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -189,6 +205,8 @@ const UsersAcreditaciones = () => {
           </div>
           <h1>Registro de Usuario</h1>
 
+          
+
           {loading ? (
             <div className="loading">Generando usuario, por favor espere...</div>
           ) : (
@@ -259,6 +277,10 @@ const UsersAcreditaciones = () => {
           <hr></hr>
 
           <h2 className="mt-5">Usuarios Registrados</h2>
+
+          <button className="btn btn-primary mb-3" onClick={exportToExcel}>
+            Exportar a Excel
+          </button>
 
           <input
             type="text"
