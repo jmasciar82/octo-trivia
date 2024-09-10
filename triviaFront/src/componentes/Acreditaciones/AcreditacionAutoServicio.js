@@ -79,7 +79,7 @@ const AcreditacionesAutoServicio = () => {
   ];
 
   return (
-    <div className="login-container-wrapper-auto">
+    <div id='auto-login' className="login-container-wrapper-auto">
       <div className="login-container-auto">
         <h1 id='h1-registro'>Registro</h1>
 

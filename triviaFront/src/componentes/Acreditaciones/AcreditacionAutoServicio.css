@@ -18,6 +18,10 @@
   width: 50%;
 }
 
+#auto-login {
+  color: black ;
+}
+
 /* Título */
 h1 {
   text-align: center;

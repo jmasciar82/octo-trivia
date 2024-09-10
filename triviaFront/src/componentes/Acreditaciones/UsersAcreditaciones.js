@@ -63,10 +63,10 @@ const UsersAcreditaciones = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const backendURL = process.env.NODE_ENV === 'production' ? process.env.REACT_APP_PROD_BACKEND_URL : 'http://localhost:5000';
-  
+
     setLoading(true);
     setErrorMessage(''); // Clear previous error message
-  
+
     try {
       // Verifica si el email ya está registrado
       const existingUser = users.find((user) => user.email === email);
@@ -75,20 +75,20 @@ const UsersAcreditaciones = () => {
         setLoading(false);
         return;
       }
-  
+
       // Si selecciona "Otro", usar el valor personalizado
       const tipoEmpresa = tipo === 'Otro' ? empresaOtro : tipo;
-  
+
       // Registra el nuevo usuario
       const response = await axios.post(`${backendURL}/usersAcreditaciones`, { name, email, tipo: tipoEmpresa });
       const newUser = response.data;
-  
+
       // Verifica que newUser tenga un campo 'code'
       if (newUser && newUser.code) {
         setUser(newUser);
         setUsers((prevUsers) => [...prevUsers, newUser]);
-  
-        
+
+
       } else {
         console.error('Usuario registrado no contiene código.');
         setErrorMessage('Error al registrar el usuario.');
@@ -100,7 +100,7 @@ const UsersAcreditaciones = () => {
       setLoading(false);
     }
   };
-  
+
 
   const handlePrint = async (user) => {
 
@@ -122,7 +122,7 @@ const UsersAcreditaciones = () => {
         <img src="${user.qrCode}" alt="Código QR" class="img-fluid qr-code" />
       </div>
     `;
-  
+
     try {
       printJS({
         printable: credentialHTML,
@@ -171,7 +171,7 @@ const UsersAcreditaciones = () => {
       console.error('Error en la impresión:', error);
     }
   };
-  
+
 
   const filteredUsers = users.filter((u) =>
     u.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -205,7 +205,7 @@ const UsersAcreditaciones = () => {
           </div>
           <h1>Registro de Usuario</h1>
 
-          
+
 
           {loading ? (
             <div className="loading">Generando usuario, por favor espere...</div>
@@ -276,7 +276,7 @@ const UsersAcreditaciones = () => {
 
           <hr></hr>
 
-          <h2 className="mt-5">Usuarios Registrados</h2>
+          <h2  id='usuarios-h2' className="mt-5">Usuarios Registrados: <span id='registrados'>{users.length}</span></h2>
 
           <button className="btn btn-primary mb-3" onClick={exportToExcel}>
             Exportar a Excel
