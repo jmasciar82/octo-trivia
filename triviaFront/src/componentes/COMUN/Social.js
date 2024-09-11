@@ -21,11 +21,11 @@ const Social = () => {
             <div className="social-links">
                 {/* <h3>Redes Sociales</h3> */}
                 <ul>
-                    <li><a href="https://www.facebook.com/Bagomas.ar/"><img src={FacebookLogo} alt="Facebook" /></a></li>
-                    {/* <li><a href="https://twitter.com/"><img src={TwitterLogo} alt="Twitter" /></a></li> */}
-                    <li><a href="https://www.instagram.com/bagomas.ar"><img src={InstagramLogo} alt="Instagram" /></a></li>
-                    <li><a href="https://www.youtube.com/channel/UCBGf-MMU-a5vito8i0c_Yxw"><img src={Youtube} alt="Youtube" /></a></li>
-                    <li><a id='bago-link' href="https://bagomas.com.ar/"><img src={Bago_mas} alt="Bago Mas"/></a></li>
+                    <li><a href="https://www.facebook.com/Bagomas.ar/" target="_blank" rel="noopener noreferrer"><img src={FacebookLogo} alt="Facebook" /></a></li>
+                    {/* <li><a href="https://twitter.com/"><img src={TwitterLogo} alt="Twitter" target="_blank" rel="noopener noreferrer" /></a></li> */}
+                    <li><a href="https://www.instagram.com/bagomas.ar" target="_blank" rel="noopener noreferrer"><img src={InstagramLogo} alt="Instagram" /></a></li>
+                    <li><a href="https://www.youtube.com/watch?v=hxS-JirImIs" target="_blank" rel="noopener noreferrer"><img src={Youtube} alt="Youtube" /></a></li>
+                    <li><a id='bago-link' href="https://bagomas.com.ar/" target="_blank" rel="noopener noreferrer"><img src={Bago_mas} alt="Bago Mas"/></a></li>
                 </ul>
             </div>
         </div>
