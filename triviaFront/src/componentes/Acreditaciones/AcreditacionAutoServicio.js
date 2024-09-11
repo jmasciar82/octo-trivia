@@ -40,6 +40,7 @@ const AcreditacionesAutoServicio = () => {
 
     setLoading(true);
     setErrorMessage('');
+    
 
     try {
       // Usar el valor de empresaOtro si el tipo seleccionado es "Otro"
@@ -55,6 +56,24 @@ const AcreditacionesAutoServicio = () => {
         setLoading(false);
         return;
       }
+
+
+      // Excluye los usuarios de IT para hacer pruebas
+
+   /* const excludedEmails = ['juanpsnusa@gmail.com', 'joaquinezequielit@gmail.com'];
+      const existingUser = users.find((user) => user.email === email);
+
+      if (existingUser && !excludedEmails.includes(email)) {
+        const mail = "support@example.com"; // Reemplaza esto por el correo adecuado para consultas
+        setErrorMessage(
+          <span>
+            El correo ya está registrado. <br /> Consultas: <br /> <a href={`mailto:${mail}`}>{mail}</a>
+          </span>
+        );
+        setLoading(false);
+        return;
+      } */
+
 
       const response = await axios.post(`${backendURL}/usersAcreditaciones`, { name, email, tipo: finalTipo });
       setUser(response.data);
