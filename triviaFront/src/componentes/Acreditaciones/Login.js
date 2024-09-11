@@ -43,9 +43,16 @@ const Login = () => {
         toast.error('Usuario no encontrado');
       }
     }
-    await axios.put(`${backendURL}/usersAcreditaciones/codeUsed/${code}`, {
-      codeUsed: true
-    });
+
+    try {
+      await axios.put(`${backendURL}/usersAcreditaciones/codeUsed/${code}`, {
+        codeUsed: true
+      });
+    } catch (error) {
+      console.error('Error al obtener el usuario:', error);
+      toast.error('Verifique su código');
+    }
+    
   };
 
   // Usar useCallback para memorizar la función y evitar que se recree en cada render
