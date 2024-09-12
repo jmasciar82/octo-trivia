@@ -17,34 +17,41 @@ const QRScanner = () => {
   const credentialRef = useRef(null);
   const codeReaderRef = useRef(null);
   const navigate = useNavigate();
-  const timeoutRef = useRef(null); // Usar useRef para almacenar el timeoutId
+  const timeoutRef = useRef(null);
 
   const stopScanner = useCallback(() => {
     if (codeReaderRef.current) {
-      codeReaderRef.current.reset();
+      codeReaderRef.current.reset(); // Detener el lector QR
+      codeReaderRef.current = null; // Limpiar la referencia
+    }
+  
+    // Detener las pistas de la cámara si el videoRef existe
+    if (videoRef.current && videoRef.current.srcObject) {
+      const stream = videoRef.current.srcObject;
+      const tracks = stream.getTracks();
+      tracks.forEach(track => track.stop()); // Detener todas las pistas
+      videoRef.current.srcObject = null; // Limpiar el srcObject
     }
   }, []);
 
   const handleNavigateHome = useCallback(() => {
-    stopScanner();
-    navigate('/loginHome');
-    // Forzar un refresh de la página
+    stopScanner(); // Asegurar la detención del escáner
+    navigate('/loginHome'); // Navegar a la página principal
   }, [navigate, stopScanner]);
+  
 
   const handleScanSuccess = useCallback(async (decodedText) => {
     const backendURL = process.env.NODE_ENV === 'production' ? process.env.REACT_APP_PROD_BACKEND_URL : 'http://localhost:5000';
     try {
       const response = await axios.get(`${backendURL}/usersAcreditaciones/${decodedText}`);
       setUser(response.data);
-      setIsVideoHidden(true);  // Ocultar video
+      setIsVideoHidden(true);
       toast.success('Usuario encontrado');
       stopScanner();
-      // Actualizar el estado codeUsed a true
-      await axios.put(`${backendURL}/usersAcreditaciones/codeUsed/${decodedText}`, {
-        codeUsed: true
-      });
+      
+      await axios.put(`${backendURL}/usersAcreditaciones/codeUsed/${decodedText}`, { codeUsed: true });
       if (timeoutRef.current) {
-        clearTimeout(timeoutRef.current); // Cancelar el temporizador
+        clearTimeout(timeoutRef.current);
       }
     } catch (err) {
       console.error('Error al obtener el usuario:', err);
@@ -55,40 +62,52 @@ const QRScanner = () => {
         toast.error('Usuario no encontrado');
       }
     }
-
   }, [stopScanner]);
 
   const handleScanFailure = useCallback((err) => {
-
+    console.error('Error en la lectura del QR:', err);
   }, []);
 
-  const startScanner = useCallback(() => {
-    const codeReader = new BrowserQRCodeReader();
-    codeReaderRef.current = codeReader;
+  const startScanner = useCallback(async () => {
+    try {
+      if (!videoRef.current) {
+        throw new Error("Video element is not available");
+      }
+  
+      const codeReader = new BrowserQRCodeReader();
+      codeReaderRef.current = codeReader;
 
-    codeReader.decodeFromInputVideoDevice(undefined, videoRef.current)
-      .then(result => {
-        handleScanSuccess(result.text);
-      })
-      .catch(err => {
-        handleScanFailure(err);
-      });
+      // Iniciar el lector de códigos QR desde la cámara
+      const result = await codeReader.decodeFromInputVideoDevice(undefined, videoRef.current);
+      handleScanSuccess(result.text);
+
+    } catch (err) {
+      if (err.name === 'NotAllowedError') {
+        console.error("Acceso a la cámara denegado");
+      } else if (err.name === 'NotFoundError') {
+        console.error("No se encontró cámara en el dispositivo");
+      } else {
+        console.error("Error durante el escaneo del código QR:", err);
+      }
+      handleScanFailure(err);
+    }
   }, [handleScanSuccess, handleScanFailure]);
 
   useEffect(() => {
-    startScanner();
-
+    startScanner(); // Iniciar el escáner cuando se monta el componente
+  
     timeoutRef.current = setTimeout(() => {
-      handleNavigateHome();
-    }, 30000); // 60 segundos
-
+      handleNavigateHome(); // Navegar a la página principal después de un tiempo
+    }, 30000); // 30 segundos
+  
     return () => {
       if (timeoutRef.current) {
-        clearTimeout(timeoutRef.current); // Limpiar el temporizador en la limpieza del efecto
+        clearTimeout(timeoutRef.current); // Limpiar el temporizador
       }
-      stopScanner();
+      stopScanner(); // Detener el escáner al desmontar el componente
     };
   }, [startScanner, stopScanner, handleNavigateHome]);
+  
 
   const handlePrint = () => {
     if (user) {
@@ -124,18 +143,17 @@ const QRScanner = () => {
           }
         `,
         onPrintDialogClose: () => {
+          stopScanner();
           navigate('/loginHome'); // Redirigir después de imprimir
         }
       });
 
       setTimeout(() => {
+        stopScanner();
         navigate('/loginHome');
       }, 3000); // Ajusta el tiempo según sea necesario
-
-
     }
   };
-
 
   return (
     <div className="scanner-container-wrapper-qr">
@@ -153,7 +171,6 @@ const QRScanner = () => {
                 <CredentialCard user={user} />
               </div>
               <div className='boton-login'>
-
                 <Button onClick={handlePrint}>Imprimir</Button>
               </div>
             </div>
